@@ -1,0 +1,77 @@
+@import "../../styles/mixin.scss";
+@import "../../styles/variables.scss";
+
+.MainAuth {
+  width: 25rem;
+  @include flex-center(column);
+
+  a {
+    width: 100%;
+  }
+
+  button.main-auth-signin {
+    @include basic-button($bg-color1);
+    margin: 2rem 0;
+    width: 100%;
+    border: 1px black solid;
+
+    &:hover {
+      background-color: darken($bg-color1, 3%);
+    }
+  }
+  button.main-auth-signup {
+    @include basic-button(white);
+    color: $text-color1;
+    width: 100%;
+    border: 1px black solid;
+
+    &:hover {
+      background-color: darken(white, 3%);
+    }
+  }
+
+  .suggest-using-platforms {
+    font-size: 0.9rem;
+  }
+
+  .connect-with-platforms {
+    @include flex-center(row);
+    margin: 1rem 0;
+
+    .platform-button {
+      border-radius: 5px;
+      border: 1px #ccc solid;
+      margin: 0 0.5rem;
+      width: 3rem;
+      height: 3rem;
+      cursor: pointer;
+      @include flex-center(row);
+      
+      &:hover{
+        background-color: darken($bg-color2, 3%);
+      }
+    }
+
+    .platform-brand {
+      font-size: 1.6rem;
+    }
+    .fa-facebook-f {
+      font-size: 1.3rem;
+      color: #1877f2;
+    }
+    img {
+      width: 1.8rem;
+    }
+  }
+
+  .copyrights-area{
+    font-size: 0.9rem;
+    color: rgb(46, 46, 46);
+    text-align: center;
+  }
+}
+
+
+// client_id --> MzI1NTAyMTV8MTY3OTQ3NDUxNy4wOTIxOTM0
+
+// secret --> 07897e07a24192ee48c62d106752f610ae49f4eef9696f65fa30dc22bc6c05f7

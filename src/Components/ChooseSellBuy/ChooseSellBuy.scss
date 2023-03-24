@@ -1,0 +1,36 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixin.scss";
+
+h1.sell-buy-greet-user {
+  color: $text-color2;
+  font-weight: bold;
+  font-size: 2rem;
+  margin-top: 3rem;
+}
+
+.ChooseSellBuy {
+  text-align: center;
+
+  span {
+    color: #9e9b9b;
+    font-size: 0.9rem;
+  }
+
+  .choose-buttons-area {
+    @include flex-center(column);
+    a {
+      width: 100%;
+    }
+    button {
+      margin-top: 2rem;
+      width: 100%;
+    }
+
+    button.sell-ticket-btn {
+      @include basic-button($bg-color1);
+    }
+    button.buy-ticket-btn {
+      @include basic-button($bg-color3);
+    }
+  }
+}

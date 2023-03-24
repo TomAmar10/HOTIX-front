@@ -1,0 +1,32 @@
+@import "../../styles/mixin.scss";
+@import "../../styles/variables.scss";
+
+.LoginForm {
+  @include auth-form();
+
+  h3 {
+    margin-bottom: 1rem;
+  }
+
+  .auth-login-button {
+    @include basic-button($bg-color1);
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .auth-links-area {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 0 0;
+
+    .form-link {
+      color: $text-color2;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline 1px;
+      }
+    }
+  }
+
+}

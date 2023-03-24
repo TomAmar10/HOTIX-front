@@ -1,0 +1,59 @@
+@import "./variables.scss";
+
+@mixin flex-center($dir) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $dir;
+}
+
+@mixin auth-form {
+  width: 25rem;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 5px;
+  padding: 1rem;
+  @include flex-center(column);
+
+  h3 {
+    text-align: center;
+  }
+
+  .form-input-area {
+    width: 100%;
+  }
+
+  .form-control {
+    margin: 0.3rem 0;
+    padding: 0.6rem 1rem;
+    &:focus {
+      box-shadow: rgba($bg-color1, 0.4) 0px 0px 0px 2px;
+      border-color: lighten($text-color2, 60%);
+    }
+  }
+}
+
+@mixin basic-button($bgColor) {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: white;
+  border: none;
+  background-color: $bgColor;
+  @if $bgColor == $bg-color2 {
+    color: $text-color1;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: $mobile-medium) {
+    @content;
+  }
+  @media (max-width: $mobile-small) {
+    background-color: green;
+  }
+  @media (max-width: $mobile-xs) {
+    background-color: pink;
+  }
+}

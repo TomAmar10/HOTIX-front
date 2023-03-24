@@ -1,0 +1,61 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixin.scss";
+
+.UpcomingEventCard {
+  width: 20rem;
+  height: 20rem;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
+  background-color: white;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  &:hover {
+    cursor: pointer;
+    .event-card-img {
+      transform: scale(1.1);
+    }
+  }
+
+  .event-card-img-holder {
+    width: 100%;
+    height: 60%;
+    overflow: hidden;
+    img.event-card-img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: all 0.3s ease;
+      top: 0;
+    }
+  }
+
+  .event-card-content {
+    padding: 1rem;
+    gap: 1rem;
+    display: flex;
+    justify-content: space-between;
+
+    .card-content-date {
+      @include flex-center(column);
+      justify-content: start;
+      span {
+        color: $text-color2;
+        font-size: 0.8rem;
+        font-weight: bold;
+      }
+      h3 {
+        font-weight: bold;
+      }
+    }
+    .card-content-details {
+      h6 {
+        font-weight: 700;
+      }
+      p {
+        color: rgb(138, 137, 137);
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

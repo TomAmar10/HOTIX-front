@@ -1,0 +1,23 @@
+main.container-main {
+  @include flex-center(column);
+
+  div.home-page-container {
+    width: 70%;
+  }
+}
+
+.or-separator {
+  margin: 1rem 0 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  span {
+    margin: 0 1rem;
+    color: rgb(121, 118, 118);
+    font-size: 0.9rem;
+  }
+}
+
+hr {
+  width: 100%;
+}

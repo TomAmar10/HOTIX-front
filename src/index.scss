@@ -1,0 +1,9 @@
+@import "./styles/variables.scss";
+@import "./styles/functions.scss";
+@import "./styles/mixin.scss";
+@import "./styles/globals.scss";
+
+body {
+  margin: 0;
+  background-color: $bg-color2 !important;
+}

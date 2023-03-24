@@ -1,0 +1,84 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixin.scss";
+
+.UpcomingEvents {
+  @include flex-center(column);
+  .upcoming-events-navbar {
+    width: 100%;
+    padding: 0 1rem;
+    @include flex-center(row);
+    justify-content: space-between;
+    margin: 5rem 0 3rem 0;
+
+    h2 {
+      color: darken($text-color2, 40%);
+      font-weight: bold;
+    }
+
+    .select-events-area {
+      display: flex;
+      gap: 1rem;
+      select {
+        width: 10rem;
+        border-radius: 30px;
+        border: none;
+        background-color: lighten($bg-color1, 68%);
+        color: $text-color2;
+        padding: 0.5rem 1rem;
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='purple' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 1em;
+      }
+    }
+  }
+  .upcoming-events-card-container {
+    @include flex-center(row);
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 2rem;
+    row-gap: 3rem;
+  }
+
+  button.load-more-upcoming-events {
+    border-radius: 30px;
+    margin: 4rem 0 2rem;
+    border: 1px $text-color2 solid;
+    color: $text-color2;
+    font-weight: 500;
+    text-align: center;
+    font-size: 1rem;
+    padding: 0.7rem;
+    width: 10rem;
+    transition: all 0.5s;
+    cursor: pointer;
+    direction: rtl;
+    position: relative;
+    background: none;
+    overflow: hidden;
+  }
+
+  button.load-more-upcoming-events::after {
+    content: "»";
+    direction: ltr;
+    position: absolute;
+    opacity: 0;
+    font-size: 1.4rem;
+    top: 6px;
+    right: -20px;
+    transition: 0.5s;
+  }
+
+  button.load-more-upcoming-events:hover {
+    padding-right: 24px;
+    padding-left: 8px;
+
+    &::after {
+      opacity: 1;
+      right: 20px;
+    }
+  }
+}

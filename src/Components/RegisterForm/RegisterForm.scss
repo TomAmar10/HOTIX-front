@@ -1,0 +1,57 @@
+@import "../../styles/mixin.scss";
+@import "../../styles/variables.scss";
+
+
+.RegisterForm {
+  @include auth-form();
+
+  .user-first-last-name {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  h3 {
+    margin-bottom: 0;
+  }
+  .quick-easy {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .user-full-name {
+    display: flex;
+    gap: 0.6rem;
+  }
+
+  .radio-inputs-area {
+    @include flex-center(row);
+    margin: 0.3rem 0;
+    gap: 0.6rem;
+    label {
+      @include flex-center(row);
+      width: 100%;
+      border: 1px #ccc solid;
+      border-radius: 5px;
+      padding: 0.6rem 1rem;
+      cursor: pointer;
+      span {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  .auth-login-button {
+    @include basic-button($bg-color1);
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .form-link {
+    margin: 1rem 0;
+    color: $text-color2;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline 1px;
+    }
+  }
+}
