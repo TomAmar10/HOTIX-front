@@ -3,6 +3,7 @@
 
 .UpcomingEvents {
   @include flex-center(column);
+  width: 70%;
   .upcoming-events-navbar {
     width: 100%;
     padding: 0 1rem;
@@ -18,20 +19,24 @@
     .select-events-area {
       display: flex;
       gap: 1rem;
-      select {
+      select.upcoming-events-select {
         width: 10rem;
         border-radius: 30px;
-        border: none;
-        background-color: lighten($bg-color1, 68%);
-        color: $text-color2;
+        border: lighten($text-color2, 40%) 1px solid;
+        background-color: white;
+        color: darken($text-color2, 20%);
         padding: 0.5rem 1rem;
         appearance: none;
         -moz-appearance: none;
         -webkit-appearance: none;
-        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='purple' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='gray' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
         background-repeat: no-repeat;
         background-position: right 1rem center;
         background-size: 1em;
+        cursor: pointer;
+        &:focus {
+          outline: lighten($text-color2, 25%) 1px solid;
+        }
       }
     }
   }
@@ -39,8 +44,13 @@
     @include flex-center(row);
     width: 100%;
     flex-wrap: wrap;
+    min-height: 20rem;;
     gap: 2rem;
     row-gap: 3rem;
+    .error-message-section{
+      color: darken($text-color2, 30%);
+      font-size: 1.3rem;
+    }
   }
 
   button.load-more-upcoming-events {

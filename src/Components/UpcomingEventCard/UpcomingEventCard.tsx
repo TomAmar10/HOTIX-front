@@ -1,26 +1,36 @@
+import { Event } from "../../models/Event";
+import { categoryImages as images } from "../../utils/file-import";
 import "./UpcomingEventCard.scss";
 
-function UpcomingEventCard(): JSX.Element {
+interface props {
+  event: Event;
+}
+
+function UpcomingEventCard(props: props): JSX.Element {
+  const month = new Date(props.event.date)
+    .toLocaleString("en-US", { month: "short" })
+    .toUpperCase();
+  const day = new Date(props.event.date).getDate().toString().padStart(2, "0");
+
   return (
     <div className="UpcomingEventCard">
       <div className="event-card-img-holder">
         <img
           className="event-card-img"
-          // src="https://images.pexels.com/photos/2078008/pexels-photo-2078008.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          src="https://images.pexels.com/photos/1652353/pexels-photo-1652353.jpeg?auto=compress&cs=tinysrgb&w=1600"
+          src={images[props.event.id_category.name.replace(" ", "_")]}
           alt=""
         />
       </div>
       <div className="event-card-content">
         <div className="card-content-date">
-          <span>AUG</span>
-          <h3>20</h3>
+          <span>{month}</span>
+          <h3>{day}</h3>
         </div>
         <div className="card-content-details">
-          <h6>Wonder Girls 2010 Wonder Girls World Tour San Francisco</h6>
-          <p>
-            We'll get you directly seated and inside for you to enjoy the show.
-          </p>
+          <h6>
+            {props.event.event_name} - {props.event.location}
+          </h6>
+          <p>{props.event.description}</p>
         </div>
       </div>
     </div>

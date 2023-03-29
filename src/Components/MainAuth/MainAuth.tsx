@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
-import googleImage from "../../assets/google-image.png";
+import { googleImage } from "../../utils/file-import";
 import "./MainAuth.scss";
 
 function MainAuth(): JSX.Element {
   return (
     <div className="MainAuth">
-      <Link to="?mode=login">
+      <Link to="?mode=login" className="auth-link">
         <button className="main-auth-signin">Sign In</button>
       </Link>
-      <Link to="?mode=signup">
-        <button className="main-auth-signup">Sign Up</button>
+      <Link to="?mode=register" className="auth-link">
+        <button className="main-auth-register">Sign Up</button>
       </Link>
       <div className="or-separator">
         <hr />

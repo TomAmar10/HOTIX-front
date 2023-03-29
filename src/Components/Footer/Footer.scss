@@ -2,13 +2,13 @@
 @import "../../styles/variables.scss";
 
 .Footer-container {
-  width: 80%;
+  // width: 80%; 
   background-color: darken($bg-color1, 40%);
   color: $text-color3;
 
   .Footer {
     @include flex-center(row);
-    align-items: start;
+    align-items: flex-start;
     gap: 4rem;
     padding: 2rem 3rem;
     margin-top: 5rem;

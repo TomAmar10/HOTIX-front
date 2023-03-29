@@ -5,13 +5,13 @@
   width: 25rem;
   @include flex-center(column);
 
-  a {
+  a.auth-link {
     width: 100%;
+    margin: 2rem 0 0;
   }
 
   button.main-auth-signin {
     @include basic-button($bg-color1);
-    margin: 2rem 0;
     width: 100%;
     border: 1px black solid;
 
@@ -19,7 +19,7 @@
       background-color: darken($bg-color1, 3%);
     }
   }
-  button.main-auth-signup {
+  button.main-auth-register {
     @include basic-button(white);
     color: $text-color1;
     width: 100%;
@@ -46,8 +46,8 @@
       height: 3rem;
       cursor: pointer;
       @include flex-center(row);
-      
-      &:hover{
+
+      &:hover {
         background-color: darken($bg-color2, 3%);
       }
     }
@@ -64,13 +64,12 @@
     }
   }
 
-  .copyrights-area{
+  .copyrights-area {
     font-size: 0.9rem;
     color: rgb(46, 46, 46);
     text-align: center;
   }
 }
-
 
 // client_id --> MzI1NTAyMTV8MTY3OTQ3NDUxNy4wOTIxOTM0
 

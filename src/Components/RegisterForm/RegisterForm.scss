@@ -1,14 +1,10 @@
 @import "../../styles/mixin.scss";
 @import "../../styles/variables.scss";
 
+$register-input-padding: 0.4rem 1rem;
 
 .RegisterForm {
   @include auth-form();
-
-  .user-first-last-name {
-    display: flex;
-    justify-content: space-between;
-  }
 
   h3 {
     margin-bottom: 0;
@@ -16,6 +12,22 @@
   .quick-easy {
     font-size: 0.9rem;
     margin-bottom: 1rem;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 0.9rem;
+  }
+
+  .form-input-area {
+    .form-control {
+      padding: $register-input-padding;
+      -moz-appearance: textfield;
+      -webkit-appearance: textfield;
+    }
+    input[type="number"] {
+      appearance: none;
+    }
   }
 
   .user-full-name {
@@ -32,7 +44,7 @@
       width: 100%;
       border: 1px #ccc solid;
       border-radius: 5px;
-      padding: 0.6rem 1rem;
+      padding: $register-input-padding;
       cursor: pointer;
       span {
         margin-right: 0.5rem;

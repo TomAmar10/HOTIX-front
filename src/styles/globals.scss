@@ -2,7 +2,8 @@ main.container-main {
   @include flex-center(column);
 
   div.home-page-container {
-    width: 70%;
+    @include flex-center(column);
+    width: 100%;
   }
 }
 

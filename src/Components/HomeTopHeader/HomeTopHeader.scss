@@ -3,6 +3,7 @@
 
 .HomeTopHeader {
   height: 22rem;
+  width: 100%;
 
   .crowd-at-show-image {
     width: 100%;
@@ -42,22 +43,90 @@
       background-color: white;
       border-radius: 30px;
       padding: 3rem;
-      margin: 3rem 5rem 0 5rem;
-      display: flex;
-      justify-content: space-around;
+      margin: 3rem 10rem 0 10rem;
       box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
         rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 
-      .search-section {
-        h5 {
-          font-weight: bold;
-          margin-bottom: 2rem;
+      .dropdown-content {
+        position: absolute;
+        z-index: 10;
+        width: 100%;
+        background-color: white;
+        padding: 1rem;
+        border: 1px black solid;
+        border-top: none;
+        border-radius: 10px;
+        border-color: lighten($bg-color1, 30%);
+        .dropdown-search-result {
+          border-bottom: 1px #ccc solid;
+          padding: 0.5rem ;
+          gap: 1rem;
+          cursor: pointer;
+          @include flex-center(row);
+          justify-content: left;
+          &:hover{
+            background-color: #eeebeb;
+          }
+          .search-result-image {
+            width: 4rem;
+            height: 100%;
+          }
+          .search-result-name {
+            margin: 0;
+          }
+          .search-result-description {
+            color: rgb(121, 120, 120);
+            font-size: 0.9rem;
+          }
         }
-        input {
+
+        .see-all-results-btn {
+          margin-top: 1rem;
+          padding: 0.2rem 1rem;
           border: none;
-          outline: none;
-          border-bottom: 2px rgb(171, 168, 168) solid;
-          font-weight: 500;
+          border-radius: 5px;
+          background-color: $bg-color1;
+          color: white;
+          width: 100%;
+          &:hover{
+            background-color: darken($bg-color1, 10%);
+          }
+        }
+      }
+
+      .search-section {
+        @include flex-center(row);
+        width: 100%;
+        .form-control {
+          margin: 0.3rem 0;
+          padding: 0.5rem 2rem;
+          font-size: 1.1rem;
+          &:focus {
+            box-shadow: rgba($bg-color1, 0.4) 0px 0px 0px 2px;
+            border-color: lighten($text-color2, 60%);
+          }
+          border-top: none;
+          border-left: none;
+          border-right: none;
+          &:focus {
+            box-shadow: inset 0px -2px 0px 0px rgba($bg-color1, 0.4);
+          }
+        }
+        .fa-arrow-right {
+          color: darken($text-color2, 20%);
+          font-size: 1.3rem;
+          margin: 0 1rem;
+        }
+        button.search-event-btn {
+          border: none;
+          background-color: none;
+          background: none;
+          position: absolute;
+          right: 0;
+          .fa-magnifying-glass {
+            color: darken($text-color2, 20%);
+            font-size: 1.3rem;
+          }
         }
       }
     }

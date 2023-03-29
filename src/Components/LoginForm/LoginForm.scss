@@ -8,17 +8,25 @@
     margin-bottom: 1rem;
   }
 
+  .error-message {
+    color: red;
+    font-size: 0.9rem;
+    text-align: left;
+    width: 70%;
+    text-align: center
+  }
+
   .auth-login-button {
     @include basic-button($bg-color1);
     width: 100%;
-    margin-top: 1rem;
+    margin: 1rem 0;
   }
 
   .auth-links-area {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin: 2rem 0 0;
+    margin: 1rem 0 0;
 
     .form-link {
       color: $text-color2;
@@ -28,5 +36,4 @@
       }
     }
   }
-
 }

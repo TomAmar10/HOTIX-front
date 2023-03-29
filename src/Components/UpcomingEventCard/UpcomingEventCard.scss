@@ -34,7 +34,6 @@
     padding: 1rem;
     gap: 1rem;
     display: flex;
-    justify-content: space-between;
 
     .card-content-date {
       @include flex-center(column);
@@ -49,6 +48,9 @@
       }
     }
     .card-content-details {
+      height: 6.6rem;
+      @include flex-center(column);
+      justify-content: space-between;
       h6 {
         font-weight: 700;
       }

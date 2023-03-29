@@ -19,10 +19,10 @@ h1.sell-buy-greet-user {
   .choose-buttons-area {
     @include flex-center(column);
     a {
+      margin-top: 2rem;
       width: 100%;
     }
     button {
-      margin-top: 2rem;
       width: 100%;
     }
 
