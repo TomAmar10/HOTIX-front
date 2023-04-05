@@ -1,11 +1,11 @@
 import { Link, useNavigate, useNavigation } from "react-router-dom";
 import { User } from "../../models/User";
 import { useForm } from "react-hook-form";
-import "./LoginForm.scss";
 import service from "../../services/authService";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store/authSlice";
 import { useEffect, useState } from "react";
+import "./LoginForm.scss";
 
 function LoginForm(): JSX.Element {
   const navigation = useNavigation();
@@ -25,7 +25,7 @@ function LoginForm(): JSX.Element {
     const result = await service.login(user);
     if (result.status === 200) {
       dispatch(userActions.login(result.headers.authorization));
-      navigate("/sell-or-buy");
+      navigate("/choose-user-mode");
     } else setError("Your email or password is incorrect. Please check again.");
   };
 

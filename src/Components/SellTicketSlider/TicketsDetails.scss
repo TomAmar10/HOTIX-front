@@ -1,0 +1,54 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixin.scss";
+
+.TicketsDetails {
+  text-align: center;
+  @include flex-center(column);
+  h5 {
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+  .details-container {
+    max-height: 13rem;
+    overflow-y: auto;
+    width: 100%;
+    .details-table {
+      width: 100%;
+      height: 5rem;
+      overflow-y: scroll;
+      th {
+        font-weight: 500;
+      }
+      td {
+        input {
+          text-align: center;
+          width: 80%;
+          background: none;
+          border: none;
+          border-bottom: 1px $bg-color1 solid;
+          margin: 0.5rem;
+          padding: 0.4rem;
+          &:focus {
+            outline: none;
+            background-color: lighten($bg-color1, 35%);
+            border-radius: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+.details-button-next-holder{
+  display: flex;
+  justify-content: end;
+  .details-next-btn {
+    @include basic-button($bg-color1);
+    border-radius: 5px;
+    font-size: 0.8rem;
+    padding: 0.4rem 1rem;
+    margin: 1rem;
+    &:hover{
+      background-color: lighten($bg-color1, 5%);
+    }
+  }
+}

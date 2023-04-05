@@ -24,7 +24,7 @@ function RegisterForm(): JSX.Element {
     const result = await service.register(user);
     if (result.status === 201) {
       dispatch(userActions.login(result.headers.authorization));
-      navigate("/sell-or-buy");
+      navigate("/choose-user-mode");
     } else setError("This email is already in use.");
   };
 

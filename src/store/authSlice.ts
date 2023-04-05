@@ -2,12 +2,19 @@ import { createSlice } from "@reduxjs/toolkit";
 import jwt_decode from "jwt-decode";
 import { User } from "../models/User";
 
-interface UserState {
+export enum UserModes {
+  BUYER = "buyer",
+  SELLER = "seller",
+}
+
+export interface UserState {
   user: User | null;
+  mode: UserModes | null;
 }
 
 const initialUserState: UserState = {
   user: null,
+  mode: null,
 };
 
 const userSlice = createSlice({
@@ -27,7 +34,13 @@ const userSlice = createSlice({
     logout(state) {
       localStorage.removeItem("token");
       localStorage.removeItem("expiration");
+      localStorage.removeItem("userMode");
       state.user = null;
+      state.mode = null;
+    },
+    setMode(state, action) {
+      state.mode = action.payload;
+      localStorage.setItem("userMode", action.payload);
     },
   },
 });

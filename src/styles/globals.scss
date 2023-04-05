@@ -7,6 +7,10 @@ main.container-main {
   }
 }
 
+.home-sideNav-container{
+  display: flex;
+}
+
 .or-separator {
   margin: 1rem 0 0;
   width: 100%;
@@ -22,3 +26,4 @@ main.container-main {
 hr {
   width: 100%;
 }
+

@@ -1,6 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./authSlice";
-import eventsReducer from "./eventSlice";
+import userReducer, { UserState } from "./authSlice";
+import eventsReducer, { EventState } from "./eventSlice";
+
+export interface IStore {
+  user: UserState;
+  events: EventState;
+}
 
 const store = configureStore({
   reducer: {

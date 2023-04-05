@@ -1,0 +1,51 @@
+.sideNav-profile-img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+}
+
+.sideNav-profile-name-area {
+  display: flex;
+  flex-direction: column;
+
+  .sideNav-profile-name {
+    font-weight: bold;
+  }
+  .sideNav-profile-email {
+    font-size: 0.7rem;
+  }
+}
+
+.sideNav-user-profile-section {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  transition: all 0.5s ease-in;
+  overflow: hidden;
+  gap: 0.5rem;
+  margin-top: 5rem;
+
+  div {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: 5rem;
+    border: 1px #ccc solid;
+    border-radius: 20px;
+    font-size: 0.9rem;
+
+    span {
+      font-size: 0.7rem;
+      font-weight: bold;
+    }
+
+    .profile-section-icon {
+      color: rgba(154, 153, 153, 0.764);
+      font-size: 1.7rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+}

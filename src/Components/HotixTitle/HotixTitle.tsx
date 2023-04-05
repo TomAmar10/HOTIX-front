@@ -1,5 +1,6 @@
 import "./HotixTitle.scss";
 
+
 function HotixTitle(): JSX.Element {
   return (
     <div className="HotixTitle">

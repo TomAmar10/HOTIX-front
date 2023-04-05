@@ -8,7 +8,7 @@ import {
 import "./HomeTopHeader.scss";
 
 interface props {
-  events: Event[];
+  events: Event[] | null;
 }
 
 function HomeTopHeader(props: props): JSX.Element {
@@ -19,12 +19,12 @@ function HomeTopHeader(props: props): JSX.Element {
 
   useEffect(() => {
     async function search() {
-      const newEventsList = props.events.filter(
+      const newEventsList = props.events?.filter(
         (e) =>
           e.event_name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
           e.location.toLowerCase().includes(searchValue.toLowerCase())
       );
-      setCurrentEvents(newEventsList);
+      setCurrentEvents(newEventsList || null);
     }
 
     if (debouncedSearch) search();

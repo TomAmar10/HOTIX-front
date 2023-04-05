@@ -1,12 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Event } from "../models/Event";
 
-interface EventState {
+export interface EventState {
   events: Event[] | null;
+  currentEvent: Event | null;
 }
 
 const initialEventState: EventState = {
   events: null,
+  currentEvent: null,
+};
+
+const dateConvertor = (date: string) => {
+  return date.replace("T", ", ").split(".")[0];
 };
 
 const eventSlice = createSlice({
@@ -14,8 +20,18 @@ const eventSlice = createSlice({
   initialState: initialEventState,
   reducers: {
     setEvents(state, action) {
-      const events: Event[] = action.payload;
+      const events: Event[] = (action.payload as Event[]).map((e) => ({
+        ...e,
+        date: dateConvertor(e.date as string),
+      }));
       state.events = events;
+    },
+    setSingleEvent(state, action) {
+      const currEvent: Event = action.payload;
+      state.currentEvent = currEvent;
+    },
+    clearSingleEvent(state) {
+      state.currentEvent = null;
     },
   },
 });

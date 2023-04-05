@@ -1,0 +1,24 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixin.scss";
+
+.TicketUpload{
+    @include flex-center(column);
+    h5{
+        font-weight: bold;
+        margin-bottom: 2rem;
+        
+    }
+    .upload-ticket-input{
+        display: none;
+    }
+    .upload-ticket-label{
+        @include flex-center(column);
+        width: 12rem;
+        height: 7rem;
+        border-radius: 20px;
+        cursor: pointer;
+        color: $text-color3;
+        font-weight: bold;
+        background-color: $bg-color1;
+    }
+}

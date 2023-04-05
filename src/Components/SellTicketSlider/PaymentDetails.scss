@@ -1,0 +1,40 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixin.scss";
+
+.PaymentDetails {
+  @include flex-center(column);
+  h5 {
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .details-container {
+    display: flex;
+    width: 100%;
+    gap: 3rem;
+    img.credit-card-image {
+      width: 50%;
+      height: 50%;
+    }
+    .card-details-inputs {
+        width: 50%;
+        label{
+            width: 100%;
+        }
+        button {
+            @include basic-button($bg-color1);
+            border-radius: 20px;
+            width: 100%;
+            font-size: 0.8rem;
+            padding: 0.4rem;
+            margin: 0.2rem 0 0.8rem;
+        }
+        .expiry-3-digits {
+            display: flex;
+            width: 100%;
+            gap: 1rem;
+            text-align: center
+    }
+    }
+  }
+}

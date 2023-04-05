@@ -1,15 +1,15 @@
 import { useSelector } from "react-redux";
-import ChooseSellBuy from "../Components/ChooseSellBuy/ChooseSellBuy";
+import ChooseMode from "../Components/ChooseMode/ChooseMode";
 import { User } from "../models/User";
 
-function SellOrBuyPage(): JSX.Element {
+function ChooseUserModePage(): JSX.Element {
   const user: User = useSelector((state: any) => state.user.user);
 
   return (
     <main className="container-main">
-      <ChooseSellBuy user={user} />
+      <ChooseMode user={user} />
     </main>
   );
 }
 
-export default SellOrBuyPage;
+export default ChooseUserModePage;

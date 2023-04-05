@@ -5,10 +5,10 @@ import "./MainAuth.scss";
 function MainAuth(): JSX.Element {
   return (
     <div className="MainAuth">
-      <Link to="?mode=login" className="auth-link">
+      <Link to="?auth-mode=login" className="auth-link">
         <button className="main-auth-signin">Sign In</button>
       </Link>
-      <Link to="?mode=register" className="auth-link">
+      <Link to="?auth-mode=register" className="auth-link">
         <button className="main-auth-register">Sign Up</button>
       </Link>
       <div className="or-separator">

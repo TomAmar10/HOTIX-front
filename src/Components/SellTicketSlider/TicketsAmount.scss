@@ -1,0 +1,58 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixin.scss";
+
+.TicketsAmount {
+  @include flex-center(column);
+  .sell-ticket-section-wrapper {
+    @include flex-center(column);
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .current-event-details {
+    @include flex-center(row);
+    justify-content: space-between;
+    gap: 1rem;
+    min-width: 20rem;
+    height: 5rem;
+    margin-bottom: 3rem;
+    .event-details {
+      @include flex-center(column);
+      justify-content: space-between;
+      font-size: 0.8rem;
+      height: 100%;
+      .event-name {
+        font-weight: bold;
+      }
+    }
+    .current-event-image {
+      width: 8rem;
+      height: 100%;
+    }
+  }
+  h5 {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: bold;
+    color: darken($text-color2, 20%);
+  }
+  .amount-options-area {
+    @include flex-center(row);
+    gap: 1rem;
+    .tickets-amount-option {
+      @include basic-button($bg-color2);
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      width: 3rem;
+      height: 3rem;
+      color: rgb(163, 162, 162);
+      &:hover {
+        background-color: darken($bg-color2, 5%);
+      }
+      &.current-amount {
+        background-color: darken($bg-color1, 20%);
+        color: $text-color3;
+      }
+    }
+  }
+}

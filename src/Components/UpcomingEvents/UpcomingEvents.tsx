@@ -6,36 +6,36 @@ import "./UpcomingEvents.scss";
 
 interface props {
   categories: Category[];
-  events: Event[];
+  events: Event[] | null;
 }
 
 function UpcomingEvents(props: props): JSX.Element {
   const [currentEvents, setCurrentEvents] = useState<Event[]>([]);
 
   useEffect(() => {
-    setCurrentEvents(props.events);
+    setCurrentEvents(props.events || []);
   }, [props.events]);
 
   const changeCategory = (value: string) => {
-    const newEventList = props.events.filter(
+    const newEventList = props.events?.filter(
       (e) => (e.id_category as any).name === value
     );
-    if (!newEventList.length) setCurrentEvents(props.events);
+    if (!newEventList?.length) setCurrentEvents(props.events || []);
     else setCurrentEvents(newEventList);
   };
 
   const changeWeekDay = (value: string) => {
     if (value === "All Weekdays") {
-      setCurrentEvents(props.events);
+      setCurrentEvents(props.events || []);
       return;
     }
-    const newEventList = props.events.filter(
+    const newEventList = props.events?.filter(
       (e) =>
         new Date(e.date).toLocaleDateString("en-US", {
           weekday: "long",
         }) === value
     );
-    setCurrentEvents(newEventList);
+    setCurrentEvents(newEventList || []);
   };
 
   const weekDays = [
@@ -80,7 +80,11 @@ function UpcomingEvents(props: props): JSX.Element {
       <div className="upcoming-events-card-container">
         {currentEvents.length > 0 &&
           currentEvents.map((e) => <UpcomingEventCard key={e._id} event={e} />)}
-        {!currentEvents.length && <p className="error-message-section">No upcoming events on this day</p>}
+        {!currentEvents.length && (
+          <p className="error-message-section">
+            No upcoming events on this day
+          </p>
+        )}
       </div>
       <button className="load-more-upcoming-events">Load More</button>
     </div>

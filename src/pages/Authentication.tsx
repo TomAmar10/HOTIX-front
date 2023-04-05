@@ -9,19 +9,19 @@ import RegisterForm from "../Components/RegisterForm/RegisterForm";
 function AuthPage(): JSX.Element {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const mode = searchParams.get("mode");
-  const isLogin = searchParams.get("mode") === "login";
-  const isRegister = searchParams.get("mode") === "register";
+  const authMode = searchParams.get("auth-mode");
+  const isLogin = authMode === "login";
+  const isRegister = authMode === "register";
 
   useEffect(() => {
-    if (mode && mode !== "login" && mode !== "register") navigate("/");
-  }, [mode, navigate]);
+    if (authMode && authMode !== "login" && authMode !== "register") navigate("/");
+  }, [authMode, navigate]);
 
   return (
     <>
       <HotixTitle />
       <main className="container-main">
-        {!mode && <MainAuth />}
+        {!authMode && <MainAuth />}
         {isLogin && <LoginForm />}
         {isRegister && <RegisterForm />}
       </main>
