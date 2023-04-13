@@ -1,0 +1,37 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixin.scss";
+
+.SelectArea {
+  @include flex-center(column);
+  .venue-image {
+    width: 17rem;
+    height: 12rem;
+  }
+
+  .available-area-container {
+    @include flex-center(row);
+    flex-wrap: wrap;
+    gap: 1rem;
+    row-gap: 0.5rem;
+    max-height: 9rem;
+    overflow-y: scroll;
+    .area-button {
+      text-align: start;
+      border: 1px #ccc solid;
+      color: darken($text-color2, 30%);
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      width: 7rem;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      background-color: lighten($bg-color1, 49%);
+      &:hover {
+        background-color: darken($bg-color2, 5%);
+      }
+      &.selected {
+        background-color: darken($bg-color1, 30%);
+        color: white;
+      }
+    }
+  }
+}

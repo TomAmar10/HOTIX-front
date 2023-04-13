@@ -8,6 +8,10 @@ import Sport_img from "../assets/single-Sport.jpeg";
 import LiveShow_img from "../assets/single-Live Show.jpeg";
 import StandUp_img from "../assets/single-Stand Up.jpeg";
 import Theatre_img from "../assets/single-Theatre.jpeg";
+import MasterCard from "../assets/mastercard-logo.png";
+import Google from "../assets/google-image.png";
+import Visa from "../assets/visa-logo.png";
+import AmericanExpress from "../assets/american-express-logo.png";
 
 const categoryBgImages: any = {
   Sport: Sport_bg_img,
@@ -23,4 +27,17 @@ const categoryImages: any = {
   Theatre: Theatre_img,
 };
 
-export { categoryBgImages, categoryImages, topHeaderImage, googleImage };
+const logoImages: any = {
+  masterCard: MasterCard,
+  google: Google,
+  visa: Visa,
+  americanExpress: AmericanExpress,
+};
+
+export {
+  categoryBgImages,
+  categoryImages,
+  topHeaderImage,
+  googleImage,
+  logoImages,
+};

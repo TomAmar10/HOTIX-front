@@ -25,6 +25,7 @@ const userSlice = createSlice({
       const tokenResult: any = jwt_decode(action.payload);
       const user: User = tokenResult.user;
       user.token = action.payload;
+      const newToken = JSON.stringify(action.payload);
       localStorage.setItem("token", JSON.stringify(action.payload));
       const expiration = new Date();
       expiration.setHours(expiration.getHours() + 1);

@@ -1,0 +1,124 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixin.scss";
+
+.SingleSellerCard {
+  @include flex-center(column);
+  gap: 1rem;
+  background-color: #eeecec;
+  color: darken($text-color2, 30%);
+  width: 13.5rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  overflow: hidden;
+  .owner-details {
+    padding: 1rem;
+    background-color: white;
+    border-radius: 5px;
+    @include flex-center(row);
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    .owner-profile-image {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+    }
+    .name-and-rating {
+      @include flex-center(column);
+      width: calc(100% - 2.5rem);
+      .owner-name {
+        margin: 0;
+        font-weight: bold;
+        font-size: 1.1rem;
+      }
+    }
+  }
+  .event-details {
+    text-align: center;
+    .event-name {
+      font-size: 1rem;
+      font-weight: bold;
+      margin: 0;
+    }
+    .event-date {
+      font-weight: bold;
+      font-size: 0.9rem;
+      color: $text-color2;
+    }
+  }
+  .ticket-details {
+    width: 100%;
+    .ticket-headers {
+      @include flex-center(row);
+      justify-content: space-between;
+      font-weight: bold;
+      h6 {
+        font-size: 0.9rem;
+        font-weight: bold;
+        text-align: center;
+        width: 33%;
+        margin: 0;
+      }
+      span {
+        font-size: 0.9rem;
+        margin-bottom: 0.2rem;
+      }
+    }
+    .ticket-info {
+      @include flex-center(row);
+      justify-content: space-between;
+      span {
+        width: 33%;
+        text-align: center;
+        font-size: 0.9rem;
+      }
+    }
+  }
+  .price-area {
+    @include flex-center(column);
+    width: 100%;
+    label {
+      align-self: flex-start;
+      font-size: 0.8rem;
+    }
+    .bid-price-input {
+      padding: 0.5rem 0;
+      text-align: center;
+      border-radius: 5px;
+      border: 2px #ccc solid;
+      width: 100%;
+      -moz-appearance: textfield;
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      &:focus {
+        outline: none;
+        border: 2px #acabab solid;
+      }
+    }
+    .total-price-calculate {
+      @include flex-center(row);
+      justify-content: space-around;
+      
+      width: 100%;
+      margin: 1rem 0;
+      .total-price {
+        text-align: center;
+        margin: 0;
+        color: black;
+    }
+    span {
+        color: $text-color1;
+        font-weight: bold;
+      }
+    }
+    .place-bid-button {
+      @include basic-button(rgb(9, 164, 9));
+      font-size: 1rem;
+      width: 100%;
+      font-weight: 500;
+    }
+  }
+}

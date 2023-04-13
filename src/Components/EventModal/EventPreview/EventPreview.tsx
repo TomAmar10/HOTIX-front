@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { Event } from "../../models/Event";
-import { UserModes } from "../../store/authSlice";
-import { categoryImages as images } from "../../utils/file-import";
+import { Event } from "../../../models/Event";
+import { UserModes } from "../../../store/authSlice";
+import { categoryImages as images } from "../../../utils/file-import";
 import "./EventPreview.scss";
 
 interface props {

@@ -37,7 +37,7 @@
 
     .card-content-date {
       @include flex-center(column);
-      justify-content: start;
+      justify-content: flex-start;
       span {
         color: $text-color2;
         font-size: 0.8rem;

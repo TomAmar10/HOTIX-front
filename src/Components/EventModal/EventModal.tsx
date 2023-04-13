@@ -5,7 +5,8 @@ import { eventActions } from "../../store/eventSlice";
 import { IStore } from "../../store/store";
 import SellTicketSlider from "../SellTicketSlider/SellTicketSlider";
 import "./EventModal.scss";
-import EventPreview from "./EventPreview";
+import BuyTicketSlider from "../BuyTicketSlider/BuyTicketSlider";
+import EventPreview from "./EventPreview/EventPreview";
 
 function EventModal(): JSX.Element {
   const user = useSelector((state: IStore) => state.user.user);
@@ -33,7 +34,9 @@ function EventModal(): JSX.Element {
           ((userMode === UserModes.SELLER && (
             <SellTicketSlider user={user} event={currentEvent} />
           )) ||
-            (userMode === UserModes.BUYER && ""))}
+            (userMode === UserModes.BUYER && (
+              <BuyTicketSlider user={user} event={currentEvent} />
+            )))}
       </div>
       <div className="EventModal-holder" onClick={hideModal}></div>
     </>

@@ -1,6 +1,17 @@
+import { useRef, useState } from "react";
 import "./Footer.scss";
+import service from "../../services/subscribeService";
 
 function Footer(): JSX.Element {
+  const subscribeRef = useRef<HTMLInputElement>(null);
+  const [isSubscribed, setIsSubscribed] = useState(false);
+
+  const subscribe = (e: any) => {
+    e.preventDefault();
+    // service.addSubscribe(subscribeRef.current?.value as string);
+    setIsSubscribed(true);
+  };
+
   return (
     <div className="Footer-container">
       <div className="Footer">
@@ -42,13 +53,18 @@ function Footer(): JSX.Element {
             Join our mailing list to stay in the loop with our news for events
             and concerts
           </p>
-          <form className="subscribe-form">
+          <form className="subscribe-form" onSubmit={subscribe}>
             <input
               type="email"
               placeholder="Enter your email"
               className="add-email"
+              ref={subscribeRef}
             />
-            <button className="subscribe-btn">Subscribe Now</button>
+            <button
+              className={`subscribe-btn ${isSubscribed ? "completed" : ""}`}
+            >
+               {isSubscribed ? 'Subscribed ✔' : 'Subscribe Now'}
+            </button>
           </form>
         </div>
       </div>

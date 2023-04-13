@@ -1,0 +1,30 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixin.scss";
+
+.NoticeMessage {
+  text-align: center;
+  max-width: 25rem;
+  border: 1px $bg-color1 solid;
+  border-radius: 5px;
+  padding: 2rem;
+  margin-top: 6rem;
+
+  .sell-ticket-section-header {
+    margin-bottom: 1rem;
+}
+
+  p,
+  span {
+    font-size: 0.8rem;
+  }
+  .checkbox-container {
+    @include flex-center(row);
+    gap: 0.5rem;
+
+    input {
+      width: 0.9rem;
+      height: 0.9rem;
+      cursor: pointer;
+    }
+  }
+}

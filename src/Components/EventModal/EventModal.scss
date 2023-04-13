@@ -2,12 +2,12 @@
 @import "../../styles/mixin.scss";
 
 .EventModal {
-  background-color: $bg-color2;
+  background-color: white;
   padding: 1rem;
   border-radius: 5px;
   min-height: 25rem;
-  max-height: 37rem;
-  max-width: 40rem;
+  max-height: 40rem;
+  max-width: 50rem;
   overflow-y: auto;
   position: fixed;
   top: 50%;

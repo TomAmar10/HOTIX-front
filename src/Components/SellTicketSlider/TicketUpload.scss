@@ -1,24 +1,80 @@
 @import "../../styles/variables.scss";
 @import "../../styles/mixin.scss";
 
-.TicketUpload{
-    @include flex-center(column);
-    h5{
+.TicketUpload {
+  @include flex-center(column);
+  h5 {
+    font-weight: bold;
+    margin:1rem 0 2rem;
+  }
+  .input-label-container {
+    border: 1px lighten($bg-color1, 40%) solid;
+    border-radius: 5px;
+    padding: 1rem;
+    .upload-file-header {
+      color: darken($text-color2, 30%);
+      font-weight: bold;
+    }
+    .upload-ticket-label {
+      @include flex-center(column);
+      width: 22rem;
+      height: 10rem;
+      border-radius: 5px;
+      cursor: pointer;
+      color: darken($text-color2, 30%);
+      border: 1px darken($bg-color1, 10%) dashed;
+      text-align: center;
+      font-size: 0.9rem;
+      span {
         font-weight: bold;
-        margin-bottom: 2rem;
-        
+      }
+      .fa-file-lines {
+        color: #878686;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+      .done-check-span {
+        font-size: 1.1rem;
+      }
     }
-    .upload-ticket-input{
-        display: none;
-    }
-    .upload-ticket-label{
+    .user-files-area {
+      display: flex;
+      justify-content: center;
+      margin-top: 0.5rem;
+      min-height: 5rem;
+      .ticket-image {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 5px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        margin: 0 0.3rem;
+      }
+      .ticket-image-bg-holder {
+        @extend .ticket-image;
+        font-weight: bold;
+        color: #878686;
         @include flex-center(column);
-        width: 12rem;
-        height: 7rem;
-        border-radius: 20px;
+      }
+      .remove-btn-holder {
+        position: absolute;
+        margin-left: 2.5rem;
+        margin-top: -0.5rem;
         cursor: pointer;
-        color: $text-color3;
-        font-weight: bold;
-        background-color: $bg-color1;
+      }
+      .fa-trash {
+        color: #878686;
+        font-size: 0.8rem;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        background-color: #e6e6e6;
+        padding: 0.3rem;
+        border-radius: 50%;
+      }
+      .image-index {
+        color: #878686;
+        text-align: center;
+        margin-left: 1.5rem;
+        font-size: 0.8rem;
+      }
     }
+  }
 }

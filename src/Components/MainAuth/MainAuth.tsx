@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { googleImage } from "../../utils/file-import";
+import { logoImages } from "../../utils/file-import";
 import "./MainAuth.scss";
 
 function MainAuth(): JSX.Element {
@@ -27,7 +27,7 @@ function MainAuth(): JSX.Element {
           <i className="fa-brands fa-apple fa-sm platform-brand"></i>
         </div>
         <div className="platform-button">
-          <img src={googleImage} alt="google" />
+          <img src={logoImages.google} alt="google" />
         </div>
       </div>
       <hr />

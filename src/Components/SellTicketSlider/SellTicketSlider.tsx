@@ -4,11 +4,16 @@ import { Event } from "../../models/Event";
 import { User } from "../../models/User";
 import TicketsAmount from "./TicketsAmount";
 import TicketsDetails from "./TicketsDetails";
-import TicketType from "./TicketType";
 import TicketUpload from "./TicketUpload";
 import SaleCompleted from "./SaleCompleted";
 import PaymentDetails from "./PaymentDetails";
 import { Ticket } from "../../models/Ticket";
+import NoticeMessage from "./NoticeMessage";
+import { card_details } from "../../models/CreditCard";
+import service from "../../services/ticketService";
+import StepsDots from "../EventModal/StepsDots/StepsDots";
+import NextPrevButtons from "../EventModal/NextPrevButtons/NextPrevButtons";
+import convertToBase64 from "../../utils/convertBase64";
 import "./SellTicketSlider.scss";
 
 interface props {
@@ -16,33 +21,19 @@ interface props {
   event: Event | null;
 }
 
-const initialTickets = [
-  {
-    _id: "",
-    id_event: "",
-    id_owner: "",
-    type: "",
-    area: 0,
-    row: 0,
-    seat: 0,
-    price: 0,
-    image: "",
-    time_create: undefined,
-  },
-];
-
 function SellTicketSlider(props: props): JSX.Element {
   const sliderRef = useRef<any>(null);
+  const [nextReady, setNextReady] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [tickets, setTickets] = useState<Ticket[]>(initialTickets);
-  const [amount, setAmount] = useState(0);
-  const [ticketFile, setTicketFile] = useState(0);
-  const [paymentDetails, setPaymentDetails] = useState(0);
+  const [tickets, setTickets] = useState<Ticket[]>([]);
+  const [creditCard, setCreditCard] = useState<card_details>();
+  const [price, setPrice] = useState(0);
   const settings = {
-    speed: 1000,
+    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     draggable: false,
+    adaptiveHeight: true,
   };
 
   const changeAmount = (value: number) => {
@@ -51,69 +42,91 @@ function SellTicketSlider(props: props): JSX.Element {
       const newTicket = { ...tickets[0] };
       ticketsArray.push(newTicket);
     }
-    setAmount(+value);
     setTickets(ticketsArray);
-    moveForward();
+    setNextReady(value > 0);
   };
 
-  const changeTicketDetails = () => {
-    setTickets((prev) => [...prev]);
-    moveForward();
+  const changeTicketDetails = (newTickets: Ticket[], isValid: boolean) => {
+    setTickets(newTickets);
+    const newPrice = tickets.reduce((acc, curr) => (acc += +curr.price), 0);
+    setPrice(newPrice);
+    setNextReady(isValid);
   };
 
-  const changeTicketType = (type: string, price: number) => {
-    setTickets((prev) => [...prev, { ...prev[0], price, type }]);
-    moveForward();
+  const changeTicketFiles = async (files: File[], isValid: boolean) => {
+    if (isValid) {
+      const newTickets = await Promise.all(
+        tickets.map(async (t, i) => {
+          return {
+            ...t,
+            id_event: props.event?._id,
+            id_owner: props.user?._id,
+            image: await convertToBase64(files[i]),
+          };
+        })
+      );
+      setTickets(newTickets as Ticket[]);
+    }
+    setNextReady(isValid);
   };
 
-  const changeTicketFile = () => {
-    setTicketFile(0);
-    moveForward();
+  const changePaymentDetails = (card: card_details, isValid: boolean) => {
+    if (isValid) setCreditCard(card);
+    setNextReady(isValid);
   };
 
-  const changePaymentDetails = () => {
-    setPaymentDetails(0);
-    moveForward();
+  const moveForward = () => {
+    if (currentSlide === 4) service.addTickets(tickets);
+    sliderRef.current.slickNext();
+    setCurrentSlide((prev) => ++prev);
+    setNextReady(false);
   };
-
-  const dotClick = (num: number) => {
-    if (num < currentSlide) sliderRef.current.slickGoTo(num);
+  const moveBackwards = () => {
+    sliderRef.current.slickPrev();
+    setCurrentSlide((prev) => --prev);
+    setNextReady(true);
   };
-
   const handleAfterChange = (index: number) => setCurrentSlide(index);
-
-  const moveForward = () => sliderRef.current.slickNext();
-  const moveBackwards = () => sliderRef.current.slickPrev();
 
   return (
     <div className="SellTicketSlider">
-        <h4 className="ticket-hotix-header">
-          Ho<span>tix</span>
-        </h4>
-        <Slider ref={sliderRef} {...settings} afterChange={handleAfterChange}>
-          <TicketsAmount onSubmit={changeAmount} event={props.event} />
-          <TicketsDetails
-            amount={amount}
-            onSubmit={changeTicketDetails}
-            onMoveBackwards={moveBackwards}
-          />
-          <TicketType onSubmit={changeTicketType} onMoveBackwards={moveBackwards} />
-          <TicketUpload onSubmit={changeTicketFile} onMoveBackwards={moveBackwards}/>
-          <PaymentDetails onSubmit={changePaymentDetails} onMoveBackwards={moveBackwards} />
-          <SaleCompleted />
-        </Slider>
-      {/* <div className="dots-area">
-        {[0, 1, 2, 3, 4, 5].map((d) => (
-          <button
-            key={d}
-            value={d}
-            onClick={() => dotClick(d)}
-            className={`${currentSlide === d ? "active-slide" : ""} ${
-              currentSlide > d ? "previous" : ""
-            }`}
-          ></button>
-        ))}
-      </div> */}
+      <StepsDots currentSlide={currentSlide} />
+      <Slider ref={sliderRef} {...settings} afterChange={handleAfterChange}>
+        <TicketsAmount
+          onSubmit={changeAmount}
+          event={props.event}
+          isCurrent={currentSlide === 0}
+        />
+        <TicketsDetails
+          isCurrent={currentSlide === 1}
+          tickets={tickets}
+          onSubmit={changeTicketDetails}
+        />
+        <TicketUpload
+          isCurrent={currentSlide === 2}
+          tickets={tickets}
+          onSubmit={changeTicketFiles}
+        />
+        <NoticeMessage
+          user={props.user}
+          isCurrent={currentSlide === 3}
+          onSubmit={(isReady: boolean) => setNextReady(isReady)}
+        />
+        <PaymentDetails
+          price={price}
+          isCurrent={currentSlide === 4}
+          onSubmit={changePaymentDetails}
+        />
+        <SaleCompleted isCurrent={currentSlide === 5} />
+      </Slider>
+      {currentSlide !== 5 && (
+        <NextPrevButtons
+          allowNext={nextReady}
+          onMoveForward={moveForward}
+          onMoveBackwards={moveBackwards}
+          isFirstStep={currentSlide === 0}
+        />
+      )}
     </div>
   );
 }

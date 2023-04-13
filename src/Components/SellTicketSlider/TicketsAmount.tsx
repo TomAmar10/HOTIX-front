@@ -1,20 +1,34 @@
 import { useState } from "react";
 import { Event } from "../../models/Event";
 import { categoryImages as images } from "../../utils/file-import";
-import NextPrevButtons from "./NextPrevButtons/NextPrevButtons";
+import { useSelector } from "react-redux";
+import { IStore } from "../../store/store";
+import { UserModes } from "../../store/authSlice";
 import "./TicketsAmount.scss";
 
 interface props {
   onSubmit: Function;
   event: Event | null;
+  isCurrent: boolean;
+  header?: string;
 }
 
 function TicketsAmount(props: props): JSX.Element {
   const options = [1, 2, 3, 4, 5, 6];
   const [currentAmount, setCurrentAmount] = useState(0);
+  const userMode = useSelector((state: IStore) => state.user.mode);
+  const buyOrSell = userMode === UserModes.BUYER ? "buy" : "sell";
+
+  const amountClick = (value: number) => {
+    setCurrentAmount(value);
+    props.onSubmit(value);
+  };
 
   return (
-    <div className="sell-ticket-section-wrapper">
+    <div
+      className="sell-ticket-section-wrapper"
+      style={{ opacity: props.isCurrent ? 1 : 0 }}
+    >
       <div className="TicketsAmount">
         <div className="current-event-details">
           <div className="event-details">
@@ -31,7 +45,10 @@ function TicketsAmount(props: props): JSX.Element {
             alt=""
           />
         </div>
-        <h5>How many tickets would you like to sell?</h5>
+        <h5 className={`${buyOrSell}-ticket-section-header`}>
+          How many tickets would you like to
+          {" " + buyOrSell}?
+        </h5>
         <div className="amount-options-area">
           {options.map((o) => (
             <button
@@ -40,19 +57,13 @@ function TicketsAmount(props: props): JSX.Element {
                 currentAmount === o && "current-amount"
               }`}
               value={o}
-              onClick={(e: any) => setCurrentAmount(+e.target.value)}
+              onClick={(e: any) => amountClick(+e.target.value)}
             >
               {o}
             </button>
           ))}
         </div>
       </div>
-      <NextPrevButtons
-        allowNext={currentAmount > 0}
-        onMoveForward={() => props.onSubmit(currentAmount)}
-        onMoveBackwards={undefined}
-        isFirstStep
-      />
     </div>
   );
 }

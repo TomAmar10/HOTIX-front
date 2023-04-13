@@ -2,7 +2,7 @@
 @import "../../styles/variables.scss";
 
 .Footer-container {
-  // width: 80%; 
+  // width: 80%;
   background-color: darken($bg-color1, 40%);
   color: $text-color3;
 
@@ -15,7 +15,7 @@
 
     .footer-section {
       @include flex-center(column);
-      align-items: start;
+      align-items: flex-start;
       width: 15%;
       h5 {
         margin: 1rem 0 1.5rem;
@@ -94,6 +94,14 @@
           padding: 0.7rem;
           border: none;
           outline: none;
+          width: 8rem;
+          transition: all 1s ease;
+          direction: ltr;
+        }
+        .completed {
+          width: calc(100% - 0.7rem);
+          transition: all 1s ease;
+          cursor: auto;
         }
       }
     }

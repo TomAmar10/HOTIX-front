@@ -18,7 +18,9 @@ const config = {
   ticketURL: {
     getAll: api_url + "/tickets/all",
     getSingle: api_url + "/tickets/single",
+    getByEvent: api_url + "/tickets/all/by-event",
     create: api_url + "/tickets/single/add",
+    createFew: api_url + "/tickets/few/add",
     update: api_url + "/tickets/single/update",
     delete: api_url + "/tickets/single/delete",
   },
@@ -35,6 +37,11 @@ const config = {
     create: api_url + "/categories/single/add",
     update: api_url + "/categories/single/update",
     delete: api_url + "/categories/single/delete",
+  },
+  subscribeUrl: {
+    getAll: api_url + "/subscribes/all",
+    getSingle: api_url + "/subscribes/single",
+    create: api_url + "/subscribes/single/add",
   },
   options: {
     headers: { "content-type": "application/json" },

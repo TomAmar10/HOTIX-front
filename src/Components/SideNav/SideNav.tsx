@@ -21,6 +21,7 @@ import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalance
 import ConfirmationNumberOutlinedIcon from "@mui/icons-material/ConfirmationNumberOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import TomProfile from "../../assets/tom-profile-img.jpeg";
 
 const drawerWidth = 270;
 
@@ -106,11 +107,7 @@ export default function SideNav() {
                   justifyContent: "center",
                 }}
               >
-                <img
-                  className="sideNav-profile-img"
-                  src="https://scontent.ftlv5-1.fna.fbcdn.net/v/t39.30808-6/275778763_5251147191596052_2452781285435413025_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=730e14&_nc_ohc=KCRYiGtwR6oAX-quPt2&_nc_ht=scontent.ftlv5-1.fna&oh=00_AfBWy0Jgo4pWzlWYE4V1VZp4GEB9eyRWVIm1mUEoyQbnbg&oe=642AFEDA"
-                  alt=""
-                />
+                <img className="sideNav-profile-img" src={TomProfile} alt="" />
               </ListItemIcon>
               <ListItemText sx={{ opacity: open ? 1 : 0 }}>
                 <div className="sideNav-profile-name-area">

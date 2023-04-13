@@ -1,7 +1,7 @@
 @import "../../styles/variables.scss";
 @import "../../styles/mixin.scss";
 
-.SellTicketSlider {
+.BuyTicketSlider {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -14,7 +14,7 @@
     min-height: 30rem;
   }
 
-  .sell-ticket-section-header {
+  .buy-ticket-section-header {
     font-size: 1.2rem;
     margin-bottom: 2rem;
     text-align: center;

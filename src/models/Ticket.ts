@@ -6,10 +6,11 @@ export interface Ticket {
   id_event: string | Event;
   id_owner: string | User;
   type: string;
-  area: Number;
-  row: Number;
-  seat: Number;
+  area: string;
+  row: string | string[];
+  seat: Number | Number[] | string;
   price: Number;
+  currency: string;
   image: File | any;
   time_create: Date | undefined;
 }
