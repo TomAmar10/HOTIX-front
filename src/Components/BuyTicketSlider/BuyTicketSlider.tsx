@@ -62,7 +62,6 @@ function BuyTicketSlider(props: props): JSX.Element {
   const moveBackwards = () => {
     sliderRef.current.slickPrev();
     setCurrentSlide((prev) => --prev);
-    setNextReady(true);
   };
 
   const handleAfterChange = (index: number) => setCurrentSlide(index);

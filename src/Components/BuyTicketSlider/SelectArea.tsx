@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./SelectArea.scss";
 
 interface props {
@@ -9,6 +9,10 @@ interface props {
 
 function SelectArea(props: props): JSX.Element {
   const [selectedAreas, setSelectedAreas] = useState<string[]>([]);
+
+  useEffect(() => {
+    setSelectedAreas([]);
+  }, [props.isCurrent]);
 
   const toggleArea = (value: string) => {
     const areas = [...selectedAreas];
@@ -33,12 +37,15 @@ function SelectArea(props: props): JSX.Element {
         <h5 className="buy-ticket-section-header">Select Area</h5>
         <div className="available-area-container">
           {props.areas.map((a) => (
-            <button key={a}
+            <button
+              key={a}
               className={`area-button ${
                 selectedAreas.includes(a) ? "selected" : ""
               }`}
               onClick={() => toggleArea(a)}
-            >{a}</button>
+            >
+              {a}
+            </button>
           ))}
         </div>
       </div>

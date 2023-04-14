@@ -11,20 +11,20 @@
   .SellersSlider {
     height: 100%;
     width: 90%;
+    .buy-ticket-section-header{
+      margin-bottom: 1rem;
+    }
     .slick-slider,
     .slick-list,
     .slick-track {
       height: 100% !important;
       width: 100%;
     }
-    .slick-slide {
-      // margin: 0 0.5rem;
-      // padding: 0 1rem;
-    }
+    
     .slider-arrows-container {
       position: relative;
       z-index: 20;
-      top: 10rem;
+      top: 12rem;
       width: 100%;
       .arrow-right-btn {
         position: absolute;
@@ -36,7 +36,7 @@
       .arrow-left-btn {
         @extend .arrow-right-btn;
         right: auto;
-        left: -2.5rem;
+        left: -2.8rem;
       }
       .fa-circle-chevron-right {
         color: darken($text-color2, 30%);

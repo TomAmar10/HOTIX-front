@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Event } from "../../models/Event";
 import { categoryImages as images } from "../../utils/file-import";
 import { useSelector } from "react-redux";
@@ -18,6 +18,10 @@ function TicketsAmount(props: props): JSX.Element {
   const [currentAmount, setCurrentAmount] = useState(0);
   const userMode = useSelector((state: IStore) => state.user.mode);
   const buyOrSell = userMode === UserModes.BUYER ? "buy" : "sell";
+
+  useEffect(() => {
+    setCurrentAmount(0);
+  },[props.isCurrent])
 
   const amountClick = (value: number) => {
     setCurrentAmount(value);
