@@ -8,19 +8,51 @@
   height: 30rem;
   width: 100%;
   padding: 0 1rem;
+  .active-seller-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 30;
+    display: flex;
+    justify-content: center;
+    .sellers-modal-bg {
+      position: absolute;
+      z-index: 40;
+      top: 2rem;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.64);
+      width: 100%;
+      height: 100%;
+    }
+    .active-seller-holder {
+      margin-top: 2rem;
+      z-index: 50;
+      transition: all 0.3s ease;
+    }
+  }
   .SellersSlider {
     height: 100%;
     width: 90%;
-    .buy-ticket-section-header{
+    .buy-ticket-section-header {
       margin-bottom: 1rem;
+    }
+    .six-sellers-holder {
+      z-index: 1;
+      display: flex !important;
+      justify-content: center;
+      flex-wrap: wrap;
+      width: 100%;
+      gap: 0.5rem;
+      column-gap: 0.5rem;
     }
     .slick-slider,
     .slick-list,
     .slick-track {
       height: 100% !important;
-      width: 100%;
     }
-    
+
     .slider-arrows-container {
       position: relative;
       z-index: 20;
@@ -36,7 +68,7 @@
       .arrow-left-btn {
         @extend .arrow-right-btn;
         right: auto;
-        left: -2.8rem;
+        left: -2.5rem;
       }
       .fa-circle-chevron-right {
         color: darken($text-color2, 30%);

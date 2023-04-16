@@ -110,9 +110,3 @@ function TicketsDetails(props: props): JSX.Element {
 }
 
 export default TicketsDetails;
-
-{
-  /* {props.tickets.length > 1 && (
-                  <span className="single-ticket-index">{index + 1}.</span>
-                )} */
-}
