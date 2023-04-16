@@ -90,7 +90,7 @@ function SellTicketSlider(props: props): JSX.Element {
 
   return (
     <div className="SellTicketSlider">
-      <StepsDots currentSlide={currentSlide} />
+      <StepsDots currentSlide={currentSlide} slides={5}/>
       <Slider ref={sliderRef} {...settings} afterChange={handleAfterChange}>
         <TicketsAmount
           onSubmit={changeAmount}

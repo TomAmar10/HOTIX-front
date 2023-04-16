@@ -3,26 +3,28 @@
 
 .StepsDots {
   @include flex-center(row);
-
   .dots-area {
     width: 100%;
     @include flex-center(row);
     margin-bottom: 1rem;
-    gap: 5rem;
+    gap: 8rem;
+    &.five-slides{
+      gap: 5rem;
+    }
     .dots-splitter {
       position: absolute;
-      width: 65%;
+      width: 60%;
       border: 5px #ccc solid;
       margin-top: 2.2rem;
     }
-    .step-button-holder {
+    .single-step-holder {
       @include flex-center(column);
       z-index: 10;
       .step-span {
         font-size: 0.8rem;
         color: lighten($text-color2, 30%);
       }
-      button {
+      .single-step {
         @include flex-center(column);
         padding: 0.4rem;
         border: 1px #ccc solid;
@@ -33,13 +35,13 @@
         height: 1.3rem;
         color: white;
         cursor: auto;
-      }
-      button.active-slide {
-        border: 2px darken($bg-color1, 20%) solid;
-      }
-      button.previous {
-        background-color: darken($bg-color1, 20%);
-        border: 2px darken($bg-color1, 20%) solid;
+        &.active-slide {
+          border: 2px darken($bg-color1, 20%) solid;
+        }
+        &.previous {
+          background-color: darken($bg-color1, 20%);
+          border: 2px darken($bg-color1, 20%) solid;
+        }
       }
     }
   }

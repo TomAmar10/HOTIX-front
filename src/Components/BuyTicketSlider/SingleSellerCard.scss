@@ -3,29 +3,20 @@
 
 .single-seller-container {
   width: 13.4rem;
-
   .SingleSellerCard {
     @include flex-center(column);
     justify-content: space-between;
-    background-color: #eeecec;
+    background-color: #F3F7FF;
     color: darken($text-color2, 30%);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 3px;
     height: 12rem;
     width: 13.4rem;
     padding: 0.5rem;
     border-radius: 5px;
     overflow: hidden;
     transition: all 0.3s ease;
-    &.active-seller {
-      height: 24.5rem;
-      margin-top: 0.5rem;
-    }
-    &.hidden-card {
-      opacity: 0;
-      transition: all 0.3s ease;
-    }
     .owner-details {
       padding: 0.5rem;
-      background-color: white;
       border-radius: 5px;
       @include flex-center(row);
       justify-content: space-between;
@@ -83,89 +74,23 @@
         font-size: 0.8rem;
       }
       .show-tickets-button {
-        @include basic-button($green-btn);
+        @include basic-button(white);
         font-size: 1rem;
         width: 100%;
         font-weight: 500;
+        color: darken($text-color2, 30%);
+        border: 1px darken($bg-color2, 30%) solid;
         .amount {
           font-weight: bold;
           font-size: 1.1rem;
           margin-right: 0.3rem;
         }
         &:hover {
-          background-color: lighten($green-btn, 5%);
+          background-color: lighten($bg-color1, 48%);
         }
-      }
-    }
-
-    // ACTIVE SELLER CARD
-    .active-seller-tickets {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      .active-seller-header {
-        text-align: center;
-        font-weight: bold;
-        color: $text-color2;
-      }
-      .active-seller-single-ticket {
-        .active-seller-ticket-headers {
-          @include flex-center(row);
-          h6 {
-            font-weight: bold;
-            width: 100%;
-            text-align: center;
-            font-size: 0.9rem;
-          }
-        }
-        .active-seller-ticket-details {
-          @include flex-center(row);
-          border: 1px #ccc solid;
-          margin-bottom: 0.3rem;
-          border-radius: 5px;
-          padding: 0.2rem 0.5rem;
-          background-color: white;
-          cursor: pointer;
-          &:hover {
-            background-color: rgb(245, 241, 241);
-          }
-          span {
-            font-size: 0.9rem;
-            width: 100%;
-            text-align: center;
-          }
-        }
-        .ticket-input {
-          display: none;
-          &:checked + .active-seller-ticket-details {
-            background-color: lighten($bg-color1, 20%);
-            color: white;
-          }
-        }
-      }
-      .active-seller-buttons {
-        @include flex-center(row);
-        justify-content: space-between;
-        font-size: 0.9rem;
-        .go-back-btn {
-          border-radius: 5px;
-          width: 40%;
-          padding: 0.3rem;
-          border: none;
+        &.active-seller{
           background-color: darken($bg-color1, 30%);
           color: white;
-          &:hover {
-            background-color: darken($bg-color1, 20%);
-          }
-        }
-        .continue-btn {
-          @extend .go-back-btn;
-          background-color: $green-btn;
-          &:hover {
-            background-color: lighten($green-btn, 5%);
-          }
         }
       }
     }

@@ -1,26 +1,30 @@
 import "./StepsDots.scss";
 
 interface props {
-    currentSlide:number;
+  currentSlide: number;
+  slides: number;
 }
-function StepsDots(props:props): JSX.Element {
+function StepsDots(props: props): JSX.Element {
+  const steps = [];
+  for (let i = 0; i < props.slides; i++) {
+    steps.push(
+      <div className="single-step-holder" key={i}>
+        <span className="step-span">Step {i + 1}</span>
+        <div
+          className={`single-step ${
+            props.currentSlide === i ? "active-slide" : ""
+          } ${props.currentSlide > i ? "previous" : ""}`}
+        >
+          {props.currentSlide > i ? "✔" : ""}
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="StepsDots">
-      <div className="dots-area">
+      <div className={`dots-area ${props.slides === 5 ? "five-slides" : ""}`}>
         <hr className="dots-splitter" />
-        {[0, 1, 2, 3, 4].map((d) => (
-          <div className="step-button-holder" key={d}>
-            <span className="step-span">Step {d + 1}</span>
-            <button
-              value={d}
-              className={`${props.currentSlide === d ? "active-slide" : ""} ${
-                props.currentSlide > d ? "previous" : ""
-              }`}
-            >
-              {props.currentSlide > d ? "✔" : ""}
-            </button>
-          </div>
-        ))}
+        {steps}
       </div>
     </div>
   );

@@ -38,6 +38,13 @@ const config = {
     update: api_url + "/categories/single/update",
     delete: api_url + "/categories/single/delete",
   },
+  bidURL: {
+    getAll: api_url + "/bids/all",
+    getSingle: api_url + "/bids/single",
+    create: api_url + "/bids/single/add",
+    update: api_url + "/bids/single/update",
+    delete: api_url + "/bids/single/delete",
+  },
   subscribeUrl: {
     getAll: api_url + "/subscribes/all",
     getSingle: api_url + "/subscribes/single",

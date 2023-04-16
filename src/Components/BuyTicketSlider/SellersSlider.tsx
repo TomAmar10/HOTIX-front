@@ -13,22 +13,20 @@ interface props {
   user: User | null;
   amount: number;
   event: Event | null;
+  currentSeller: SellerTicket | null;
 }
 
 export interface SellerTicket extends Ticket {
-  amount: number;
   ticketsArray: Ticket[];
 }
 
 function SellersSlider(props: props): JSX.Element {
   const [tickets, setTickets] = useState<SellerTicket[]>([]);
-  const [active, setActive] = useState<number | null>(null);
   const sliderRef = useRef<any>(null);
   const settings = {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    // centerMode:true,
   };
 
   useEffect(() => {
@@ -44,13 +42,11 @@ function SellersSlider(props: props): JSX.Element {
             id_owner,
             row: [],
             seat: [],
-            amount: 0,
             ticketsArray: [],
           };
         }
         (groups[ownerID].seat as number[]).push(seat as number);
         (groups[ownerID].row as string[]).push(row as string);
-        groups[ownerID].amount = (groups[ownerID].seat as number[]).length;
         groups[ownerID].ticketsArray.push(ticket);
         return groups;
       },
@@ -73,38 +69,25 @@ function SellersSlider(props: props): JSX.Element {
         ),
       }))
       .sort((a, b) => {
-        if (a.amount === props.amount && b.amount === props.amount) return 0;
-        else if (a.amount === props.amount) return -1;
-        else if (b.amount === props.amount) return 1;
-        else return b.amount - a.amount;
+        if (
+          a.ticketsArray.length === props.amount &&
+          b.ticketsArray.length === props.amount
+        )
+          return 0;
+        else if (a.ticketsArray.length === props.amount) return -1;
+        else if (b.ticketsArray.length === props.amount) return 1;
+        else return b.ticketsArray.length - a.ticketsArray.length;
       });
     setTickets(combinedTickets);
-  }, [props.tickets]);
+  }, [props.amount, props.tickets]);
+
+  const changeSeller = (seller: SellerTicket) => props.onSubmit(seller);
 
   return (
     <div
       className="sellers-wrapper"
       style={{ opacity: props.isCurrent ? 1 : 0 }}
     >
-      {active !== null && (
-        <div className="active-seller-container">
-          <div
-            className="sellers-modal-bg"
-            onClick={() => setActive(null)}
-          ></div>
-          <div className="active-seller-holder">
-            <SingleSellerCard
-              activeSeller
-              user={props.user}
-              amount={props.amount}
-              key={tickets[active]._id}
-              ticket={tickets[active]}
-              event={props.event}
-              onGoBack={() => setActive(null)}
-            />
-          </div>
-        </div>
-      )}
       <div className="SellersSlider">
         <h5 className="buy-ticket-section-header">
           Choose your seller and make an offer
@@ -136,8 +119,8 @@ function SellersSlider(props: props): JSX.Element {
               ) {
                 sellers.push(
                   <SingleSellerCard
-                    isActive={active === i}
-                    onClick={() => setActive(i)}
+                    onClick={() => changeSeller(tickets[i])}
+                    isActive={props.currentSeller?._id === tickets[i]._id}
                     user={props.user}
                     amount={props.amount}
                     key={tickets[i]._id}

@@ -7,7 +7,7 @@ main.container-main {
   }
 }
 
-.home-sideNav-container{
+.home-sideNav-container {
   display: flex;
 }
 
@@ -27,3 +27,11 @@ hr {
   width: 100%;
 }
 
+input[type="number"] {
+  -moz-appearance: textfield;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
