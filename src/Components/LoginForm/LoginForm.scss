@@ -17,7 +17,7 @@
   }
 
   .auth-login-button {
-    @include basic-button($bg-color1);
+    @include basic-button($color1);
     width: 100%;
     margin: 1rem 0;
   }
@@ -29,7 +29,7 @@
     margin: 1rem 0 0;
 
     .form-link {
-      color: $text-color2;
+      color: $color1;
       text-decoration: none;
       &:hover {
         text-decoration: underline 1px;

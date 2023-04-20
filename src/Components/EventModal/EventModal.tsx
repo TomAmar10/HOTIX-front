@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { UserModes } from "../../store/authSlice";
 import { eventActions } from "../../store/eventSlice";
 import { IStore } from "../../store/store";
-import SellTicketSlider from "../SellTicketSlider/SellTicketSlider";
-import "./EventModal.scss";
-import BuyTicketSlider from "../BuyTicketSlider/BuyTicketSlider";
+import SellTicketSlider from "./SellTicketSlider/SellTicketSlider";
+import BuyTicketSlider from "./BuyTicketSlider/BuyTicketSlider";
 import EventPreview from "./EventPreview/EventPreview";
+import "./EventModal.scss";
 
 function EventModal(): JSX.Element {
   const user = useSelector((state: IStore) => state.user.user);

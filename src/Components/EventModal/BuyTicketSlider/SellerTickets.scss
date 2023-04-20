@@ -1,5 +1,5 @@
-@import "../../styles/variables.scss";
-@import "../../styles/mixin.scss";
+@import "../../../styles/variables.scss";
+@import "../../../styles/mixin.scss";
 
 .SellerTickets {
   @include flex-center(column);
@@ -8,13 +8,13 @@
     @include flex-center(row);
     flex-wrap: wrap;
     gap: 1rem;
-    color: darken($text-color2, 30%);
+    color: darken($color1, 30%);
     width: 100%;
     .single-ticket-label {
       @include flex-center(row);
       width: 40%;
-      border: 1px lighten($bg-color1, 40%) solid;
-      border-radius: 5px;
+      border: 1px lighten($color1, 40%) solid;
+      border-radius: $border-radius;
       padding: 0.5rem;
       cursor: pointer;
       &:hover {
@@ -57,7 +57,7 @@
       padding: 0.5rem;
       border: 1px #ccc solid;
       outline: none;
-      border-radius: 5px;
+      border-radius: $border-radius;
       &:focus {
         box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 2px;
       }

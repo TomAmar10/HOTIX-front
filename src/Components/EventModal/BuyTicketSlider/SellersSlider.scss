@@ -1,5 +1,5 @@
-@import "../../styles/variables.scss";
-@import "../../styles/mixin.scss";
+@import "../../../styles/variables.scss";
+@import "../../../styles/mixin.scss";
 
 .sellers-wrapper {
   @include flex-center(column);
@@ -47,7 +47,7 @@
         left: -2.5rem;
       }
       .fa-circle-chevron-right {
-        color: darken($text-color2, 30%);
+        color: darken($color1, 30%);
         font-size: 2rem;
         cursor: pointer;
         &:hover {

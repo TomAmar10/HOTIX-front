@@ -1,10 +1,10 @@
-@import "../../styles/variables.scss";
-@import "../../styles/mixin.scss";
+@import "../../../styles/variables.scss";
+@import "../../../styles/mixin.scss";
 
 .TicketsDetails {
   @include flex-center(column);
   text-align: center;
-  color: darken($text-color2, 30%);
+  color: darken($color1, 30%);
   .ticket-image {
     width: 9rem;
     height: 7rem;
@@ -40,15 +40,15 @@
           text-align: center;
           background: none;
           border: 1px #ccc solid;
-          border-radius: 5px;
+          border-radius: $border-radius;
           margin-top: 0.5rem;
           padding: 0.5rem;
           width: 100%;
         }
         &:focus {
           outline: none;
-          background-color: lighten($bg-color1, 35%);
-          border-radius: 5px;
+          background-color: lighten($color1, 35%);
+          border-radius: $border-radius;
         }
       }
       .ticket-index {

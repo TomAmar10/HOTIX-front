@@ -1,5 +1,5 @@
-import TicketImage from "../../assets/ticket-image.png";
-import { Ticket } from "../../models/Ticket";
+import TicketImage from "../../../assets/ticket-image.png";
+import { Ticket } from "../../../models/Ticket";
 import { useEffect, useState } from "react";
 import "./TicketsDetails.scss";
 

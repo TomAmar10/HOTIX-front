@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Event } from "../../models/Event";
-import { categoryImages as images } from "../../utils/file-import";
+import { Event } from "../../../models/Event";
+import { categoryImages as images } from "../../../utils/file-import";
 import { useSelector } from "react-redux";
-import { IStore } from "../../store/store";
-import { UserModes } from "../../store/authSlice";
+import { IStore } from "../../../store/store";
+import { UserModes } from "../../../store/authSlice";
 import "./TicketsAmount.scss";
 
 interface props {
@@ -21,7 +21,7 @@ function TicketsAmount(props: props): JSX.Element {
 
   useEffect(() => {
     setCurrentAmount(0);
-  },[props.isCurrent])
+  }, [props.isCurrent]);
 
   const amountClick = (value: number) => {
     setCurrentAmount(value);

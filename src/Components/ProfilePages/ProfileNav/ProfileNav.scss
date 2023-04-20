@@ -1,0 +1,24 @@
+@import "../../../styles/mixin.scss";
+@import "../../../styles/variables.scss";
+
+.ProfileNav{
+  @include flex-center(row);
+  gap: 1rem;
+  padding: 3rem 0 1rem;
+
+  .profile-nav-btn{
+    @include basic-button($color2);
+    border: 1px darken($color1, 30%) solid;
+    color: darken($color1, 30%);
+    font-weight: 400;
+    font-size: 1rem;
+    width: 12rem;
+    text-decoration: none;
+    text-align: center;
+
+    &.active-btn{
+      background-color: darken($color1, 30%);
+      color: $color2;
+    }
+  }
+}

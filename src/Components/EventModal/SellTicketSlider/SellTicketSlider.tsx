@@ -1,19 +1,19 @@
 import { useRef, useState } from "react";
 import Slider from "react-slick";
-import { Event } from "../../models/Event";
-import { User } from "../../models/User";
+import { Event } from "../../../models/Event";
+import { User } from "../../../models/User";
 import TicketsAmount from "./TicketsAmount";
 import TicketsDetails from "./TicketsDetails";
 import TicketUpload from "./TicketUpload";
 import SaleCompleted from "./SaleCompleted";
 import PaymentDetails from "./PaymentDetails";
-import { Ticket } from "../../models/Ticket";
+import { Ticket } from "../../../models/Ticket";
 import NoticeMessage from "./NoticeMessage";
-import { card_details } from "../../models/CreditCard";
-import service from "../../services/ticketService";
-import StepsDots from "../EventModal/StepsDots/StepsDots";
-import NextPrevButtons from "../EventModal/NextPrevButtons/NextPrevButtons";
-import convertToBase64 from "../../utils/convertBase64";
+import { card_details } from "../../../models/CreditCard";
+import service from "../../../services/ticketService";
+import StepsDots from "../StepsDots/StepsDots";
+import NextPrevButtons from "../NextPrevButtons/NextPrevButtons";
+import convertToBase64 from "../../../utils/convertBase64";
 import "./SellTicketSlider.scss";
 
 interface props {
@@ -90,7 +90,7 @@ function SellTicketSlider(props: props): JSX.Element {
 
   return (
     <div className="SellTicketSlider">
-      <StepsDots currentSlide={currentSlide} slides={5}/>
+      <StepsDots currentSlide={currentSlide} slides={5} />
       <Slider ref={sliderRef} {...settings} afterChange={handleAfterChange}>
         <TicketsAmount
           onSubmit={changeAmount}
@@ -117,7 +117,7 @@ function SellTicketSlider(props: props): JSX.Element {
           isCurrent={currentSlide === 4}
           onSubmit={changePaymentDetails}
         />
-        <SaleCompleted isCurrent={currentSlide === 5} />
+        <SaleCompleted isCurrent={currentSlide === 5} sellerMode />
       </Slider>
       {currentSlide !== 5 && (
         <NextPrevButtons

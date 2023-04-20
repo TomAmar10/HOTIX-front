@@ -43,7 +43,7 @@ $register-input-padding: 0.4rem 1rem;
       @include flex-center(row);
       width: 100%;
       border: 1px #ccc solid;
-      border-radius: 5px;
+      border-radius: $border-radius;
       padding: $register-input-padding;
       cursor: pointer;
       span {
@@ -53,14 +53,14 @@ $register-input-padding: 0.4rem 1rem;
   }
 
   .auth-login-button {
-    @include basic-button($bg-color1);
+    @include basic-button($color1);
     width: 100%;
     margin-top: 1rem;
   }
 
   .form-link {
     margin: 1rem 0;
-    color: $text-color2;
+    color: $color1;
     text-decoration: none;
     &:hover {
       text-decoration: underline 1px;

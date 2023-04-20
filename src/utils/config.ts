@@ -40,6 +40,7 @@ const config = {
   },
   bidURL: {
     getAll: api_url + "/bids/all",
+    getUserBids: api_url + "/bids/all/by_user",
     getSingle: api_url + "/bids/single",
     create: api_url + "/bids/single/add",
     update: api_url + "/bids/single/update",
@@ -55,4 +56,12 @@ const config = {
   },
 };
 
+export const appRoutes={
+  chooseMode: 'choose-user-mode',
+  auth:'auth',
+  login: "auth?auth-mode=login",
+  register: "auth?auth-mode=register",
+}
+
 export default config;
+

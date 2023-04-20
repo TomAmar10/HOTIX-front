@@ -2,7 +2,7 @@
 @import "../../styles/mixin.scss";
 
 h1.sell-buy-greet-user {
-  color: $text-color2;
+  color: $color1;
   font-weight: bold;
   font-size: 2rem;
   margin-top: 3rem;
@@ -27,10 +27,10 @@ h1.sell-buy-greet-user {
     }
 
     button.sell-ticket-btn {
-      @include basic-button($bg-color1);
+      @include basic-button($color1);
     }
     button.buy-ticket-btn {
-      @include basic-button($bg-color3);
+      @include basic-button($color3);
     }
   }
 }

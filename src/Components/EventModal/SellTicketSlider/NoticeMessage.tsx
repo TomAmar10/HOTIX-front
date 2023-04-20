@@ -1,5 +1,5 @@
 import "./NoticeMessage.scss";
-import { User } from "../../models/User";
+import { User } from "../../../models/User";
 import { useState } from "react";
 
 interface props {

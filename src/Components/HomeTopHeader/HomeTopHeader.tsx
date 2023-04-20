@@ -5,6 +5,10 @@ import {
   categoryImages as images,
   topHeaderImage,
 } from "../../utils/file-import";
+import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { UserModes, userActions } from "../../store/authSlice";
+import { IStore } from "../../store/store";
 import "./HomeTopHeader.scss";
 
 interface props {
@@ -16,6 +20,9 @@ function HomeTopHeader(props: props): JSX.Element {
   const [currentEvents, setCurrentEvents] = useState<Event[] | null>(null);
   const [searchValue, setSearchValue] = useState("");
   const debouncedSearch = useDebounce(searchValue, 300);
+  const dispatch = useDispatch();
+  const user = useSelector((state: IStore) => state.user.user);
+  const userMode = useSelector((state: IStore) => state.user.mode);
 
   useEffect(() => {
     async function search() {
@@ -31,11 +38,35 @@ function HomeTopHeader(props: props): JSX.Element {
     else setCurrentEvents(null);
   }, [debouncedSearch, props.events, searchValue]);
 
+  const logout = () => {
+    dispatch(userActions.logout());
+  };
+
+  const toggleMode = () => {
+    const isBuyer = userMode === UserModes.BUYER;
+    dispatch(userActions.setMode(isBuyer ? UserModes.SELLER : UserModes.BUYER));
+  };
+
   return (
     <div className="HomeTopHeader">
       <img className="crowd-at-show-image" src={topHeaderImage} alt="show" />
       <div className="top-header-content">
-        <header>Hotix</header>
+        <header>
+          <h5 className="hotix-header">Hotix</h5>
+          <div className="header-navigator">
+            {user && (
+              <>
+              <button className="navigate-btn" onClick={toggleMode}>
+                {userMode === UserModes.BUYER ? " Seller" : " Buyer"} Mode
+              </button>
+              |
+              </>
+            )}
+            <NavLink to={"/auth"} className="navigate-btn" onClick={logout}>
+              {user ? "Logout " : "Login "}
+            </NavLink>
+          </div>
+        </header>
         <div className="top-header-main-area">
           <h3>Swap easily, fast and secure.</h3>
           <p>

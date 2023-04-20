@@ -1,17 +1,13 @@
 import Rating from "@mui/material/Rating";
-import { User } from "../../models/User";
-import ProfileImg from "../../assets/tom-profile-img.jpeg";
-import { Event } from "../../models/Event";
+import { User } from "../../../models/User";
+import ProfileImg from "../../../assets/tom-profile-img.jpeg";
 import { SellerTicket } from "./SellersSlider";
 import "./SingleSellerCard.scss";
 
 interface props {
-  user: User | null;
-  amount: number;
   ticket: SellerTicket;
-  event: Event | null;
   onClick?: Function;
-  isActive:boolean;
+  isActive?: boolean;
 }
 
 function SingleSellerCard(props: props): JSX.Element {
@@ -39,10 +35,13 @@ function SingleSellerCard(props: props): JSX.Element {
         </div>
         <div className="show-tickets-area">
           <button
-            className={`show-tickets-button ${props.isActive ? 'active-seller': ''}`}
+            className={`show-tickets-button ${
+              props.isActive ? "active-seller" : ""
+            }`}
             onClick={() => props.onClick && props.onClick()}
           >
-            <span className="amount">{props.ticket.ticketsArray.length}</span> Tickets
+            <span className="amount">{props.ticket.ticketsArray.length}</span>{" "}
+            Tickets
           </button>
         </div>
       </div>

@@ -9,7 +9,7 @@
     direction: rtl;
     margin-top: 2rem;
     .sell-ticket-nav{
-      @include basic-button($bg-color1);
+      @include basic-button($color1);
       font-size: 0.8rem;
       font-weight: 500;
       width: 6rem;

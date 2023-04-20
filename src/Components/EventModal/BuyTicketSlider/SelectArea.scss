@@ -1,5 +1,5 @@
-@import "../../styles/variables.scss";
-@import "../../styles/mixin.scss";
+@import "../../../styles/variables.scss";
+@import "../../../styles/mixin.scss";
 
 .SelectArea {
   @include flex-center(column);
@@ -18,18 +18,18 @@
     .area-button {
       text-align: start;
       border: 1px #ccc solid;
-      color: darken($text-color2, 30%);
+      color: darken($color1, 30%);
       font-weight: bold;
       padding: 0.5rem 1rem;
       width: 7rem;
-      border-radius: 5px;
+      border-radius: $border-radius;
       font-size: 0.9rem;
-      background-color: lighten($bg-color1, 49%);
+      background-color: lighten($color1, 49%);
       &:hover {
-        background-color: darken($bg-color2, 5%);
+        background-color: darken($color2, 5%);
       }
       &.selected {
-        background-color: darken($bg-color1, 30%);
+        background-color: darken($color1, 30%);
         color: white;
       }
     }

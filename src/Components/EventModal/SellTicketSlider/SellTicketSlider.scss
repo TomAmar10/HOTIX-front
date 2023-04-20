@@ -1,5 +1,5 @@
-@import "../../styles/variables.scss";
-@import "../../styles/mixin.scss";
+@import "../../../styles/variables.scss";
+@import "../../../styles/mixin.scss";
 
 .SellTicketSlider {
   display: flex;
@@ -19,7 +19,7 @@
     margin-bottom: 2rem;
     text-align: center;
     font-weight: bold;
-    color: darken($text-color2, 30%);
+    color: darken($color1, 30%);
   }
 
   .slick-prev,

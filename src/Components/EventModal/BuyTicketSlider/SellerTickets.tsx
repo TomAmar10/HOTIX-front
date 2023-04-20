@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { User } from "../../models/User";
-import { Event } from "../../models/Event";
+import { User } from "../../../models/User";
+import { Event } from "../../../models/Event";
 import { SellerTicket } from "./SellersSlider";
 import "./SellerTickets.scss";
-import { Ticket } from "../../models/Ticket";
+import { Ticket } from "../../../models/Ticket";
 
 interface props {
   onSubmit: Function;
@@ -79,7 +79,8 @@ function SellerTickets(props: props): JSX.Element {
           <input
             type="number"
             className="bid-amount-input"
-            onChange={(e) => changeBid(+e.target.value)} value={currentBid || ''}
+            onChange={(e) => changeBid(+e.target.value)}
+            value={currentBid || ""}
           />
           <span className="price-calculate">
             {currentBid} X {selectedTickets.length}

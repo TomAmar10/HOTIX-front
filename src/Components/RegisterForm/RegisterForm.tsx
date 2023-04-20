@@ -95,7 +95,7 @@ function RegisterForm(): JSX.Element {
       <button className="auth-login-button" disabled={isSubmitting}>
         Sign up
       </button>
-      <Link to="?mode=login" className="form-link">
+      <Link to="?auth-mode=login" className="form-link">
         Already have an account?
       </Link>
     </form>

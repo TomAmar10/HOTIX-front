@@ -1,5 +1,5 @@
-@import "../../styles/variables.scss";
-@import "../../styles/mixin.scss";
+@import "../../../styles/variables.scss";
+@import "../../../styles/mixin.scss";
 
 .single-seller-container {
   width: 13.4rem;
@@ -7,17 +7,17 @@
     @include flex-center(column);
     justify-content: space-between;
     background-color: #F3F7FF;
-    color: darken($text-color2, 30%);
+    color: darken($color1, 30%);
     box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 3px;
     height: 12rem;
     width: 13.4rem;
     padding: 0.5rem;
-    border-radius: 5px;
+    border-radius: $border-radius;
     overflow: hidden;
     transition: all 0.3s ease;
     .owner-details {
       padding: 0.5rem;
-      border-radius: 5px;
+      border-radius: $border-radius;
       @include flex-center(row);
       justify-content: space-between;
       width: 100%;
@@ -74,22 +74,22 @@
         font-size: 0.8rem;
       }
       .show-tickets-button {
-        @include basic-button(white);
+        @include basic-button($color2);
         font-size: 1rem;
         width: 100%;
         font-weight: 500;
-        color: darken($text-color2, 30%);
-        border: 1px darken($bg-color2, 30%) solid;
+        color: darken($color1, 30%);
+        border: 1px darken($color2, 30%) solid;
         .amount {
           font-weight: bold;
           font-size: 1.1rem;
           margin-right: 0.3rem;
         }
         &:hover {
-          background-color: lighten($bg-color1, 48%);
+          background-color: lighten($color1, 48%);
         }
         &.active-seller{
-          background-color: darken($bg-color1, 30%);
+          background-color: darken($color1, 30%);
           color: white;
         }
       }

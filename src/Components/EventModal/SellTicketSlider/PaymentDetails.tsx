@@ -1,7 +1,7 @@
-import CreditCard from "../../assets/credit-card-image.png";
-import { logoImages } from "../../utils/file-import";
+import CreditCard from "../../../assets/credit-card-image.png";
+import { logoImages } from "../../../utils/file-import";
 import { useForm } from "react-hook-form";
-import { card_details } from "../../models/CreditCard";
+import { card_details } from "../../../models/CreditCard";
 import { useEffect } from "react";
 import "./PaymentDetails.scss";
 

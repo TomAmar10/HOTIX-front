@@ -3,8 +3,9 @@ import { User } from "./User";
 
 export interface Bid {
   _id?: string;
-  id_ticket: string | Ticket;
+  tickets: Ticket[] | string[];
   id_bidder: string | User;
+  id_owner: string | User;
   bid_date?: Date;
   amount:number,
   status: string;

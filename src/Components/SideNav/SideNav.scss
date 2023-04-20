@@ -1,3 +1,6 @@
+@import "../../styles/mixin.scss";
+@import "../../styles/variables.scss";
+
 .sideNav-profile-img {
   width: 2rem;
   height: 2rem;
@@ -26,7 +29,7 @@
   margin-top: 5rem;
 
   div {
-    background-color: white;
+    background-color: $color2;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -34,7 +37,7 @@
     width: 5rem;
     height: 5rem;
     border: 1px #ccc solid;
-    border-radius: 20px;
+    border-radius: $border-radius;
     font-size: 0.9rem;
 
     span {

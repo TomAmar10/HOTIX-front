@@ -1,5 +1,5 @@
-@import "../../styles/variables.scss";
-@import "../../styles/mixin.scss";
+@import "../../../styles/variables.scss";
+@import "../../../styles/mixin.scss";
 
 .TicketUpload {
   @include flex-center(column);
@@ -8,21 +8,21 @@
     margin:1rem 0 2rem;
   }
   .input-label-container {
-    border: 1px lighten($bg-color1, 40%) solid;
-    border-radius: 5px;
+    border: 1px lighten($color1, 40%) solid;
+    border-radius: $border-radius;
     padding: 1rem;
     .upload-file-header {
-      color: darken($text-color2, 30%);
+      color: darken($color1, 30%);
       font-weight: bold;
     }
     .upload-ticket-label {
       @include flex-center(column);
       width: 22rem;
       height: 10rem;
-      border-radius: 5px;
+      border-radius: $border-radius;
       cursor: pointer;
-      color: darken($text-color2, 30%);
-      border: 1px darken($bg-color1, 10%) dashed;
+      color: darken($color1, 30%);
+      border: 1px darken($color1, 10%) dashed;
       text-align: center;
       font-size: 0.9rem;
       span {
@@ -45,11 +45,11 @@
       .ticket-image {
         width: 3rem;
         height: 3rem;
-        border-radius: 5px;
+        border-radius: $border-radius;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         margin: 0 0.3rem;
       }
-      .ticket-image-bg-holder {
+      .ticket-image-holder {
         @extend .ticket-image;
         font-weight: bold;
         color: #878686;

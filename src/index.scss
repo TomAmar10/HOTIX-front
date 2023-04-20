@@ -4,14 +4,14 @@
 
 body {
   margin: 0;
-  background-color: $bg-color2 !important;
+  background-color: $color2 !important;
 }
 
 ::-webkit-scrollbar {
   width: 7px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: lighten($bg-color1, 20%);
+  background: lighten($color1, 20%);
 }
 
 ::-webkit-scrollbar-track {
@@ -19,6 +19,6 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: lighten($bg-color1, 30%);
+  background: lighten($color1, 30%);
   border-radius: 5px;
 }

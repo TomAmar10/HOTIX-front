@@ -22,6 +22,9 @@ import ConfirmationNumberOutlinedIcon from "@mui/icons-material/ConfirmationNumb
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import TomProfile from "../../assets/tom-profile-img.jpeg";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { IStore } from "../../store/store";
 
 const drawerWidth = 270;
 
@@ -73,6 +76,8 @@ const Drawer = styled(MuiDrawer, {
 
 export default function SideNav() {
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
+  const user = useSelector((state: IStore) => state.user.user);
 
   const openDrawer = () => {
     setOpen(true);
@@ -92,7 +97,11 @@ export default function SideNav() {
         onMouseLeave={closeDrawer}
       >
         <List>
-          <ListItem disablePadding sx={{ display: "block" }}>
+          <ListItem
+            disablePadding
+            sx={{ display: "block" }}
+            onClick={() => navigate("profile/" + user?._id)}
+          >
             <ListItemButton
               sx={{
                 minHeight: 48,

@@ -55,10 +55,10 @@ function LoginForm(): JSX.Element {
       </button>
       {error && <span className="error-message">{error}</span>}
       <div className="auth-links-area">
-        <Link to="?mode=register" className="form-link">
-          Forgot your account?
+        <Link to="?auth-mode=register" className="form-link">
+          Forgot your password?
         </Link>
-        <Link to="?mode=register" className="form-link">
+        <Link to="?auth-mode=register" className="form-link">
           New account
         </Link>
       </div>

@@ -3,8 +3,8 @@
 
 .Footer-container {
   // width: 80%;
-  background-color: darken($bg-color1, 40%);
-  color: $text-color3;
+  background-color: darken($color1, 40%);
+  color: $color2;
 
   .Footer {
     @include flex-center(row);
@@ -22,7 +22,7 @@
       }
       a {
         margin-top: 0.1rem;
-        color: white;
+        color: $color2;
         text-decoration: none;
         font-weight: lighter;
         &:hover {
@@ -89,7 +89,7 @@
           font-size: 0.9rem;
           border-radius: 30px;
           background-color: rgb(255, 20, 147);
-          color: white;
+          color: $color2;
           font-weight: bold;
           padding: 0.7rem;
           border: none;
@@ -110,7 +110,7 @@
   .footer-copyrights-area {
     @include flex-center(column);
     hr {
-      border-color: white;
+      border-color: $color2;
       margin: 0;
     }
     span {

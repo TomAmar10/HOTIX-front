@@ -1,17 +1,18 @@
 import { useEffect, useRef, useState } from "react";
-import { Event } from "../../models/Event";
-import { User } from "../../models/User";
-import StepsDots from "../EventModal/StepsDots/StepsDots";
+import { Event } from "../../../models/Event";
+import { User } from "../../../models/User";
+import StepsDots from "../StepsDots/StepsDots";
 import Slider from "react-slick";
-import ticketService from "../../services/ticketService";
-import { Ticket } from "../../models/Ticket";
+import ticketService from "../../../services/ticketService";
+import { Ticket } from "../../../models/Ticket";
 import TicketsAmount from "../SellTicketSlider/TicketsAmount";
 import SelectArea from "./SelectArea";
 import SellersSlider, { SellerTicket } from "./SellersSlider";
-import NextPrevButtons from "../EventModal/NextPrevButtons/NextPrevButtons";
-import "./BuyTicketSlider.scss";
+import NextPrevButtons from "../NextPrevButtons/NextPrevButtons";
 import SellerTickets from "./SellerTickets";
-import bidService from "../../services/bidService";
+import bidService from "../../../services/bidService";
+import SaleCompleted from "../SellTicketSlider/SaleCompleted";
+import "./BuyTicketSlider.scss";
 
 interface props {
   user: User | null;
@@ -90,7 +91,7 @@ function BuyTicketSlider(props: props): JSX.Element {
 
   return (
     <div className="BuyTicketSlider">
-      <StepsDots currentSlide={currentSlide} slides={4}/>
+      <StepsDots currentSlide={currentSlide} slides={4} />
       <Slider ref={sliderRef} {...settings} afterChange={handleAfterChange}>
         <TicketsAmount
           onSubmit={changeAmount}
@@ -106,9 +107,7 @@ function BuyTicketSlider(props: props): JSX.Element {
           isCurrent={currentSlide === 2}
           onSubmit={changeSeller}
           tickets={tickets.filter((t) => selectedAreas.includes(t.area))}
-          user={props.user}
           amount={amount}
-          event={props.event}
           currentSeller={currentSeller}
         />
         <SellerTickets
@@ -118,13 +117,16 @@ function BuyTicketSlider(props: props): JSX.Element {
           event={props.event}
           currentSeller={currentSeller}
         />
+        <SaleCompleted isCurrent={currentSlide === 4} buyerMode />
       </Slider>
-      <NextPrevButtons
-        allowNext={nextReady}
-        onMoveForward={moveForward}
-        onMoveBackwards={moveBackwards}
-        isFirstStep={currentSlide === 0}
-      />
+      {currentSlide !== 4 && (
+        <NextPrevButtons
+          allowNext={nextReady}
+          onMoveForward={moveForward}
+          onMoveBackwards={moveBackwards}
+          isFirstStep={currentSlide === 0}
+        />
+      )}
     </div>
   );
 }

@@ -27,22 +27,25 @@
     margin: 0.3rem 0;
     padding: 0.6rem 1rem;
     &:focus {
-      box-shadow: rgba($bg-color1, 0.4) 0px 0px 0px 2px;
-      border-color: lighten($text-color2, 60%);
+      box-shadow: rgba($color1, 0.4) 0px 0px 0px 2px;
+      border-color: lighten($color1, 60%);
     }
   }
 }
 
 @mixin basic-button($bgColor) {
   padding: 0.5rem 1rem;
-  border-radius: 5px;
+  border-radius: $border-radius;
   font-weight: bold;
   font-size: 1.1rem;
   color: white;
   border: none;
   background-color: $bgColor;
-  @if $bgColor == $bg-color2 {
-    color: $text-color1;
+  @if $bgColor == $color2 {
+    color: $color3;
+  }
+  &:hover{
+    background-color: darken($bgColor,5%);
   }
 }
 

@@ -1,11 +1,11 @@
-@import "../../styles/variables.scss";
-@import "../../styles/mixin.scss";
+@import "../../../styles/variables.scss";
+@import "../../../styles/mixin.scss";
 
 .NoticeMessage {
   text-align: center;
   max-width: 25rem;
-  border: 1px $bg-color1 solid;
-  border-radius: 5px;
+  border: 1px $color1 solid;
+  border-radius: $border-radius;
   padding: 2rem;
   margin-top: 6rem;
 

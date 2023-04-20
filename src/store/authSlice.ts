@@ -21,16 +21,41 @@ const userSlice = createSlice({
   name: "user",
   initialState: initialUserState,
   reducers: {
+    // login(state, action) {
+    //   const token = action.payload;
+    //   const decodedToken: any = jwt_decode(token);
+    //   const user: User = decodedToken.user;
+    //   user.token = token;
+    //   localStorage.setItem("token", JSON.stringify(token));
+    //   const expiration = new Date();
+    //   expiration.setHours(expiration.getHours() + 1);
+    //   localStorage.setItem("expiration", expiration.toISOString());
+    //   state.user = user;
+    // },
     login(state, action) {
-      const tokenResult: any = jwt_decode(action.payload);
-      const user: User = tokenResult.user;
-      user.token = action.payload;
-      const newToken = JSON.stringify(action.payload);
-      localStorage.setItem("token", JSON.stringify(action.payload));
-      const expiration = new Date();
-      expiration.setHours(expiration.getHours() + 1);
-      localStorage.setItem("expiration", expiration.toISOString());
+      const token = action.payload;
+      const decodedToken: any = jwt_decode(token);
+      const user: User = decodedToken.user;
+      user.token = token;
+
+      const expirationString = localStorage.getItem("expiration");
+      const storedExpiration = expirationString
+        ? new Date(expirationString)
+        : null;
+
+      if (storedExpiration && storedExpiration < new Date()) {
+        state.user = null;
+        localStorage.removeItem("token");
+        localStorage.removeItem("expiration");
+        localStorage.removeItem("userMode");
+        return;
+      }
+
       state.user = user;
+      const expiration = new Date();
+      expiration.setHours(expiration.getHours() + 2);
+      localStorage.setItem("token", JSON.stringify(token));
+      localStorage.setItem("expiration", expiration.toISOString());
     },
     logout(state) {
       localStorage.removeItem("token");

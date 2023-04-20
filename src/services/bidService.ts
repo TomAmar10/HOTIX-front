@@ -2,11 +2,23 @@ import axios from "axios";
 import { Bid } from "../models/Bid";
 import config from "../utils/config";
 import { Ticket } from "../models/Ticket";
+import { User } from "../models/User";
 
 class Service {
   public getAllBids = async (): Promise<any> => {
     try {
       const response = await axios.get(config.bidURL.getAll);
+      return response;
+    } catch (err: any) {
+      return err.response.data.msg;
+    }
+  };
+
+  public getUserBids = async (userId: string): Promise<any> => {
+    try {
+      const response = await axios.get(
+        `${config.bidURL.getUserBids}/${userId}`
+      );
       return response;
     } catch (err: any) {
       return err.response.data.msg;
@@ -25,17 +37,21 @@ class Service {
   public addBid = async (
     tickets: Ticket[],
     id_bidder: string,
-    bid: number,
+    bid: number
   ): Promise<any> => {
     try {
+      const ticketsIds: string[] = [];
+      tickets.forEach((t) => {
+        ticketsIds.push(t._id as string);
+      });
       const userBid: Bid = {
-        id_ticket: tickets[0]._id as string,
+        tickets: ticketsIds,
         id_bidder,
+        id_owner: (tickets[0].id_owner as User)._id as string,
         amount: bid,
         status: "",
       };
       const response = await axios.post(config.bidURL.create, userBid);
-      console.log(response);
       return response;
     } catch (err: any) {
       return err.response.data;

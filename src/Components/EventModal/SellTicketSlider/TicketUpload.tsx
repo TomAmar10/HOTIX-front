@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Ticket } from "../../models/Ticket";
+import { Ticket } from "../../../models/Ticket";
 import "./TicketUpload.scss";
 
 interface props {

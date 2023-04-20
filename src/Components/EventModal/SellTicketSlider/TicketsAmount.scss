@@ -1,5 +1,5 @@
-@import "../../styles/variables.scss";
-@import "../../styles/mixin.scss";
+@import "../../../styles/variables.scss";
+@import "../../../styles/mixin.scss";
 
 .TicketsAmount {
   @include flex-center(column);
@@ -11,7 +11,7 @@
     height: 5rem;
     margin: 2rem 0 5rem;
     border: 1px #ccc solid;
-    border-radius: 5px;
+    border-radius: $border-radius;
     .event-details {
       @include flex-center(column);
       justify-content: space-between;
@@ -32,17 +32,17 @@
     @include flex-center(row);
     gap: 1rem;
     .tickets-amount-option {
-      @include basic-button(white);
+      @include basic-button($color2);
       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
       width: 3rem;
       height: 3rem;
       color: rgb(163, 162, 162);
       &:hover {
-        background-color: darken($bg-color2, 5%);
+        background-color: darken($color2, 5%);
       }
       &.current-amount {
-        background-color: darken($bg-color1, 30%);
-        color: $text-color3;
+        background-color: darken($color1, 30%);
+        color: $color2;
       }
     }
   }
