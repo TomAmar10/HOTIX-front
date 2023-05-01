@@ -7,8 +7,13 @@ import SellTicketSlider from "./SellTicketSlider/SellTicketSlider";
 import BuyTicketSlider from "./BuyTicketSlider/BuyTicketSlider";
 import EventPreview from "./EventPreview/EventPreview";
 import "./EventModal.scss";
+import NewEventForm from "./NewEvent/NewEventForm";
 
-function EventModal(): JSX.Element {
+interface props {
+  isNewEvent: boolean;
+}
+
+function EventModal(props: props): JSX.Element {
   const user = useSelector((state: IStore) => state.user.user);
   const currentEvent = useSelector(
     (state: IStore) => state.events.currentEvent
@@ -19,24 +24,32 @@ function EventModal(): JSX.Element {
 
   const hideModal = () => {
     dispatch(eventActions.clearSingleEvent());
+    dispatch(eventActions.endCreating());
   };
 
   return (
     <>
       <div className="EventModal">
-        {isPreviewStage && (
-          <EventPreview
-            onMoveToSecondStep={() => setIsPreviewStage(false)}
-            userMode={userMode}
-          />
+        {props.isNewEvent ? (
+          <NewEventForm user={user}/>
+        ) : (
+          <>
+            {isPreviewStage ? (
+              <EventPreview user={user}
+                onMoveToSecondStep={() => setIsPreviewStage(false)}
+                userMode={userMode}
+              />
+            ) : (
+              <>
+                {userMode === UserModes.SELLER ? (
+                  <SellTicketSlider user={user} event={currentEvent} />
+                ) : (
+                  <BuyTicketSlider user={user} event={currentEvent} />
+                )}
+              </>
+            )}
+          </>
         )}
-        {!isPreviewStage &&
-          ((userMode === UserModes.SELLER && (
-            <SellTicketSlider user={user} event={currentEvent} />
-          )) ||
-            (userMode === UserModes.BUYER && (
-              <BuyTicketSlider user={user} event={currentEvent} />
-            )))}
       </div>
       <div className="EventModal-holder" onClick={hideModal}></div>
     </>

@@ -6,7 +6,7 @@ main.container-main {
     width: 100%;
   }
 
-  &.profile-container{
+  &.profile-container {
     padding: 1rem 3rem;
   }
 }
@@ -37,5 +37,127 @@ input[type="number"] {
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+}
+
+.userTicketCard {
+  @include flex-center(column);
+  justify-content: space-between;
+  background-color: $card-bg;
+  color: darken($color1, 30%);
+  height: 12rem;
+  width: 13.4rem;
+  padding: 0.5rem;
+  border-radius: $border-radius;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  .user-details {
+    padding: 0.5rem;
+    border-radius: $border-radius;
+    @include flex-center(row);
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    .user-profile-image {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+    }
+    .name-and-rating {
+      @include flex-center(column);
+      width: calc(100% - 2.5rem);
+      .user-name {
+        margin: 0;
+        font-weight: bold;
+        font-size: 1.1rem;
+      }
+    }
+  }
+  .event-details {
+    @include flex-center(column);
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    .event-name {
+      margin: 0;
+      font-weight: bold;
+      font-size: 1rem;
+      text-align: center;
+    }
+    .event-date {
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+  }
+  .ticket-details {
+    width: 100%;
+    min-height: 3rem;
+    .ticket-headers {
+      @include flex-center(row);
+      justify-content: space-between;
+      font-weight: bold;
+      h6 {
+        font-size: 1rem;
+        font-weight: bold;
+        text-align: center;
+        width: 50%;
+        margin: 0;
+      }
+      span {
+        font-size: 0.9rem;
+        margin-bottom: 0.2rem;
+      }
+    }
+    .ticket-info {
+      @include flex-center(row);
+      justify-content: space-between;
+      span {
+        width: 50%;
+        text-align: center;
+        font-size: 0.9rem;
+      }
+    }
+  }
+  .show-tickets-area {
+    @include flex-center(column);
+    width: 100%;
+    label {
+      align-self: flex-start;
+      font-size: 0.8rem;
+    }
+    .show-tickets-button {
+      @include basic-button($color2);
+      font-size: 1rem;
+      width: 100%;
+      font-weight: 500;
+      color: darken($color1, 30%);
+      border: 1px darken($color2, 30%) solid;
+      .amount {
+        font-weight: bold;
+        font-size: 1.1rem;
+        margin-right: 0.3rem;
+      }
+      &:hover {
+        background-color: lighten($color1, 48%);
+      }
+      &.active-seller {
+        background-color: darken($color1, 30%);
+        color: white;
+      }
+    }
+  }
+}
+
+.custom-input {
+  text-align: center;
+  background: none;
+  border: 1px #ccc solid;
+  border-radius: $border-radius;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  width: 100%;
+  &:focus {
+    outline: none;
+    background-color: lighten($color1, 45%);
+    border-radius: $border-radius;
   }
 }

@@ -1,0 +1,22 @@
+@import "../../../styles/variables.scss";
+@import "../../../styles/mixin.scss";
+
+.EventAdded {
+  text-align: center;
+  .thank-header {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    font-weight: bold;
+  }
+  .event-confirm {
+    margin-bottom: 1rem;
+    font-size: 5rem;
+    color: lighten($color1, 20%);
+  }
+  .first-paragraph {
+    font-weight: bold;
+    color: lighten($color1, 20%);
+    font-size: 1.1rem;
+    text-decoration: underline;
+  }
+}

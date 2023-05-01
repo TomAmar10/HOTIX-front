@@ -11,8 +11,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
-import HomeIcon from "@mui/icons-material/Home";
+import EventNoteIcon from "@mui/icons-material/EventNote";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import SettingsIcon from "@mui/icons-material/Settings";
 import HistoryOutlinedIcon from "@mui/icons-material/HistoryOutlined";
@@ -23,18 +22,11 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import TomProfile from "../../assets/tom-profile-img.jpeg";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IStore } from "../../store/store";
+import { eventActions } from "../../store/eventSlice";
 
 const drawerWidth = 270;
-
-const listItems = [
-  { name: "Calender", item: <CalendarMonthIcon /> },
-  { name: "Rewards", item: <EmojiEventsIcon /> },
-  { name: "Address", item: <HomeIcon /> },
-  { name: "Wallet", item: <AccountBalanceWalletIcon /> },
-  { name: "Settings", item: <SettingsIcon /> },
-];
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
@@ -78,17 +70,24 @@ export default function SideNav() {
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
   const user = useSelector((state: IStore) => state.user.user);
-
-  const openDrawer = () => {
-    setOpen(true);
-  };
-  const closeDrawer = () => {
-    setOpen(false);
-  };
+  const dispatch = useDispatch();
+  const startCreatingEvent = () => dispatch(eventActions.startCreating());
+  const listItems = [
+    { name: "Calender", item: <CalendarMonthIcon /> },
+    { name: "Wallet", item: <AccountBalanceWalletIcon /> },
+    {
+      name: "Create new event",
+      item: <EventNoteIcon />,
+      click: startCreatingEvent,
+    },
+    { name: "Settings", item: <SettingsIcon /> },
+  ];
+  const openDrawer = () => setOpen(true);
+  const closeDrawer = () => setOpen(false);
 
   return (
     <Box sx={{ display: "flex" }}>
-      <CssBaseline />
+      {/* <CssBaseline  /> */}
       <Drawer
         PaperProps={{ sx: { backgroundColor: "#F6F6F6" } }}
         variant="permanent"
@@ -100,7 +99,7 @@ export default function SideNav() {
           <ListItem
             disablePadding
             sx={{ display: "block" }}
-            onClick={() => navigate("profile/" + user?._id)}
+            onClick={() => navigate(`profile/${user?._id}/tickets`)}
           >
             <ListItemButton
               sx={{
@@ -129,7 +128,12 @@ export default function SideNav() {
             </ListItemButton>
           </ListItem>
           {listItems.map((i) => (
-            <ListItem disablePadding sx={{ display: "block" }} key={i.name}>
+            <ListItem
+              disablePadding
+              sx={{ display: "block" }}
+              key={i.name}
+              onClick={i.click}
+            >
               <ListItemButton
                 sx={{
                   minHeight: 48,

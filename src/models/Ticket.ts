@@ -13,4 +13,5 @@ export interface Ticket {
   currency: string;
   image: File | any;
   time_create: Date | undefined;
+  open_for_sale: boolean;
 }

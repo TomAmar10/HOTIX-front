@@ -10,18 +10,23 @@ interface props {
 }
 
 function TicketsDetails(props: props): JSX.Element {
+  const types = ["Regular", "VIP", "Student"];
+  const currencies = ["USD", "ILS", "EUR"];
   const [updatedTickets, setUpdatedTickets] = useState(props.tickets);
+  const [area, setArea] = useState("");
 
   const onTicketChange = (
     field: string,
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
     index?: number
   ) => {
+    const value = event.target.value;
     const ticketsCopy = [...updatedTickets];
-    if (index) (ticketsCopy[index - 1] as any)[field] = event.target.value;
-    else ticketsCopy.map((t: any) => (t[field] = event.target.value));
+    if (index) (ticketsCopy[index - 1] as any)[field] = value;
+    else ticketsCopy.map((t: any) => (t[field] = value));
     const isValid = event.target.form?.checkValidity();
     props.onSubmit(updatedTickets, isValid);
+    if (field === "area") setArea(value);
   };
 
   useEffect(() => {
@@ -46,24 +51,31 @@ function TicketsDetails(props: props): JSX.Element {
               <label>Currency</label>
             </div>
             <div className="inputs">
-              <input
-                type="text"
-                placeholder="VIP"
-                required
+              <select
                 onChange={(e) => onTicketChange("type", e)}
-              />
+                defaultValue={types[0]}
+                required
+              >
+                {types.map((t) => (
+                  <option value={t} key={t}>
+                    {t}
+                  </option>
+                ))}
+              </select>
               <input
                 type="number"
-                placeholder="300"
+                placeholder="0"
+                min={1}
                 required
                 onChange={(e) => onTicketChange("price", e)}
               />
-              <input
-                type="text"
-                placeholder="US Dollar $"
-                required
-                onChange={(e) => onTicketChange("currency", e)}
-              />
+              <select onChange={(e) => onTicketChange("currency", e)} required>
+                {currencies.map((c) => (
+                  <option value={c} key={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
           <hr />
@@ -83,14 +95,14 @@ function TicketsDetails(props: props): JSX.Element {
                 )}
                 <input
                   type="number"
-                  placeholder="21"
+                  placeholder={(index + 1).toString()}
                   required
                   onChange={(e) => onTicketChange("seat", e, index + 1)}
                 />
                 <input
-                  type="text"
+                  type="number"
                   maxLength={3}
-                  placeholder="9"
+                  placeholder="1"
                   required
                   onChange={(e) => onTicketChange("row", e, index + 1)}
                 />
@@ -98,12 +110,16 @@ function TicketsDetails(props: props): JSX.Element {
                   type="text"
                   placeholder="C"
                   required
-                  onChange={(e) => onTicketChange("area", e, index + 1)}
+                  value={area}
+                  onChange={(e) => onTicketChange("area", e)}
                 />
               </div>
             ))}
           </div>
         </form>
+        <span className="few-areas-message">
+          * Separate sales are required for tickets with different areas
+        </span>
       </div>
     </div>
   );

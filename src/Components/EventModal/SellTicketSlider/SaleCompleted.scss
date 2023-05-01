@@ -3,25 +3,30 @@
 
 .SaleCompleted {
   @include flex-center(column);
-  .fa-circle-check{
-    margin-top: 1rem;
-  }
-  h2{
-    font-weight: bold;
-    margin: 2rem 0;
-    color: $color1;
-  }
-  p{
-    width: 100%;
-    text-align: center;
-  }
-  .fa-circle-check{
+  justify-content: space-between;
+  height: 27rem;
+  .congrats-container {
+    @include flex-center(column);
+    .fa-circle-check {
+      margin-top: 1rem;
+    }
+    h2 {
+      font-weight: bold;
+      margin: 2rem 0;
+      color: $color1;
+    }
+    p {
+      width: 100%;
+      text-align: center;
+    }
+    .fa-circle-check {
       color: lighten($color1, 30%);
       color: gray;
       width: 5rem;
       height: 5rem;
+    }
   }
-  .home-btn{
+  .home-btn {
     margin-top: 2rem;
     @include basic-button(darken($color1, 30%));
   }

@@ -1,9 +1,9 @@
-@import "../../../styles/variables.scss";
-@import "../../../styles/mixin.scss";
+@import "../../styles/variables.scss";
+@import "../../styles/mixin.scss";
 
 .PaymentDetails {
   @include flex-center(column);
-  width: 80%;
+  width: 100%;
   gap: 1.5rem;
   padding: 0.5rem;
   .credit-card-image-container {
@@ -18,7 +18,7 @@
     }
   }
   .credit-card-form {
-    width: 100%;
+    width: 80%;
     select,input{
       border-radius: $border-radius;
       border: none;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import "./SelectArea.scss";
 
 interface props {
@@ -9,10 +9,6 @@ interface props {
 
 function SelectArea(props: props): JSX.Element {
   const [selectedAreas, setSelectedAreas] = useState<string[]>([]);
-
-  useEffect(() => {
-    setSelectedAreas([]);
-  }, [props.isCurrent]);
 
   const toggleArea = (value: string) => {
     const areas = [...selectedAreas];

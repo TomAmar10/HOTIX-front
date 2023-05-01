@@ -18,7 +18,9 @@ const config = {
   ticketURL: {
     getAll: api_url + "/tickets/all",
     getSingle: api_url + "/tickets/single",
-    getByEvent: api_url + "/tickets/all/by-event",
+    getForSaleByEvent: api_url + "/tickets/all/by-event",
+    getForSaleByUserEvent: api_url + "/tickets/all/by-event",
+    getUserTickets: api_url + "/tickets/all/by-user",
     create: api_url + "/tickets/single/add",
     createFew: api_url + "/tickets/few/add",
     update: api_url + "/tickets/single/update",
@@ -56,12 +58,11 @@ const config = {
   },
 };
 
-export const appRoutes={
-  chooseMode: 'choose-user-mode',
-  auth:'auth',
+export const appRoutes = {
+  chooseMode: "choose-user-mode",
+  auth: "auth",
   login: "auth?auth-mode=login",
   register: "auth?auth-mode=register",
-}
+};
 
 export default config;
-

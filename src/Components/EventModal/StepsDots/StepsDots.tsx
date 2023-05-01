@@ -22,7 +22,7 @@ function StepsDots(props: props): JSX.Element {
   }
   return (
     <div className="StepsDots">
-      <div className={`dots-area ${props.slides === 5 ? "five-slides" : ""}`}>
+      <div className={`dots-area ${props.slides === 3 ? "three-slides" : ""}`}>
         <hr className="dots-splitter" />
         {steps}
       </div>

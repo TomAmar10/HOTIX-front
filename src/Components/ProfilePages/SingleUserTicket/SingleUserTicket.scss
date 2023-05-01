@@ -1,0 +1,72 @@
+@import "../../../styles/mixin.scss";
+@import "../../../styles/variables.scss";
+@import "../../../styles/globals.scss";
+
+.SingleUserTicket {
+  @extend .userTicketCard;
+  overflow: visible;
+  height: fit-content;
+  .bid-price-area {
+    text-align: center;
+    width: 100%;
+    .confirmed-span {
+      font-size: 0.9rem;
+    }
+    .view-status-btn {
+      @include basic-button($color1);
+      width: 100%;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    .pay-now-btn {
+      @include basic-button($green-color);
+      @extend .view-status-btn;
+      font-weight: 500;
+    }
+    .bid-price {
+      @include basic-button(#6e7a8c);
+      @include flex-center(row);
+      gap: 0.7rem;
+      color: $color2;
+      width: 100%;
+      text-align: center;
+      font-weight: 500;
+      font-size: 1rem;
+      &:hover {
+        background-color: #6e7a8c;
+      }
+    }
+  }
+  .reply-area {
+    @include flex-center(row);
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 1rem;
+    .reply-btn {
+      border: none;
+      background: none;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      &.accept {
+        color: $green-color;
+        &:hover {
+          background-color: lighten($green-color, 64%);
+        }
+      }
+      &.decline {
+        color: red;
+        &:hover {
+          background-color: lighten(red, 48%);
+        }
+      }
+    }
+    .accept-icon {
+      color: $green-color;
+    }
+    .accepted-span {
+      color: $green-color;
+      font-weight: bold;
+    }
+  }
+}

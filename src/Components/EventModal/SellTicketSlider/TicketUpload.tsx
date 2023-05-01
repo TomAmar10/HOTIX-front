@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Ticket } from "../../../models/Ticket";
 import "./TicketUpload.scss";
 
@@ -10,6 +10,15 @@ interface props {
 
 function TicketUpload(props: props): JSX.Element {
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
+  const [proof, setProof] = useState<File | null>(null);
+  const proofInput = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    const newFilesArr: File[] = [
+      ...uploadedFiles.slice(0, props.tickets.length),
+    ];
+    setUploadedFiles(newFilesArr);
+  }, [props.tickets]);
 
   const addNewFiles = (event: any, files: FileList | null) => {
     event.preventDefault();
@@ -19,14 +28,28 @@ function TicketUpload(props: props): JSX.Element {
       newFilesArray.push(files[i]);
     }
     setUploadedFiles(newFilesArray);
-    const isValid = newFilesArray.length === props.tickets.length;
-    props.onSubmit(newFilesArray, isValid);
+    const isValid = newFilesArray.length === props.tickets.length && proof;
+    props.onSubmit(newFilesArray, proof, isValid);
   };
 
   const removeFile = (file: File) => {
     const newFilesArray = [...uploadedFiles].filter((f) => f !== file);
     setUploadedFiles(newFilesArray);
-    props.onSubmit(newFilesArray, false);
+    props.onSubmit(newFilesArray, proof, false);
+  };
+
+  const proofClick = () => proofInput.current?.click();
+
+  const changeProof = (e: any) => {
+    const files = e.target.files;
+    const isValid = uploadedFiles.length === props.tickets.length && files[0];
+    if (files) {
+      setProof(files[0]);
+      props.onSubmit(uploadedFiles, files[0], isValid);
+    } else {
+      setProof(null);
+      props.onSubmit(uploadedFiles, null, isValid);
+    }
   };
 
   return (
@@ -36,10 +59,9 @@ function TicketUpload(props: props): JSX.Element {
     >
       <div className="TicketUpload">
         <h5 className="sell-ticket-section-header">
-          Please upload your ticket
+          Please upload your ticket{props.tickets.length > 1 && "s"}
         </h5>
         <div className="input-label-container">
-          <h6 className="upload-file-header">Upload File</h6>
           <label
             htmlFor="upload-ticket"
             className="upload-ticket-label"
@@ -53,16 +75,26 @@ function TicketUpload(props: props): JSX.Element {
               <>
                 Drag & Drop <br />
                 Or <br />
-                <span>Browse</span>
+                <span className="browse-span">Browse</span>
               </>
             )}
           </label>
+          <input
+            type="file"
+            id="upload-ticket"
+            accept="image/*"
+            className="upload-ticket-input"
+            onChange={(e) => addNewFiles(e, e.target.files)}
+            multiple
+            disabled={props.tickets.length === uploadedFiles.length}
+            hidden
+          />
 
           <div className="user-files-area">
             {props.tickets.map((t, i) => (
-              <div key={i}>
+              <div key={i} className="single-ticket">
                 {!uploadedFiles[i] ? (
-                  <div className="ticket-image-bg-holder">{i + 1}</div>
+                  <div className="ticket-image-holder">{i + 1}</div>
                 ) : (
                   <>
                     <label
@@ -82,17 +114,29 @@ function TicketUpload(props: props): JSX.Element {
               </div>
             ))}
           </div>
+          <hr className="inputs-separator" />
+          <div className="buyer-proof">
+            <span className="proof-header">
+              Upload a proof of your purchase
+            </span>
+            <label className="proof-input-holder" onClick={proofClick}>
+              <input
+                type="text"
+                className="text-field"
+                disabled
+                value={proof ? `${proof.name} ✔` : "Proof required..."}
+              />
+              <button className="proof-browse-btn">Browse</button>
+            </label>
+            <input
+              type="file"
+              hidden
+              ref={proofInput}
+              accept="image/*"
+              onChange={changeProof}
+            />
+          </div>
         </div>
-        <input
-          type="file"
-          id="upload-ticket"
-          accept="image/*"
-          className="upload-ticket-input"
-          onChange={(e) => addNewFiles(e, e.target.files)}
-          multiple
-          disabled={props.tickets.length === uploadedFiles.length}
-          hidden
-        />
       </div>
     </div>
   );

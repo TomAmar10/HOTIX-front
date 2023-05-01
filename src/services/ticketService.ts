@@ -21,10 +21,37 @@ class Service {
     }
   };
 
-  public getTicketsByEvent = async (eventId: string): Promise<Ticket[]> => {
+  public getTicketsForSaleByEvent = async (
+    eventId: string
+  ): Promise<Ticket[]> => {
     try {
       const response = await axios.get(
-        `${config.ticketURL.getByEvent}/${eventId}`
+        `${config.ticketURL.getForSaleByEvent}/${eventId}`
+      );
+      return response.data;
+    } catch (err: any) {
+      return err.response.data.msg;
+    }
+  };
+
+  public getUserTicketsForSaleByEvent = async (
+    userId: string,
+    eventId: string
+  ): Promise<Ticket[]> => {
+    try {
+      const response = await axios.get(
+        `${config.ticketURL.getForSaleByUserEvent}/${userId}/${eventId}`
+      );
+      return response.data;
+    } catch (err: any) {
+      return err.response.data.msg;
+    }
+  };
+
+  public getUserTickets = async (userId: string): Promise<Ticket[]> => {
+    try {
+      const response = await axios.get(
+        `${config.ticketURL.getUserTickets}/${userId}`
       );
       return response.data;
     } catch (err: any) {

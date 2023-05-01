@@ -1,35 +1,31 @@
-import { useEffect, useState } from "react";
-import UserOffers from "../Components/ProfilePages/UserOffers";
-import bidService from "../services/bidService";
+import UserOffers from "../Components/ProfilePages/UserOffers/UserOffers";
 import { useSelector } from "react-redux";
 import { IStore } from "../store/store";
-import { Bid } from "../models/Bid";
-import { User } from "../models/User";
-import filterTickets from "../utils/ticketsFilter";
-import { Ticket } from "../models/Ticket";
 
 function ProfileOffersPage(): JSX.Element {
   const user = useSelector((state: IStore) => state.user.user);
-  const [userBids, setUserBids] = useState<Bid[]>([]);
-  const [userSells, setUserSells] = useState<Bid[]>([]);
-
-  useEffect(() => {
-    user?._id &&
-      bidService.getUserBids(user?._id).then((res) => {
-        const bids: Bid[] = [];
-        const sells: Bid[] = [];
-        res.data.forEach((b: Bid) => {
-          b.tickets = filterTickets(b.tickets as Ticket[]);
-          (b.id_bidder as User)._id === user._id ? bids.push(b) : sells.push(b);
-        });
-        setUserBids(bids);
-        setUserSells(sells);
-      });
-  }, [user]);
+  const userBidsConfirmed = useSelector(
+    (state: IStore) => state.userBids.userBidsConfirmed
+  );
+  const userBidsWaiting = useSelector(
+    (state: IStore) => state.userBids.userBidsWaiting
+  );
+  const receivedBidsConfirmed = useSelector(
+    (state: IStore) => state.userBids.receivedBidsConfirmed
+  );
+  const receivedBidsWaiting = useSelector(
+    (state: IStore) => state.userBids.receivedBidsWaiting
+  );
 
   return (
     <main className="container-main">
-      <UserOffers bids={userBids} sells={userSells} />
+      <UserOffers
+        userBidsConfirmed={userBidsConfirmed}
+        userBidsWaiting={userBidsWaiting}
+        receivedBidsConfirmed={receivedBidsConfirmed}
+        receivedBidsWaiting={receivedBidsWaiting}
+        user={user}
+      />
     </main>
   );
 }

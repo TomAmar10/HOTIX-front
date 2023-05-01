@@ -9,4 +9,6 @@ export interface Bid {
   bid_date?: Date;
   amount:number,
   status: string;
+  isConfirmed?:boolean;
+  isDone?:boolean;
 }

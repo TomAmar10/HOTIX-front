@@ -1,0 +1,24 @@
+@import "../../../../styles/mixin.scss";
+@import "../../../../styles/variables.scss";
+@import "../../../../styles/globals.scss";
+
+.NoBidsToShow {
+  width: 100%;
+  @include flex-center(column);
+  .ticket-icon {
+    font-size: 7rem;
+    color: $disabled-color;
+  }
+  .no-bids-span {
+    color: darken($disabled-color, 30%);
+  }
+  .find-event-span {
+    font-weight: 500;
+  }
+  .click-here-btn {
+    margin-top: 1rem;
+    @include basic-button(darken($color1, 30%));
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+  }
+}

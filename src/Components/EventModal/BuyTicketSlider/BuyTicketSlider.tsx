@@ -41,7 +41,7 @@ function BuyTicketSlider(props: props): JSX.Element {
   useEffect(() => {
     props.event?._id &&
       ticketService
-        .getTicketsByEvent(props.event?._id)
+        .getTicketsForSaleByEvent(props.event?._id)
         .then((res: Ticket[]) => {
           setTickets(res);
           const areas: string[] = [];
@@ -78,13 +78,14 @@ function BuyTicketSlider(props: props): JSX.Element {
       bidService.addBid(ticketsToOffer, props.user?._id as string, buyerBid);
     sliderRef.current.slickNext();
     setCurrentSlide((prev) => ++prev);
-    setNextReady(false);
+    if (currentSlide === 0) setNextReady(selectedAreas.length > 0);
+    else setNextReady(false);
   };
   const moveBackwards = () => {
     currentSlide <= 3 && setCurrentSeller(null);
-    setNextReady(false);
     sliderRef.current.slickPrev();
     setCurrentSlide((prev) => --prev);
+    setNextReady(true);
   };
 
   const handleAfterChange = (index: number) => setCurrentSlide(index);

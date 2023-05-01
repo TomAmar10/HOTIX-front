@@ -21,17 +21,6 @@ const userSlice = createSlice({
   name: "user",
   initialState: initialUserState,
   reducers: {
-    // login(state, action) {
-    //   const token = action.payload;
-    //   const decodedToken: any = jwt_decode(token);
-    //   const user: User = decodedToken.user;
-    //   user.token = token;
-    //   localStorage.setItem("token", JSON.stringify(token));
-    //   const expiration = new Date();
-    //   expiration.setHours(expiration.getHours() + 1);
-    //   localStorage.setItem("expiration", expiration.toISOString());
-    //   state.user = user;
-    // },
     login(state, action) {
       const token = action.payload;
       const decodedToken: any = jwt_decode(token);

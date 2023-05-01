@@ -70,16 +70,11 @@ class Service {
     }
   };
 
-  public updateBid = async (ticket: Bid) => {
+  public updateBid = async (bid: Bid) => {
     try {
       const response = await axios.patch(
-        `${config.bidURL.update}/${ticket._id}`,
-        ticket,
-        {
-          //   headers: {
-          //     authorization: `Bearer ${ticket.token}`,
-          //   },
-        }
+        `${config.bidURL.update}/${bid._id}`,
+        bid
       );
       return response;
     } catch (err: any) {

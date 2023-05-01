@@ -15,10 +15,10 @@ function SingleSellerCard(props: props): JSX.Element {
   return (
     <div className="single-seller-container">
       <div className="SingleSellerCard">
-        <div className="owner-details">
-          <img src={ProfileImg} alt="owner" className="owner-profile-image" />
+        <div className="user-details">
+          <img src={ProfileImg} alt="user" className="user-profile-image" />
           <div className="name-and-rating">
-            <h5 className="owner-name">{`${
+            <h5 className="user-name">{`${
               (props.ticket?.id_owner as User).first_name
             } ${(props.ticket?.id_owner as User).last_name}`}</h5>
             <Rating value={value} readOnly precision={0.5} />

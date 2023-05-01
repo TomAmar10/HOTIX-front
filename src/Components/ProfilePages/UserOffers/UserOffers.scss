@@ -1,0 +1,76 @@
+@import "../../../styles/mixin.scss";
+@import "../../../styles/variables.scss";
+@import "../../../styles/globals.scss";
+
+.UserOffers {
+  background-color: $color4;
+  color: darken($color1, 30%);
+  width: 100%;
+  margin: 1rem;
+  .offer-section {
+    padding: 1rem 5rem;
+    .profile-header {
+      font-weight: bold;
+      text-decoration: underline 1px solid;
+      margin-bottom: 2rem;
+    }
+    .offers-status-filters {
+      display: flex;
+      gap: 5rem;
+      margin-bottom: 1rem;
+      .filter-link {
+        color: $disabled-color;
+        text-decoration: none;
+        &:hover {
+          color: #9e9e9e;
+          color: lighten($color1, 30%);
+        }
+        &.active-link {
+          color: darken($color1, 30%);
+        }
+      }
+    }
+
+    .bids-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+  }
+}
+
+.ticket-payment {
+  background-color: $color2;
+  padding: 1rem;
+  border-radius: $border-radius;
+  min-height: 20rem;
+  max-height: 40rem;
+  max-width: 35rem;
+  overflow-y: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+
+  .payments-button {
+    text-align: end;
+    button {
+      @include basic-button($green-color);
+      font-weight: 500;
+
+      &:disabled {
+        background-color: #9e9e9e;
+      }
+    }
+  }
+}
+.ticket-payment-bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.713);
+  z-index: 2;
+}

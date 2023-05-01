@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Event } from "../../../models/Event";
 import { categoryImages as images } from "../../../utils/file-import";
 import { useSelector } from "react-redux";
@@ -10,18 +10,15 @@ interface props {
   onSubmit: Function;
   event: Event | null;
   isCurrent: boolean;
+  amount?: number;
   header?: string;
 }
 
 function TicketsAmount(props: props): JSX.Element {
   const options = [1, 2, 3, 4, 5, 6];
-  const [currentAmount, setCurrentAmount] = useState(0);
+  const [currentAmount, setCurrentAmount] = useState(props.amount);
   const userMode = useSelector((state: IStore) => state.user.mode);
   const buyOrSell = userMode === UserModes.BUYER ? "buy" : "sell";
-
-  useEffect(() => {
-    setCurrentAmount(0);
-  }, [props.isCurrent]);
 
   const amountClick = (value: number) => {
     setCurrentAmount(value);

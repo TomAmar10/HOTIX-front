@@ -1,7 +1,7 @@
-import CreditCard from "../../../assets/credit-card-image.png";
-import { logoImages } from "../../../utils/file-import";
+import CreditCard from "../../assets/credit-card-image.png";
+import { logoImages } from "../../utils/file-import";
 import { useForm } from "react-hook-form";
-import { card_details } from "../../../models/CreditCard";
+import { card_details } from "../../models/CreditCard";
 import { useEffect } from "react";
 import "./PaymentDetails.scss";
 
@@ -51,7 +51,7 @@ function PaymentDetails(props: props): JSX.Element {
           <div className="card-form-section">
             <label>Card number:</label>
             <input
-              type="text"
+              type="number"
               {...register("card_number", {
                 required: true,
                 minLength: 10,

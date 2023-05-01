@@ -8,8 +8,8 @@
     @include flex-center(row);
     margin-bottom: 1rem;
     gap: 8rem;
-    &.five-slides{
-      gap: 5rem;
+    &.three-slides{
+      gap: 13rem;
     }
     .dots-splitter {
       position: absolute;
@@ -33,7 +33,6 @@
         font-size: 0.8rem;
         width: 1.3rem;
         height: 1.3rem;
-        color: $color2;
         cursor: auto;
         &.active-slide {
           border: 2px darken($color1, 20%) solid;

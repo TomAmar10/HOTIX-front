@@ -16,7 +16,7 @@
 
   .details-inputs-area {
     width: 100%;
-    height: 19rem;
+    height: 17rem;
     overflow-y: auto;
     padding: 0 3rem;
     .inputs-section {
@@ -44,11 +44,15 @@
           margin-top: 0.5rem;
           padding: 0.5rem;
           width: 100%;
+          &:focus {
+            outline: none;
+            background-color: lighten($color1, 48%);
+            border-radius: $border-radius;
+          }
         }
-        &:focus {
-          outline: none;
-          background-color: lighten($color1, 35%);
-          border-radius: $border-radius;
+        select{
+          @extend input;
+          cursor: pointer;
         }
       }
       .ticket-index {
@@ -61,5 +65,11 @@
         }
       }
     }
+  }
+  .few-areas-message{
+    font-size: 0.9rem;
+    width: 100%;
+    text-align: start;
+    margin-top: 1rem;
   }
 }

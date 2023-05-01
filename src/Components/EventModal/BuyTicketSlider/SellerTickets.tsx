@@ -26,6 +26,7 @@ function SellerTickets(props: props): JSX.Element {
     const index = selectedTickets.findIndex((s) => s._id === ticket._id);
     const newTickets = [...selectedTickets];
     index === -1 ? newTickets.push(ticket) : newTickets.splice(index, 1);
+    newTickets.sort((a, b) => (a.seat as number) - (b.seat as number));
     setSelectedTickets(newTickets);
     props.onSubmit(currentBid, newTickets);
   };

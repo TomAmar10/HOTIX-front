@@ -4,11 +4,13 @@ import { Event } from "../models/Event";
 export interface EventState {
   events: Event[] | null;
   currentEvent: Event | null;
+  isCreatingEvent: boolean;
 }
 
 const initialEventState: EventState = {
   events: null,
   currentEvent: null,
+  isCreatingEvent: false,
 };
 
 const dateConvertor = (date: string) => {
@@ -32,6 +34,12 @@ const eventSlice = createSlice({
     },
     clearSingleEvent(state) {
       state.currentEvent = null;
+    },
+    startCreating(state) {
+      state.isCreatingEvent = true;
+    },
+    endCreating(state) {
+      state.isCreatingEvent = false;
     },
   },
 });
