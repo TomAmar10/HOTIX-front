@@ -2,11 +2,8 @@
 @import "../../../styles/variables.scss";
 @import "../../../styles/globals.scss";
 
-.UserOffers {
-  background-color: $color4;
-  color: darken($color1, 30%);
+.OffersList {
   width: 100%;
-  margin: 1rem;
   .offer-section {
     padding: 1rem 5rem;
     .profile-header {

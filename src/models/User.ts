@@ -8,4 +8,7 @@ export interface User {
   time_create: Date | undefined;
   role: Number | undefined;
   token: string | undefined;
+  image?: string;
+  ratings: any[];
+  total_rating: string;
 }

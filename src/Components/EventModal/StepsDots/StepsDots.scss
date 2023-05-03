@@ -40,6 +40,8 @@
         &.previous {
           background-color: darken($color1, 20%);
           border: 2px darken($color1, 20%) solid;
+          color: $color2;
+          font-weight: bold;
         }
       }
     }

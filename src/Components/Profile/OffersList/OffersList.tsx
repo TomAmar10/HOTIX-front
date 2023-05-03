@@ -17,7 +17,7 @@ import CongratsMsg from "./CongratsMsg/CongratsMsg";
 import SecureDepositMsg from "../../PaymentDetails/SecureDepositMsg/SecureDepositMsg";
 import NoBidsToShow from "./NoBidsToShow/NoBidsToShow";
 import BidStatus from "./BidStatus/BidStatus";
-import "./UserOffers.scss";
+import "./OffersList.scss";
 
 interface props {
   userBidsConfirmed: Bid[] | null;
@@ -27,7 +27,7 @@ interface props {
   user: User | null;
 }
 
-function UserOffers(props: props): JSX.Element {
+function OffersList(props: props): JSX.Element {
   const dispatch = useDispatch();
   const [currentBids, setCurrentBids] = useState<Bid[]>(
     props.userBidsConfirmed || []
@@ -70,24 +70,18 @@ function UserOffers(props: props): JSX.Element {
     if (!bidToTransfer) return;
     setStepNumber(3);
     if ((bidToTransfer.id_owner as User)._id === props.user?._id) {
-      // update bid to be Confirmed
       bidService.updateBid({ ...bidToTransfer, isConfirmed: true });
       dispatch(
         userBidsActions.confirmBid({ ...bidToTransfer, isConfirmed: true })
       );
     } else {
-      // add ticket and update to be Not ForSale and id_owner
       const ticketsToAdd = [
         ...(bidToTransfer.tickets[0] as SellerTicket).ticketsArray,
       ].map((t) => {
         return { ...t, open_for_sale: false, id_owner: props.user?._id };
       });
       dispatch(userTicketsActions.addTickets(ticketsToAdd));
-
-      // update bid to be Done
       dispatch(userBidsActions.doneBid({ ...bidToTransfer, isDone: true }));
-
-      // make new Deal
       dealService.transferTicket(bidToTransfer).then(() => setStepNumber(3));
     }
   };
@@ -105,7 +99,7 @@ function UserOffers(props: props): JSX.Element {
 
   return (
     <>
-      <div className="UserOffers">
+      <div className="OffersList">
         <div className="offer-section">
           <div className="offers-status-filters">
             <Link
@@ -205,7 +199,9 @@ function UserOffers(props: props): JSX.Element {
           )}
         </div>
       )}
-      {bidStatus && <BidStatus bid={bidStatus} user={props.user} />}
+      {bidStatus && (
+        <BidStatus bid={bidStatus} user={props.user} clearModal={clearModal} />
+      )}
       {(bidToTransfer || bidStatus) && (
         <div className="ticket-payment-bg" onClick={clearModal}></div>
       )}
@@ -213,4 +209,4 @@ function UserOffers(props: props): JSX.Element {
   );
 }
 
-export default UserOffers;
+export default OffersList;

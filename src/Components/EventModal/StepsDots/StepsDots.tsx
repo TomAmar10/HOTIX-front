@@ -15,7 +15,7 @@ function StepsDots(props: props): JSX.Element {
             props.currentSlide === i ? "active-slide" : ""
           } ${props.currentSlide > i ? "previous" : ""}`}
         >
-          {props.currentSlide > i ? "✔" : ""}
+          {props.currentSlide > i ? "✓" : ""}
         </div>
       </div>
     );

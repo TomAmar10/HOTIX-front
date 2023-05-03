@@ -16,6 +16,7 @@ import "./SellTicketSlider.scss";
 interface props {
   user: User | null;
   event: Event | null;
+  maxToSell: number;
 }
 
 function SellTicketSlider(props: props): JSX.Element {
@@ -25,7 +26,6 @@ function SellTicketSlider(props: props): JSX.Element {
   const [isDetailsValid, setIsDetailsValid] = useState(false);
   const [isImagesValid, setIsImagesValid] = useState(false);
   const [tickets, setTickets] = useState<Ticket[]>([]);
-  const [price, setPrice] = useState(0);
   const settings = {
     speed: 500,
     slidesToShow: 1,
@@ -53,8 +53,6 @@ function SellTicketSlider(props: props): JSX.Element {
 
   const changeTicketDetails = (newTickets: Ticket[], isValid: boolean) => {
     setTickets(newTickets);
-    const newPrice = tickets.reduce((acc, curr) => (acc += +curr.price), 0);
-    setPrice(newPrice);
 
     if (isValid) setIsDetailsValid(true);
     setNextReady(isValid);
@@ -103,6 +101,7 @@ function SellTicketSlider(props: props): JSX.Element {
           event={props.event}
           isCurrent={currentSlide === 0}
           amount={tickets.length}
+          maxToSell={props.maxToSell}
         />
         <TicketsDetails
           isCurrent={currentSlide === 1}
@@ -114,7 +113,6 @@ function SellTicketSlider(props: props): JSX.Element {
           tickets={tickets}
           onSubmit={changeTicketFiles}
         />
-
         <SaleCompleted
           isCurrent={currentSlide === 3}
           user={props.user}

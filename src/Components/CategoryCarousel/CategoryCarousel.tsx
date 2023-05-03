@@ -1,7 +1,6 @@
 import "./CategoryCarousel.scss";
 import Slider from "react-slick";
 import { Category } from "../../models/Category";
-import { categoryBgImages as images } from "../../utils/file-import";
 
 interface props {
   categories: Category[];
@@ -41,7 +40,7 @@ function CategoryCarousel(props: props): JSX.Element {
         {props.categories &&
           props.categories.map((c) => (
             <div className="carousel-category-option" key={c._id}>
-              <img src={images[c.name.replace(" ", "_")]} alt="" />
+              <img src={c.image} alt={c.name} />
               <h3>{c.name}</h3>
             </div>
           ))}

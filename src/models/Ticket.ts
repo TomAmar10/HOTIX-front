@@ -1,3 +1,4 @@
+import { Deal } from "./Deal";
 import { Event } from "./Event";
 import { User } from "./User";
 
@@ -5,6 +6,7 @@ export interface Ticket {
   _id: string | undefined;
   id_event: string | Event;
   id_owner: string | User;
+  id_deal: string | Deal;
   type: string;
   area: string;
   row: string | string[];

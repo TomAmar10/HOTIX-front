@@ -1,14 +1,16 @@
-import { useSelector } from "react-redux";
-import { IStore } from "../store/store";
-import ProfileNav from "../Components/ProfilePages/ProfileNav/ProfileNav";
+import ProfileNav from "../Components/Profile/ProfileNav/ProfileNav";
 import { Outlet } from "react-router-dom";
+import ProfileSection from "../Components/Profile/ProfileSection";
+import HotixTitle from "../Components/HotixTitle/HotixTitle";
 
 function ProfileRootLayout(): JSX.Element {
-  const user = useSelector((state: IStore) => state.user.user);
   return (
     <main className="container-main profile-container">
+      <HotixTitle profilePage />
       <ProfileNav />
-      <Outlet />
+      <ProfileSection>
+        <Outlet />
+      </ProfileSection>
     </main>
   );
 }

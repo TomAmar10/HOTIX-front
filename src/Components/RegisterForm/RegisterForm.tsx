@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate, useNavigation } from "react-router-dom";
 import { User } from "../../models/User";
 import service from "../../services/authService";
 import { userActions } from "../../store/authSlice";
+import convertToBase64 from "../../utils/convertBase64";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import "./RegisterForm.scss";
 
 function RegisterForm(): JSX.Element {
@@ -15,17 +17,42 @@ function RegisterForm(): JSX.Element {
   const [error, setError] = useState<string | null>(null);
   const dispatch = useDispatch();
   const watchField = watch("email");
+  const imageInput = useRef<HTMLInputElement | null>(null);
+  const [profileImage, setProfileImage] = useState<string | undefined>();
+  const [imageName, setImageName] = useState("");
+  const [imageTooBig, setImageTooBig] = useState(false);
 
   useEffect(() => {
     if (error) setError(null);
   }, [watchField]);
 
   const signUp = async (user: User) => {
+    user.image = profileImage;
+    user.last_name = user.last_name[0].toUpperCase() + user.last_name.slice(1);
+    user.first_name =
+      user.first_name[0].toUpperCase() + user.first_name.slice(1);
     const result = await service.register(user);
     if (result.status === 201) {
       dispatch(userActions.login(result.headers.authorization));
       navigate("/choose-user-mode");
     } else setError("This email is already in use.");
+  };
+
+  const openFileUpload = () => imageInput.current?.click();
+
+  const changeImage = async (e: ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files) {
+      setImageTooBig(files[0].size > 150000);
+      if (files[0] && files[0].size < 150000) {
+        const image = await convertToBase64(files[0]);
+        setProfileImage(image);
+        setImageName(files[0].name + "   ✓");
+        return;
+      }
+      setProfileImage(undefined);
+      setImageName("");
+    }
   };
 
   return (
@@ -91,6 +118,31 @@ function RegisterForm(): JSX.Element {
           <span>Other </span>
           <input type="radio" name="gender" id="other" required />
         </label>
+      </div>
+      <div className="form-input-area">
+        <label onClick={openFileUpload} className="file-label">
+          <input
+            placeholder="Upload profile picture"
+            type="text"
+            className="form-control"
+            value={imageName}
+            disabled
+          />
+          <AddPhotoAlternateIcon className="file-icon" />
+          <input
+            id="profile-picture"
+            type="file"
+            className="form-control file-input"
+            onChange={changeImage}
+            ref={imageInput}
+            hidden
+          />
+        </label>
+        {imageTooBig && (
+          <span className="image-error">
+            Please provide an image smaller than 150000 kb
+          </span>
+        )}
       </div>
       <button className="auth-login-button" disabled={isSubmitting}>
         Sign up

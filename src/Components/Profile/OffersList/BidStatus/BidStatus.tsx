@@ -8,6 +8,7 @@ import "./BidStatus.scss";
 interface props {
   bid: Bid;
   user: User | null;
+  clearModal: Function;
 }
 
 function BidStatus(props: props): JSX.Element {
@@ -24,7 +25,7 @@ function BidStatus(props: props): JSX.Element {
     step2: `You have approved a security deposit`,
     step3: ` ${(props.bid.id_bidder as User).first_name} ${
       (props.bid.id_bidder as User).last_name
-    } has approved his payment`,
+    } has completed his payment`,
     step4: `${eventDate} - SHOW TIME`,
     step5: "Money has transferred to your wallet",
   };
@@ -39,19 +40,23 @@ function BidStatus(props: props): JSX.Element {
           <span>{event.location}</span>
         </div>
         <div className="bid-ticket-section">
-          <span className="bid-price">
-            Bid price:
-            <span className="price">{props.bid.amount} $</span>
-          </span>
+          <span className="bid-price">Bid price:</span>
+          <span className="price">{props.bid.amount} $</span>
           <div className="seat-details">
-            <div className="seat-keys">
-              <span>Seat </span>|<span> Row </span>|<span> Area</span>
-            </div>
-            <div className="seat-values">
-              <span>{(props.bid.tickets[0] as Ticket).seat as string} </span>
-              <span> {(props.bid.tickets[0] as Ticket).row} </span>
-              <span> {(props.bid.tickets[0] as Ticket).area}</span>
-            </div>
+            <section className="seat-section">
+              <span className="detail-header">Seat</span>
+              {(props.bid.tickets[0] as Ticket).seat as string}
+            </section>
+            |
+            <section className="seat-section">
+              <span className="detail-header">Row</span>
+              {(props.bid.tickets[0] as Ticket).row}
+            </section>
+            |
+            <section className="seat-section">
+              <span className="detail-header">Area</span>
+              {(props.bid.tickets[0] as Ticket).area}
+            </section>
           </div>
         </div>
       </div>
@@ -67,7 +72,9 @@ function BidStatus(props: props): JSX.Element {
         ))}
       </div>
       <div className="ok-button-holder">
-        <button className="ok-button">OK</button>
+        <button className="ok-button" onClick={() => props.clearModal()}>
+          OK
+        </button>
       </div>
     </div>
   );

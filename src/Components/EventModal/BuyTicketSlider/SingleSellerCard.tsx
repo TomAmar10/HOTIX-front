@@ -1,7 +1,7 @@
 import Rating from "@mui/material/Rating";
 import { User } from "../../../models/User";
-import ProfileImg from "../../../assets/tom-profile-img.jpeg";
 import { SellerTicket } from "./SellersSlider";
+import { randomProfile } from "../../../utils/file-import";
 import "./SingleSellerCard.scss";
 
 interface props {
@@ -11,17 +11,21 @@ interface props {
 }
 
 function SingleSellerCard(props: props): JSX.Element {
-  const value = 3.5;
+  const user = props.ticket?.id_owner as User;
+  const value = +user.total_rating;
   return (
     <div className="single-seller-container">
       <div className="SingleSellerCard">
         <div className="user-details">
-          <img src={ProfileImg} alt="user" className="user-profile-image" />
+          <img
+            src={(user.image as string) || randomProfile}
+            alt="user"
+            className="user-profile-image"
+          />
           <div className="name-and-rating">
-            <h5 className="user-name">{`${
-              (props.ticket?.id_owner as User).first_name
-            } ${(props.ticket?.id_owner as User).last_name}`}</h5>
+            <h5 className="user-name">{`${user.first_name} ${user.last_name}`}</h5>
             <Rating value={value} readOnly precision={0.5} />
+            <span className="ratings-amount">{user.ratings.length} people rated</span>
           </div>
         </div>
         <div className="ticket-details">

@@ -19,14 +19,29 @@ $register-input-padding: 0.4rem 1rem;
     font-size: 0.9rem;
   }
 
-  .form-input-area {
-    .form-control {
-      padding: $register-input-padding;
-      -moz-appearance: textfield;
-      -webkit-appearance: textfield;
+  .form-control {
+    padding: $register-input-padding;
+    &:disabled {
+      background-color: transparent;
+      padding-left: 3rem;
+      cursor: pointer;
     }
-    input[type="number"] {
-      appearance: none;
+  }
+  .form-input-area {
+    .file-label {
+      display: flex;
+      cursor: pointer;
+      .file-icon {
+        position: absolute;
+        margin-top: 0.7rem;
+        margin-left: 0.5rem;
+        color: darken($disabled-color, 30%);
+        font-size: 1.5rem;
+      }
+    }
+    .image-error {
+      font-size: 0.8rem;
+      color: red;
     }
   }
 

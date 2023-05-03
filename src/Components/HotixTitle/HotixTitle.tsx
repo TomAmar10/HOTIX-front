@@ -1,11 +1,21 @@
+import { useNavigate } from "react-router-dom";
 import "./HotixTitle.scss";
 
+interface props {
+  profilePage?: boolean;
+}
 
-function HotixTitle(): JSX.Element {
+function HotixTitle(props: props): JSX.Element {
+  const navigate = useNavigate();
+  const navigateHome = () => props.profilePage && navigate("/");
   return (
-    <div className="HotixTitle">
-      <h1 className="part1">Ho</h1>
-      <h1 className="part2">tix</h1>
+    <div className={`HotixTitle ${[props.profilePage ? "profile-page" : ""]}`}>
+      <h1 className="part1" onClick={navigateHome}>
+        Ho
+      </h1>
+      <h1 className="part2" onClick={navigateHome}>
+        tix
+      </h1>
     </div>
   );
 }

@@ -8,5 +8,6 @@ export interface Event {
   event_name: string;
   description: string;
   time_create: Date | undefined;
+  image?: string;
   isApproved: boolean;
 }

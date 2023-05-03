@@ -31,40 +31,34 @@ $steps-height: 13.5rem;
     border-radius: $border-radius;
     padding: 0.5rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    font-size: 0.8rem;
     .bid-ticket-section {
       @include flex-center(column);
-      font-size: 0.8rem;
       .seat-details {
-        @include flex-center(column);
-        .seat-keys {
-          width: 100%;
+        @include flex-center(row);
+        gap: 0.5rem;
+        margin-top: 0.2rem;
+        .seat-section {
+          @include flex-center(column);
           font-weight: bold;
-          font-size: 0.7rem;
-          @include flex-center(row);
-          justify-content: space-between;
-          span {
-            width: 2rem;
-            text-align: center;
-          }
-        }
-        .seat-values {
-          width: 100%;
-          @include flex-center(row);
-          span {
-            width: 2rem;
-            text-align: center;
+          .detail-header {
+            margin: 0 0 -0.3rem 0;
+            font-size: 0.7rem;
+            font-weight: 400;
           }
         }
       }
       .bid-price {
+        font-weight: bold;
+        font-size: 0.7rem;
+    }
+    .price {
           font-weight: bold;
-          margin-bottom: 1rem;
-          .price{
-            padding: 0.2rem 0.5rem;
-            border-radius: $border-radius;
-            border: 1px $disabled-color solid;
-            margin-left: 0.3rem;
-        }
+        padding: 0.2rem 0.5rem;
+        border-radius: $border-radius;
+        border: 1px $disabled-color solid;
+        // margin-left: 0.5rem;
+        font-size: 0.8rem;
       }
     }
   }
@@ -105,7 +99,7 @@ $steps-height: 13.5rem;
       @include basic-button($color1);
       font-size: 0.9rem;
       font-weight: 400;
-      padding: 0.3rem 1rem;
+      padding: 0.3rem 2rem;
       margin-top: 2rem;
     }
   }

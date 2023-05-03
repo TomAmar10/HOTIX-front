@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Event } from "../../../models/Event";
-import { categoryImages as images } from "../../../utils/file-import";
 import { useSelector } from "react-redux";
 import { IStore } from "../../../store/store";
 import { UserModes } from "../../../store/authSlice";
@@ -12,6 +11,7 @@ interface props {
   isCurrent: boolean;
   amount?: number;
   header?: string;
+  maxToSell?: number;
 }
 
 function TicketsAmount(props: props): JSX.Element {
@@ -39,11 +39,8 @@ function TicketsAmount(props: props): JSX.Element {
           </div>
           <img
             className="current-event-image"
-            src={
-              props.event &&
-              images[props.event.id_category.name.replace(" ", "_")]
-            }
-            alt=""
+            src={props.event?.image}
+            alt={props.event?.event_name}
           />
         </div>
         <h5 className={`${buyOrSell}-ticket-section-header`}>
@@ -59,11 +56,18 @@ function TicketsAmount(props: props): JSX.Element {
               }`}
               value={o}
               onClick={(e: any) => amountClick(+e.target.value)}
+              disabled={(props.maxToSell || 6) < o}
             >
               {o}
             </button>
           ))}
         </div>
+        {(props.maxToSell || 6) < 6 && (
+          <span className="max-tickets-msg">
+            * You already have {6 - (props.maxToSell || 6)} tickets for sale, maximum is
+            6 per event
+          </span>
+        )}
       </div>
     </div>
   );

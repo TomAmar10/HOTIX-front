@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
 import { Event } from "../../models/Event";
 import { eventActions } from "../../store/eventSlice";
-import { categoryImages as images } from "../../utils/file-import";
 import "./UpcomingEventCard.scss";
 
 interface props {
@@ -24,8 +23,8 @@ function UpcomingEventCard(props: props): JSX.Element {
       <div className="event-card-img-holder">
         <img
           className="event-card-img"
-          src={images[props.event.id_category.name.replace(" ", "_")]}
-          alt=""
+          src={props.event.image}
+          alt={props.event.event_name}
         />
       </div>
       <div className="event-card-content">

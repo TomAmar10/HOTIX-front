@@ -1,16 +1,14 @@
 import { SyntheticEvent, useEffect, useState } from "react";
 import { Event } from "../../models/Event";
 import useDebounce from "../../utils/useDebounce";
-import {
-  categoryImages as images,
-  topHeaderImage,
-} from "../../utils/file-import";
+import { topHeaderImage } from "../../utils/file-import";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { UserModes, userActions } from "../../store/authSlice";
 import { IStore } from "../../store/store";
-import "./HomeTopHeader.scss";
 import { eventActions } from "../../store/eventSlice";
+import "./HomeTopHeader.scss";
+import ModeSwitch from "./ModeSwitch/ModeSwitch";
 
 interface props {
   events: Event[] | null;
@@ -49,11 +47,6 @@ function HomeTopHeader(props: props): JSX.Element {
     dispatch(userActions.logout());
   };
 
-  const toggleMode = () => {
-    const isBuyer = userMode === UserModes.BUYER;
-    dispatch(userActions.setMode(isBuyer ? UserModes.SELLER : UserModes.BUYER));
-  };
-
   const clickEvent = (event: Event) => {
     setTimeout(() => {
       dispatch(eventActions.setSingleEvent(event));
@@ -89,14 +82,7 @@ function HomeTopHeader(props: props): JSX.Element {
         <header>
           <h5 className="hotix-header">Hotix</h5>
           <div className="header-navigator">
-            {user && (
-              <>
-                <button className="navigate-btn" onClick={toggleMode}>
-                  {userMode === UserModes.BUYER ? " Seller" : " Buyer"} Mode
-                </button>
-                |
-              </>
-            )}
+            {user && <ModeSwitch isSeller={userMode === UserModes.SELLER} />}|
             <NavLink to={"/auth"} className="navigate-btn" onClick={logout}>
               {user ? "Logout " : "Login "}
             </NavLink>
@@ -160,8 +146,8 @@ function HomeTopHeader(props: props): JSX.Element {
                     {e.id_category.name && (
                       <img
                         className="search-result-image"
-                        src={images[e.id_category.name.replace(" ", "_")]}
-                        alt={e.id_category.name}
+                        src={e.image}
+                        alt={e.event_name}
                       />
                     )}
                     <div>

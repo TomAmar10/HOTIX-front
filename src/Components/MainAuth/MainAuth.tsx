@@ -32,9 +32,8 @@ function MainAuth(): JSX.Element {
       </div>
       <hr />
       <p className="copyrights-area">
-        © Copyrights kaki kaki kaki kaki kaki kaki kaki kaki <br />
-        kaki kaki kaki kaki kaki kaki kaki kaki <br />
-        kaki kaki kaki
+        © Copyrights lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </p>
     </div>
   );

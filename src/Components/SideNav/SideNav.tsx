@@ -5,7 +5,6 @@ import { styled, Theme, CSSObject } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
-import CssBaseline from "@mui/material/CssBaseline";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -20,11 +19,11 @@ import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalance
 import ConfirmationNumberOutlinedIcon from "@mui/icons-material/ConfirmationNumberOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import TomProfile from "../../assets/tom-profile-img.jpeg";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { IStore } from "../../store/store";
 import { eventActions } from "../../store/eventSlice";
+import { randomProfile } from "../../utils/file-import";
 
 const drawerWidth = 270;
 
@@ -72,6 +71,9 @@ export default function SideNav() {
   const user = useSelector((state: IStore) => state.user.user);
   const dispatch = useDispatch();
   const startCreatingEvent = () => dispatch(eventActions.startCreating());
+  const bgColor = "#5f17e1"; // $color1
+  const textColor = "#f8f8f8"; // $color4
+  const boxShadow = 'rgba(255, 255, 255, 0.35)  1.95px 1.95px 5px';
   const listItems = [
     { name: "Calender", item: <CalendarMonthIcon /> },
     { name: "Wallet", item: <AccountBalanceWalletIcon /> },
@@ -87,9 +89,9 @@ export default function SideNav() {
 
   return (
     <Box sx={{ display: "flex" }}>
-      {/* <CssBaseline  /> */}
       <Drawer
-        PaperProps={{ sx: { backgroundColor: "#F6F6F6" } }}
+        className="drawer"
+        PaperProps={{ sx: { backgroundColor: bgColor, boxShadow} }}
         variant="permanent"
         open={open}
         onMouseEnter={openDrawer}
@@ -115,14 +117,18 @@ export default function SideNav() {
                   justifyContent: "center",
                 }}
               >
-                <img className="sideNav-profile-img" src={TomProfile} alt="" />
+                <img
+                  className="sideNav-profile-img"
+                  src={user?.image || randomProfile}
+                  alt={user?.first_name}
+                />
               </ListItemIcon>
-              <ListItemText sx={{ opacity: open ? 1 : 0 }}>
+              <ListItemText sx={{ opacity: open ? 1 : 0, color:textColor }}>
                 <div className="sideNav-profile-name-area">
-                  <span className="sideNav-profile-name">Tom Amar</span>
-                  <span className="sideNav-profile-email">
-                    Tomayos@gmail.com
+                  <span className="sideNav-profile-name">
+                    {user?.first_name} {user?.last_name}
                   </span>
+                  <span className="sideNav-profile-email">{user?.email}</span>
                 </div>
               </ListItemText>
             </ListItemButton>
@@ -146,11 +152,15 @@ export default function SideNav() {
                     minWidth: 0,
                     mr: open ? 3 : "auto",
                     justifyContent: "center",
+                    color: textColor,
                   }}
                 >
                   {i.item}
                 </ListItemIcon>
-                <ListItemText primary={i.name} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText
+                  primary={i.name}
+                  sx={{ opacity: open ? 1 : 0, color: textColor }}
+                />
               </ListItemButton>
             </ListItem>
           ))}

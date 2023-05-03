@@ -1,0 +1,9 @@
+@import "../../styles/variables.scss";
+
+.ProfileSection {
+  background-color: $color4;
+  color: darken($color1, 30%);
+  margin: 1rem;
+  width: 100%;
+  border-radius: $border-radius;
+}

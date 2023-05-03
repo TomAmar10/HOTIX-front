@@ -1,7 +1,6 @@
 import axios from "axios";
 import { User } from "../models/User";
 import config from "../utils/config";
-
 class Service {
   public getAllUsers = async (): Promise<User[]> => {
     try {

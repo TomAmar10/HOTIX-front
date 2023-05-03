@@ -1,0 +1,102 @@
+@import "../../../../styles/mixin.scss";
+@import "../../../../styles/variables.scss";
+@import "../../../../styles/globals.scss";
+
+.SingleUserEvent {
+  @include flex-center(column);
+  justify-content: flex-start;
+  gap: 1rem;
+  width: calc(50% - 1rem);
+  min-width: 30rem;
+  background-color: $card-bg;
+  padding: 2rem;
+  border-radius: $border-radius;
+  .event-details {
+    @include flex-center(row);
+    gap: 2rem;
+    min-height: 10rem;
+    .event-image {
+      width: 10rem;
+      height: 7rem;
+      border-radius: $border-radius;
+    }
+    .info {
+      @include flex-center(column);
+      gap: 0.2rem;
+      align-items: flex-start;
+      font-size: 0.9rem;
+      .event-name {
+        margin: 0;
+      }
+      .single-detail {
+        @include flex-center(row);
+        font-weight: 500;
+        .event-icon {
+          font-size: 1rem;
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+  .tickets-container {
+    @include flex-center(column);
+    gap: 0.5rem;
+    width: 100%;
+    .single-ticket-container {
+      width: 100%;
+      overflow: hidden;
+      .single-ticket {
+        @include flex-center(row);
+        justify-content: space-around;
+        gap: 2rem;
+        border-radius: $border-radius;
+        padding: 0.5rem 1.5rem;
+        background-color: $color2;
+        overflow: hidden;
+        .ticket-detail {
+          @include flex-center(column);
+          font-size: 0.9rem;
+          span:first-child {
+            text-decoration: underline;
+          }
+          span:nth-child(2) {
+            font-weight: bold;
+          }
+        }
+        .ticket-btn {
+          @include basic-button(darken(red, 10%));
+          font-size: 0.9rem;
+          font-weight: 500;
+          padding: 0.2rem 0;
+          width: 6rem;
+          &.sell,
+          &.view {
+            background-color: $color1;
+            &:hover {
+              background-color: darken($color1, 5%);
+            }
+          }
+        }
+        .show-ticket-btn {
+          @extend .ticket-btn, .sell;
+          background-color: $green-color;
+          &:hover {
+            background-color: darken($green-color, 5%);
+          }
+        }
+      }
+      .for-sale-tag {
+        position: relative;
+        margin-bottom: -1.2rem;
+        margin-left: -1.3rem;
+        background-color: $color1;
+        width: 4rem;
+        height: 1.2rem;
+        transform: rotate(-45deg);
+        color: white;
+        @include flex-center(column);
+        font-size: 0.7rem;
+      }
+    }
+  }
+}

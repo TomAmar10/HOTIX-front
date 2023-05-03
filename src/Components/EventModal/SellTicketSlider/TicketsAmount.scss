@@ -44,6 +44,14 @@
         background-color: darken($color1, 30%);
         color: $color2;
       }
+      &:disabled {
+        background-color: $disabled-color;
+      }
     }
+  }
+  .max-tickets-msg {
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    color: darken($disabled-color, 20%);
   }
 }

@@ -1,63 +1,55 @@
-import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Event } from "../../../models/Event";
 import { UserModes } from "../../../store/authSlice";
-import { categoryImages as images } from "../../../utils/file-import";
 import "./EventPreview.scss";
 import { useEffect, useState } from "react";
-import TicketService from "../../../services/ticketService";
 import { User } from "../../../models/User";
+import { Ticket } from "../../../models/Ticket";
 
 interface props {
   onMoveToSecondStep: Function;
   userMode: UserModes | null;
   user: User | null;
+  event: Event | null;
+  userTicketsForSale: Ticket[] | [];
 }
 
 function EventPreview(props: props): JSX.Element {
-  const currentEvent: Event = useSelector(
-    (state: any) => state.events.currentEvent
-  );
   const [isPermitted, setIsPermitted] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (props.userMode === UserModes.SELLER) {
-      TicketService.getUserTicketsForSaleByEvent(
-        props.user?._id as string,
-        currentEvent._id as string
-      ).then((res) => {
-        setIsPermitted(res.length < 6);
-        if (res.length >= 6)
-          setError("* Maximum tickets to sale in a single event is 6");
-      });
+    if (props.userMode === UserModes.BUYER) {
+      setIsPermitted(true);
+      return;
+    }
+    if (props.userTicketsForSale?.length > 5) {
+      setIsPermitted(false);
+      setError("* Maximum tickets to sale in a single event is 6");
     } else setIsPermitted(true);
-  }, [currentEvent._id, props.user?._id, props.userMode]);
+  }, [props.userMode, props.userTicketsForSale]);
 
   return (
     <div className="EventPreview">
-      <img
-        src={images[currentEvent.id_category.name.replace(" ", "_")]}
-        alt={images[currentEvent.id_category.name]}
-      />
+      <img src={props.event?.image} alt={props.event?.event_name} />
       <div className="event-data">
-        <h5>{currentEvent.event_name}</h5>
+        <h5>{props.event?.event_name}</h5>
         <div className="data-row">
-          <h6>About:</h6> {currentEvent.description}
+          <h6>About:</h6> {props.event?.description}
         </div>
         <div className="data-row">
-          <h6>Category:</h6> {currentEvent.id_category.name}
+          <h6>Category:</h6> {props.event?.id_category.name}
         </div>
         <div className="data-row">
-          <h6>Location:</h6> {currentEvent.location}
+          <h6>Location:</h6> {props.event?.location}
         </div>
         <div className="data-row">
-          <h6>Date:</h6> {currentEvent.date as string}
+          <h6>Date:</h6> {props.event?.date as string}
         </div>
       </div>
       {error && <span className="user-error">{error}</span>}
       <div className="event-preview-buttons">
-        <NavLink to={`/event/${currentEvent._id}`}>
+        <NavLink to={`/event/${props.event?._id}`}>
           <button className="event-details-btn">Event Details</button>
         </NavLink>
         {props.userMode && (

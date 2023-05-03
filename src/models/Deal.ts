@@ -10,6 +10,6 @@ export interface Deal {
   id_bid: string | Bid;
   price: number;
   deal_date?: Date | undefined;
-  status?: string;
-  reason?: string;
+  is_seller_rated?: boolean;
+  is_buyer_rated?: boolean;
 }

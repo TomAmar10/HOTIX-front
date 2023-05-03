@@ -1,4 +1,4 @@
-import UserOffers from "../Components/ProfilePages/UserOffers/UserOffers";
+import OffersList from "../Components/Profile/OffersList/OffersList";
 import { useSelector } from "react-redux";
 import { IStore } from "../store/store";
 
@@ -18,15 +18,13 @@ function ProfileOffersPage(): JSX.Element {
   );
 
   return (
-    <main className="container-main">
-      <UserOffers
-        userBidsConfirmed={userBidsConfirmed}
-        userBidsWaiting={userBidsWaiting}
-        receivedBidsConfirmed={receivedBidsConfirmed}
-        receivedBidsWaiting={receivedBidsWaiting}
-        user={user}
-      />
-    </main>
+    <OffersList
+      userBidsConfirmed={userBidsConfirmed}
+      userBidsWaiting={userBidsWaiting}
+      receivedBidsConfirmed={receivedBidsConfirmed}
+      receivedBidsWaiting={receivedBidsWaiting}
+      user={user}
+    />
   );
 }
 
