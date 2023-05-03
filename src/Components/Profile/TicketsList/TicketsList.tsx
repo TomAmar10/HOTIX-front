@@ -1,7 +1,7 @@
 import { Link, useSearchParams } from "react-router-dom";
 import { UserEvent } from "../../../pages/ProfileTickets";
 import { Ticket } from "../../../models/Ticket";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SingleUserEvent from "./SingleUserEvent/SingleUserEvent";
 import "./TicketsList.scss";
 
@@ -20,8 +20,6 @@ function TicketsList(props: props): JSX.Element {
   const showTicket = (ticket: Ticket | null) => {
     setTicketToShow(ticket);
   };
-
-  console.log(props.prevEvents[0]);
 
   return (
     <div className="TicketsList">

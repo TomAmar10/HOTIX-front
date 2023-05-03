@@ -14,3 +14,21 @@ const logoImages: any = {
 };
 
 export { topHeaderImage, googleImage, logoImages, randomProfile };
+
+  // //
+  // function imageToFile(imageSrc: any, fileName: any) {
+  //   return fetch(imageSrc)
+  //     .then((response) => response.blob())
+  //     .then((blob) => new File([blob], fileName, { type: blob.type }));
+  // }
+  // const clickMe = async () => {
+  //   imageToFile(myImage, "theatre.jpeg").then((res) => {
+  //     convertToBase64(res).then((image) => {
+  //       axios.post("http://localhost:3200/hotix/api/categories/single/add", {
+  //         name: "Theatre",
+  //         image,
+  //       });
+  //     });
+  //   });
+  // };
+  // //
