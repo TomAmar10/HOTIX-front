@@ -12,12 +12,11 @@ function ProfileTicketsPage(): JSX.Element {
   const userTickets = useSelector(
     (state: IStore) => state.userTickets.allTickets || []
   );
+  const user = useSelector((state: IStore) => state.user.user);
   const oneHour = 1000 * 60 * 60;
 
   function ticketsToEvents(tickets: Ticket[]): UserEvent[] {
-    // Create an object to store events by their _id
     const eventsObj: Record<string, UserEvent> = {};
-    // Loop through the tickets and group them by event _id
     tickets.forEach((ticket) => {
       const eventId = (ticket.id_event as Event)._id as string;
       if (!eventsObj[eventId]) {
@@ -29,7 +28,6 @@ function ProfileTicketsPage(): JSX.Element {
         eventsObj[eventId].ticketsArray.push(ticket);
       }
     });
-    // Convert the events object into an array of events
     const eventsArray: UserEvent[] = Object.keys(eventsObj).map(
       (eventId) => eventsObj[eventId]
     );
@@ -38,19 +36,23 @@ function ProfileTicketsPage(): JSX.Element {
     );
   }
 
-  const prevEvents = () => {
+  const getPrevEvents = () => {
     return ticketsToEvents(userTickets).filter(
       (t) => new Date(t.date).getTime() + oneHour < new Date().getTime()
     );
   };
-  const upcomingEvents = () => {
+  const getUpcomingEvents = () => {
     return ticketsToEvents(userTickets).filter(
       (t) => new Date(t.date).getTime() + oneHour > new Date().getTime()
     );
   };
 
   return (
-    <TicketsList upcomingEvents={upcomingEvents()} prevEvents={prevEvents()} />
+    <TicketsList
+      user={user}
+      upcomingEvents={getUpcomingEvents()}
+      prevEvents={getPrevEvents()}
+    />
   );
 }
 

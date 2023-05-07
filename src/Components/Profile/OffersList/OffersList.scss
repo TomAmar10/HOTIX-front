@@ -54,6 +54,7 @@
     text-align: end;
     button {
       @include basic-button($green-color);
+      font-size: 0.9rem;
       font-weight: 500;
 
       &:disabled {

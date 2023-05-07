@@ -28,7 +28,14 @@ function HomePage(): JSX.Element {
       .getAllEvents()
       .then((res) =>
         dispatch(
-          eventActions.setEvents(res.data.filter((e: Event) => e.isApproved))
+          eventActions.setEvents(
+            res.data
+              .filter((e: Event) => e.isApproved)
+              .sort(
+                (a: Event, b: Event) =>
+                  new Date(a.date).getTime() - new Date(b.date).getTime()
+              )
+          )
         )
       );
   }, [dispatch]);

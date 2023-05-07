@@ -1,7 +1,7 @@
 import { Link, useNavigate, useNavigation } from "react-router-dom";
 import { User } from "../../models/User";
 import { useForm } from "react-hook-form";
-import service from "../../services/authService";
+import service from "../../services/userService";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store/authSlice";
 import { useEffect, useState } from "react";

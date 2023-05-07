@@ -1,7 +1,7 @@
 @import "../../../styles/variables.scss";
 @import "../../../styles/mixin.scss";
 
-.SellerTickets {
+.PlaceBid {
   @include flex-center(column);
   width: 100%;
   .all-tickets {
@@ -66,9 +66,9 @@
       font-size: 0.8rem;
       color: #8a8a8a;
     }
-    .current-bid{
-        font-weight: bold;
-        margin-top: 1rem;
+    .current-bid {
+      font-weight: bold;
+      margin-top: 1rem;
     }
   }
 }

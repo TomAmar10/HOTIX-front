@@ -47,7 +47,7 @@ function TicketsDetails(props: props): JSX.Element {
           <div className="inputs-section">
             <div className="labels">
               <label>Type</label>
-              <label>Ticket Price</label>
+              <label>Original ticket price</label>
               <label>Currency</label>
             </div>
             <div className="inputs">
@@ -81,9 +81,9 @@ function TicketsDetails(props: props): JSX.Element {
           <hr />
           <div className="inputs-section">
             <div className="labels">
-              <label>Seat Number</label>
-              <label>Seat Row</label>
-              <label>Seat Area</label>
+              <label>Seat number</label>
+              <label>Seat row</label>
+              <label>Seat area</label>
             </div>
             {props.tickets.map((t, index) => (
               <div key={index} className="inputs">

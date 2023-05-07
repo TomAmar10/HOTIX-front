@@ -9,10 +9,12 @@ import TicketsAmount from "../SellTicketSlider/TicketsAmount";
 import SelectArea from "./SelectArea";
 import SellersSlider, { SellerTicket } from "./SellersSlider";
 import NextPrevButtons from "../NextPrevButtons/NextPrevButtons";
-import SellerTickets from "./SellerTickets";
+import SellerTickets from "./PlaceBid";
 import bidService from "../../../services/bidService";
 import SaleCompleted from "../SellTicketSlider/SaleCompleted";
 import "./BuyTicketSlider.scss";
+import { useDispatch } from "react-redux";
+import { userBidsActions } from "../../../store/userBidsSlice";
 
 interface props {
   user: User | null;
@@ -30,6 +32,7 @@ function BuyTicketSlider(props: props): JSX.Element {
   const [currentSeller, setCurrentSeller] = useState<SellerTicket | null>(null);
   const [ticketsToOffer, setTicketsToOffer] = useState<Ticket[]>([]);
   const [buyerBid, setBuyerBid] = useState(0);
+  const dispatch = useDispatch();
   const settings = {
     speed: 500,
     slidesToShow: 1,
@@ -75,7 +78,9 @@ function BuyTicketSlider(props: props): JSX.Element {
 
   const moveForward = () => {
     if (currentSlide === 3)
-      bidService.addBid(ticketsToOffer, props.user?._id as string, buyerBid);
+      bidService
+        .addBid(ticketsToOffer, props.user?._id as string, buyerBid)
+        .then((res) => dispatch(userBidsActions.addNewBid(res.data)));
     sliderRef.current.slickNext();
     setCurrentSlide((prev) => ++prev);
     if (currentSlide === 0) setNextReady(selectedAreas.length > 0);

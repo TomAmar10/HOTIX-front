@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { User } from "../../../models/User";
 import { Event } from "../../../models/Event";
 import { SellerTicket } from "./SellersSlider";
-import "./SellerTickets.scss";
+import "./PlaceBid.scss";
 import { Ticket } from "../../../models/Ticket";
+import { getSign } from "../../../utils/currencyHandler";
 
 interface props {
   onSubmit: Function;
@@ -13,7 +14,7 @@ interface props {
   currentSeller: SellerTicket | null;
 }
 
-function SellerTickets(props: props): JSX.Element {
+function PlaceBid(props: props): JSX.Element {
   const [selectedTickets, setSelectedTickets] = useState<Ticket[]>([]);
   const [currentBid, setCurrentBid] = useState<number>(0);
 
@@ -41,7 +42,7 @@ function SellerTickets(props: props): JSX.Element {
       className="sell-ticket-section-wrapper"
       style={{ opacity: props.isCurrent ? 1 : 0 }}
     >
-      <div className="SellerTickets">
+      <div className="PlaceBid">
         <h5 className="buy-ticket-section-header">
           Choose your tickets and place a bid
         </h5>
@@ -87,7 +88,8 @@ function SellerTickets(props: props): JSX.Element {
             {currentBid} X {selectedTickets.length}
           </span>
           <h5 className="current-bid">
-            Your bid : {currentBid * selectedTickets.length} $
+            Your bid : {currentBid * selectedTickets.length}{" "}
+            {getSign(props.currentSeller?.currency as string) || "$"}
           </h5>
         </div>
       </div>
@@ -95,4 +97,4 @@ function SellerTickets(props: props): JSX.Element {
   );
 }
 
-export default SellerTickets;
+export default PlaceBid;

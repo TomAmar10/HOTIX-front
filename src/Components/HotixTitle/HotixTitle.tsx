@@ -7,7 +7,7 @@ interface props {
 
 function HotixTitle(props: props): JSX.Element {
   const navigate = useNavigate();
-  const navigateHome = () => props.profilePage && navigate("/");
+  const navigateHome = () => navigate("/");
   return (
     <div className={`HotixTitle ${[props.profilePage ? "profile-page" : ""]}`}>
       <h1 className="part1" onClick={navigateHome}>

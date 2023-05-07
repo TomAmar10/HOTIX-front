@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate, useNavigation } from "react-router-dom";
 import { User } from "../../models/User";
-import service from "../../services/authService";
+import service from "../../services/userService";
 import { userActions } from "../../store/authSlice";
 import convertToBase64 from "../../utils/convertBase64";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";

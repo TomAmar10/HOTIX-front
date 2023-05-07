@@ -11,12 +11,60 @@
   background-color: $card-bg;
   padding: 2rem;
   border-radius: $border-radius;
+  overflow: hidden;
+  .show-is-live {
+    color: $green-color;
+    width: 100%;
+    height: 0;
+    position: relative;
+    left: 0;
+    margin-top: -1.5rem;
+    font-weight: 500;
+  }
+  .rate-user-btn {
+    @include basic-button(darken($color1, 20%));
+    align-self: flex-start;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    position: relative;
+    margin-top: -1rem;
+    margin-bottom: -1.5rem;
+    .fa-star {
+      color: #faaf00;
+    }
+  }
+  .bid-amount-container {
+    width: 100%;
+    position: relative;
+    text-align: end;
+    margin-top: -1rem;
+    margin-bottom: -1.5rem;
+    margin-left: 4rem;
+    font-weight: 500;
+    .bids-amount {
+      background-color: $color2;
+      padding: 0.5rem 2rem;
+      border-radius: 20px 0 0 20px;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+      color: darken($color1, 20%);
+      text-decoration: none;
+      &:hover {
+        box-shadow: rgba(50, 50, 93, 0.15) 0px 3px 17px -5px,
+          rgba(0, 0, 0, 0.2) 0px 8px 6px -5px;
+        cursor: pointer;
+      }
+    }
+  }
   .event-details {
     @include flex-center(row);
+    justify-content: flex-start;
+    width: 100%;
     gap: 2rem;
     min-height: 10rem;
     .event-image {
-      width: 10rem;
+      width: 11rem;
       height: 7rem;
       border-radius: $border-radius;
     }

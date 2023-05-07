@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { UserModes, userActions } from "../../store/authSlice";
 import { IStore } from "../../store/store";
 import { eventActions } from "../../store/eventSlice";
-import "./HomeTopHeader.scss";
 import ModeSwitch from "./ModeSwitch/ModeSwitch";
+import "./HomeTopHeader.scss";
 
 interface props {
   events: Event[] | null;
@@ -82,7 +82,7 @@ function HomeTopHeader(props: props): JSX.Element {
         <header>
           <h5 className="hotix-header">Hotix</h5>
           <div className="header-navigator">
-            {user && <ModeSwitch isSeller={userMode === UserModes.SELLER} />}|
+            {user && <ModeSwitch isSeller={userMode === UserModes.SELLER} />}
             <NavLink to={"/auth"} className="navigate-btn" onClick={logout}>
               {user ? "Logout " : "Login "}
             </NavLink>

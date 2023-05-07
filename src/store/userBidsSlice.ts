@@ -46,6 +46,13 @@ const userBidsSlice = createSlice({
       state.receivedBidsConfirmed = salesConfirmed;
       state.receivedBidsWaiting = salesWaiting;
     },
+    addNewBid(state, action) {
+      const bid = action.payload;
+      bid.tickets = filterTickets(bid.tickets as Ticket[]);
+      const newUserBidsWaiting = state.userBidsWaiting || [];
+      newUserBidsWaiting?.push(bid);
+      state.userBidsWaiting = newUserBidsWaiting;
+    },
     confirmBid(state, action) {
       const bidToConfirm: Bid = action.payload;
       const confirmedBids = [

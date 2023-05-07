@@ -6,14 +6,14 @@
   margin: 2rem 0 1rem;
   text-shadow: 2px 2px 4px #000000;
 
-  .part1 {
-    color: $color1;
+  .part2 {
+    cursor: pointer;
     font-size: 4rem;
     font-weight: bold;
   }
-  .part2 {
-    font-size: 4rem;
-    font-weight: bold;
+  .part1 {
+    @extend .part2;
+    color: $color1;
   }
 }
 
@@ -23,7 +23,6 @@
   margin: 0;
   .part1,
   .part2 {
-    cursor: pointer;
     font-size: 2rem;
     text-shadow: 1px 1px 2px #000000;
   }

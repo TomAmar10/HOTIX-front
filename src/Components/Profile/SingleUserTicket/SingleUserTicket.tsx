@@ -7,6 +7,7 @@ import { randomProfile } from "../../../utils/file-import";
 import { Rating } from "@mui/material";
 import { Bid } from "../../../models/Bid";
 import "./SingleUserTicket.scss";
+import { getSign } from "../../../utils/currencyHandler";
 
 interface props {
   bid: Bid;
@@ -46,7 +47,7 @@ function SingleUserTicket(props: props): JSX.Element {
       </div>
       <div className="event-details">
         <h5 className="event-name">{event.event_name}</h5>
-        <span className="event-date">{dateConvertor(event.date as Date)}</span>
+        <span className="event-date">{dateConvertor(event.date as string)}</span>
       </div>
       <div className="ticket-details">
         <div className="ticket-headers">
@@ -83,7 +84,7 @@ function SingleUserTicket(props: props): JSX.Element {
             <>
               <div className="bid-price">
                 <span>{seatsAmount + " "}tickets</span>-
-                <span>{props.bid.amount * seatsAmount}$</span>
+                <span>{props.bid.amount * seatsAmount}{getSign((props.bid.tickets as Ticket[])[0].currency)}</span>
               </div>
               <div className="reply-area">
                 <button className="reply-btn accept" onClick={payNowClick}>

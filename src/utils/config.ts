@@ -7,6 +7,7 @@ const config = {
     getSingle: api_url + "/users/single",
     update: api_url + "/users/single/update",
     delete: api_url + "/users/single/delete",
+    addRating: api_url + "/users/single/add-rating",
   },
   eventURL: {
     getAll: api_url + "/events/all",

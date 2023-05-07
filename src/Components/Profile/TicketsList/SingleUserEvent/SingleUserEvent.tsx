@@ -1,19 +1,64 @@
 import dateConvertor from "../../../../utils/dateConvertor";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EventIcon from "@mui/icons-material/Event";
-import "./SingleUserEvent.scss";
 import { UserEvent } from "../../../../pages/ProfileTickets";
+import { Deal } from "../../../../models/Deal";
+import { User } from "../../../../models/User";
+import { getSign } from "../../../../utils/currencyHandler";
+import { Link } from "react-router-dom";
+import "./SingleUserEvent.scss";
 
 interface props {
   event: UserEvent;
   isShowTime: boolean;
   isShowOver: boolean;
   showTicket: Function;
+  onRateClick: Function;
+  user: User | null;
+  buyer?: boolean;
+  offersAmount: number;
 }
 
 function SingleUserEvent(props: props): JSX.Element {
+  const dealToRate = (props.event.ticketsArray[0].id_deal as Deal) || null;
+  const isRatingTime = () => {
+    if (!dealToRate) return false;
+    if (!props.isShowOver) return false;
+    if (props.buyer && !dealToRate.is_buyer_rated) {
+      return true;
+    }
+    if (!props.buyer && !dealToRate.is_seller_rated) return true;
+    else return false;
+  };
+  const userToRate = isRatingTime()
+    ? props.buyer
+      ? (dealToRate.id_buyer as User)
+      : (dealToRate.id_seller as User)
+    : null;
+
+  const giveFeedback = () =>
+    props.onRateClick(dealToRate.id_buyer as User, dealToRate);
+
   return (
     <div className="SingleUserEvent">
+      {props.offersAmount > 0 && (
+        <div className="bid-amount-container">
+          <Link to={"../offers"} className="bids-amount">
+            {props.offersAmount} Bid{props.offersAmount > 1 ? "s" : ""}
+          </Link>
+        </div>
+      )}
+      {props.isShowTime && (
+        <span className="show-is-live">
+          <i className="fa-regular fa-circle-dot fa-fade"></i> Live
+        </span>
+      )}
+      {userToRate && (
+        <button className="rate-user-btn" onClick={giveFeedback}>
+          <i className="fa-solid fa-star"></i> Rate{" "}
+          {`${userToRate.first_name} ${userToRate.last_name}`}
+        </button>
+      )}
       <div className="event-details">
         <img
           className="event-image"
@@ -25,7 +70,7 @@ function SingleUserEvent(props: props): JSX.Element {
           <span>{props.event.description}</span>
           <div className="single-detail">
             <EventIcon className="event-icon" />
-            <span>{dateConvertor(props.event.date as Date) as string}</span>
+            <span>{dateConvertor(props.event.date as string)}</span>
           </div>
           <div className="single-detail">
             <LocationOnIcon className="event-icon" />
@@ -52,7 +97,10 @@ function SingleUserEvent(props: props): JSX.Element {
               </div>
               <div className="ticket-detail">
                 <span>Price</span>
-                <span>{t.price.toString()}$</span>
+                <span>
+                  {t.price.toString()}
+                  {getSign(t.currency)}
+                </span>
               </div>
               <div className="ticket-detail">
                 <span>Type</span>

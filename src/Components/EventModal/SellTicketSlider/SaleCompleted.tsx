@@ -3,21 +3,24 @@ import "./SaleCompleted.scss";
 import { eventActions } from "../../../store/eventSlice";
 import { useNavigate } from "react-router-dom";
 import { User } from "../../../models/User";
+import { UserModes } from "../../../store/authSlice";
 
 interface props {
   isCurrent: boolean;
   buyerMode?: boolean;
   sellerMode?: boolean;
   user?: User | null;
+  amount?: number;
 }
 
 function SaleCompleted(props: props): JSX.Element {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const goToMyOffers = () => {
+  const goToTicket = () => {
     dispatch(eventActions.clearSingleEvent());
-    navigate(`/profile/${props.user?._id}/offers`);
+    const goTo = props.sellerMode ? "tickets" : "offers";
+    navigate(`/profile/${props.user?._id}/${goTo}`);
   };
 
   return (
@@ -31,8 +34,13 @@ function SaleCompleted(props: props): JSX.Element {
           <h2>CONGRATULATIONS !</h2>
           {props.sellerMode && (
             <p>
-              Your tickets are available for bids. <br />
-              View offers in your wallet, and choose the best deal for you.
+              Your
+              {props.amount && props.amount > 1
+                ? " tickets are "
+                : " ticket is "}
+              available for bids. <br />
+              View all your tickets in your profile, and stay tuned for further
+              actions.
             </p>
           )}
           {props.buyerMode && (
@@ -43,8 +51,8 @@ function SaleCompleted(props: props): JSX.Element {
             </p>
           )}
         </div>
-        <button className="home-btn" onClick={goToMyOffers}>
-          My Offers
+        <button className="home-btn" onClick={goToTicket}>
+          {props.sellerMode ? "My Tickets" : "My Offers"}
         </button>
       </div>
     </div>

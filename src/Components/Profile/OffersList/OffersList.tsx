@@ -183,7 +183,9 @@ function OffersList(props: props): JSX.Element {
               />
               <div className="payments-button">
                 <button disabled={!isValid} onClick={transferTicket}>
-                  Pay Now
+                  {props.user?._id === bidToTransfer.id_owner
+                    ? "Confirm Deposit"
+                    : "Pay Now"}
                 </button>
               </div>
             </>

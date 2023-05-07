@@ -6,12 +6,9 @@
   text-align: center;
   color: darken($color1, 30%);
   .ticket-image {
-    width: 9rem;
-    height: 7rem;
+    width: 8rem;
+    height: 6rem;
     margin-bottom: 1rem;
-  }
-  .sell-ticket-section-header {
-    margin-bottom: 1rem !important;
   }
 
   .details-inputs-area {
@@ -31,7 +28,7 @@
         label {
           text-align: left;
           width: 100%;
-          font-weight: bold;
+          font-weight: 500;
         }
       }
       .inputs {

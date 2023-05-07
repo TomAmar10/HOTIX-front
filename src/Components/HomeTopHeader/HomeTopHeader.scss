@@ -30,9 +30,13 @@
         display: flex;
         gap: 1rem;
         .navigate-btn {
+          font-size: 0.9rem;
+          font-weight: 500;
           color: $color2;
           text-decoration: none;
-          border: none;
+          border: 1px $color2 solid;
+          padding: 0 0.5rem;
+          border-radius: $border-radius;
           background: none;
         }
       }
@@ -106,14 +110,14 @@
             background-color: darken($color1, 10%);
           }
         }
-        .create-new-event{
+        .create-new-event {
           @extend .see-all-results-btn;
           background-color: lighten($color1, 45%);
           color: black;
           margin-top: 0.5rem;
-          &:hover{
-          background-color: lighten($color1, 40%);
-        }  
+          &:hover {
+            background-color: lighten($color1, 40%);
+          }
         }
       }
 

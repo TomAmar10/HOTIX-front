@@ -13,7 +13,7 @@ interface props {
 
 function BidStatus(props: props): JSX.Element {
   const event = (props.bid.tickets[0] as Ticket).id_event as Event;
-  const eventDate = dateConvertor(event.date as Date);
+  const eventDate = dateConvertor(event.date as string);
 
   const isConfirmed = props.bid.isConfirmed;
   const currentStep = isConfirmed ? 2 : 1;

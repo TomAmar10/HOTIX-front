@@ -66,6 +66,18 @@ class Service {
       return err.response.data;
     }
   };
+
+  public addRating = async (id_userToRate: string, rating: any) => {
+    try {
+      const response = await axios.post(
+        `${config.userURL.addRating}/${id_userToRate}`,
+        rating
+      );
+      return response;
+    } catch (err: any) {
+      return err.response.data;
+    }
+  };
 }
 
 const service = new Service();

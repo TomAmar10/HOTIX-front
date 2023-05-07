@@ -12,6 +12,8 @@ import StepsDots from "../StepsDots/StepsDots";
 import NextPrevButtons from "../NextPrevButtons/NextPrevButtons";
 import convertToBase64 from "../../../utils/convertBase64";
 import "./SellTicketSlider.scss";
+import { useDispatch } from "react-redux";
+import { userTicketsActions } from "../../../store/userTicketsSlice";
 
 interface props {
   user: User | null;
@@ -26,6 +28,7 @@ function SellTicketSlider(props: props): JSX.Element {
   const [isDetailsValid, setIsDetailsValid] = useState(false);
   const [isImagesValid, setIsImagesValid] = useState(false);
   const [tickets, setTickets] = useState<Ticket[]>([]);
+  const dispatch = useDispatch();
   const settings = {
     speed: 500,
     slidesToShow: 1,
@@ -83,7 +86,10 @@ function SellTicketSlider(props: props): JSX.Element {
     setCurrentSlide((prev) => ++prev);
     if (currentSlide === 0) setNextReady(isDetailsValid);
     if (currentSlide === 1) setNextReady(isImagesValid);
-    if (currentSlide === 2) service.addTickets(tickets);
+    if (currentSlide === 2)
+      service
+        .addTickets(tickets)
+        .then((res) => dispatch(userTicketsActions.addTickets(res.data)));
   };
   const moveBackwards = () => {
     sliderRef.current.slickPrev();
@@ -116,6 +122,7 @@ function SellTicketSlider(props: props): JSX.Element {
         <SaleCompleted
           isCurrent={currentSlide === 3}
           user={props.user}
+          amount={tickets.length}
           sellerMode
         />
       </Slider>
