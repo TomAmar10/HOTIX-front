@@ -10,6 +10,7 @@ import { Deal } from "../../../models/Deal";
 import { useSelector } from "react-redux";
 import { IStore } from "../../../store/store";
 import { Event } from "../../../models/Event";
+import NoBidsToShow from "../OffersList/NoBidsToShow/NoBidsToShow";
 
 interface props {
   upcomingEvents: UserEvent[];
@@ -94,31 +95,36 @@ function TicketsList(props: props): JSX.Element {
           })}
         </div>
       ) : (
-        <div className="upcoming-events-container">
-          {props.upcomingEvents?.map((event) => {
-            const eventTime = new Date(event.date as Date).getTime();
-            const isShowOver = new Date().getTime() > eventTime + oneHour;
-            const isShowTime =
-              new Date().getTime() > eventTime - twoHours &&
-              eventTime + oneHour > new Date().getTime();
-            let offersAmount = 0;
-            for (let i = 0; i < biddenEvents.length; i++) {
-              if (biddenEvents[i] === event._id) offersAmount++;
-            }
-            return (
-              <SingleUserEvent
-                key={event._id}
-                event={event}
-                isShowTime={isShowTime}
-                isShowOver={isShowOver}
-                showTicket={showTicket}
-                onRateClick={rateClick}
-                user={props.user}
-                offersAmount={offersAmount}
-              />
-            );
-          })}
-        </div>
+        <>
+          {props.upcomingEvents.length > 0 && (
+            <div className="upcoming-events-container">
+              {props.upcomingEvents?.map((event) => {
+                const eventTime = new Date(event.date as Date).getTime();
+                const isShowOver = new Date().getTime() > eventTime + oneHour;
+                const isShowTime =
+                  new Date().getTime() > eventTime - twoHours &&
+                  eventTime + oneHour > new Date().getTime();
+                let offersAmount = 0;
+                for (let i = 0; i < biddenEvents.length; i++) {
+                  if (biddenEvents[i] === event._id) offersAmount++;
+                }
+                return (
+                  <SingleUserEvent
+                    key={event._id}
+                    event={event}
+                    isShowTime={isShowTime}
+                    isShowOver={isShowOver}
+                    showTicket={showTicket}
+                    onRateClick={rateClick}
+                    user={props.user}
+                    offersAmount={offersAmount}
+                  />
+                );
+              })}
+            </div>
+          )}
+          {props.upcomingEvents.length < 1 && <NoBidsToShow upcomingEvents />}
+        </>
       )}
       {(ticketToShow || userToRate) && (
         <>

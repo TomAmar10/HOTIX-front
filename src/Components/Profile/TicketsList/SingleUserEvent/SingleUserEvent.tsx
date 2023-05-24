@@ -32,12 +32,12 @@ function SingleUserEvent(props: props): JSX.Element {
   };
   const userToRate = isRatingTime()
     ? props.buyer
-      ? (dealToRate.id_buyer as User)
-      : (dealToRate.id_seller as User)
+      ? (dealToRate.id_seller as User)
+      : (dealToRate.id_buyer as User)
     : null;
 
   const giveFeedback = () =>
-    props.onRateClick(dealToRate.id_buyer as User, dealToRate);
+    props.onRateClick(userToRate, dealToRate);
 
   return (
     <div className="SingleUserEvent">

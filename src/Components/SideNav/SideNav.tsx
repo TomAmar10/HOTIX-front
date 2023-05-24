@@ -73,6 +73,7 @@ export default function SideNav() {
   const startCreatingEvent = () => dispatch(eventActions.startCreating());
   const bgColor = "#5f17e1"; // $color1
   const textColor = "#f8f8f8"; // $color4
+  const background = 'linear-gradient(to right, #7a3deb, #5f17e1)'
   const boxShadow = 'rgba(255, 255, 255, 0.35)  1.95px 1.95px 5px';
   const listItems = [
     { name: "Calender", item: <CalendarMonthIcon /> },
@@ -91,7 +92,7 @@ export default function SideNav() {
     <Box sx={{ display: "flex" }}>
       <Drawer
         className="drawer"
-        PaperProps={{ sx: { backgroundColor: bgColor, boxShadow} }}
+        PaperProps={{ sx: { backgroundColor: bgColor, boxShadow, background} }}
         variant="permanent"
         open={open}
         onMouseEnter={openDrawer}

@@ -4,16 +4,17 @@
 .StepsDots {
   @include flex-center(row);
   .dots-area {
-    width: 100%;
+    // width: 35rem;
     @include flex-center(row);
     margin-bottom: 1rem;
+    margin-top: 1rem;
     gap: 8rem;
     &.three-slides{
       gap: 13rem;
     }
     .dots-splitter {
       position: absolute;
-      width: 60%;
+      width: 30rem;
       border: 5px #ccc solid;
       margin-top: 2.2rem;
     }

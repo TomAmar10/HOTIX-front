@@ -29,6 +29,9 @@
   .history-container {
     @extend .upcoming-events-container;
   }
+  .no-events-to-show{
+    
+  }
   .ticket-modal {
     background-color: $color2;
     padding: 3rem;

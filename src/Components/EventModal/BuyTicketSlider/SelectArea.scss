@@ -4,8 +4,9 @@
 .SelectArea {
   @include flex-center(column);
   .venue-image {
-    width: 17rem;
-    height: 12rem;
+    width: 15rem;
+    height: 10rem;
+    margin: 1rem 0.5rem 2rem 0;
   }
 
   .available-area-container {
@@ -16,12 +17,12 @@
     max-height: 9rem;
     overflow-y: scroll;
     .area-button {
-      text-align: start;
+      text-align: center;
       border: 1px #ccc solid;
       color: darken($color1, 30%);
       font-weight: bold;
       padding: 0.5rem 1rem;
-      width: 7rem;
+      width: 10rem;
       border-radius: $border-radius;
       font-size: 0.9rem;
       background-color: lighten($color1, 49%);

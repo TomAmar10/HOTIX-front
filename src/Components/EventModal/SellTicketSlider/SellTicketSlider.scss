@@ -10,8 +10,7 @@
     @include flex-center(column);
     justify-content: space-between;
     transition: all 0.3s ease-out;
-    height: 100%;
-    min-height: 30rem;
+    min-height: 27rem;
   }
 
   .sell-ticket-section-header {

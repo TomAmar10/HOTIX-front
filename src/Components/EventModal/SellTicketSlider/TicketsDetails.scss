@@ -6,16 +6,17 @@
   text-align: center;
   color: darken($color1, 30%);
   .ticket-image {
-    width: 8rem;
-    height: 6rem;
+    width: 7rem;
+    height: 5rem;
     margin-bottom: 1rem;
   }
 
   .details-inputs-area {
     width: 100%;
-    height: 17rem;
+    min-height: 14rem;
+    max-height: 17rem;
     overflow-y: auto;
-    padding: 0 3rem;
+    padding: 0 1rem;
     .inputs-section {
       @include flex-center(column);
       margin: 0.5rem 0;

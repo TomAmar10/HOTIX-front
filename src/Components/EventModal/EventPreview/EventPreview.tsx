@@ -46,6 +46,7 @@ function EventPreview(props: props): JSX.Element {
         <div className="data-row">
           <h6>Date:</h6> {props.event?.date as string}
         </div>
+        <hr />
       </div>
       {error && <span className="user-error">{error}</span>}
       <div className="event-preview-buttons">

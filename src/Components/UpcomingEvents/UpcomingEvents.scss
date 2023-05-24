@@ -43,6 +43,7 @@
   .upcoming-events-card-container {
     @include flex-center(row);
     width: 100%;
+    max-width: 80vw;
     flex-wrap: wrap;
     min-height: 20rem;;
     gap: 2rem;

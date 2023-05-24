@@ -8,9 +8,7 @@ $steps-height: 13.5rem;
   background-color: $color2;
   padding: 1rem 3rem;
   border-radius: $border-radius;
-  min-height: 20rem;
-  max-height: 40rem;
-  max-width: 35rem;
+  max-width: 40rem;
   overflow-y: auto;
   position: fixed;
   top: 50%;
@@ -26,17 +24,19 @@ $steps-height: 13.5rem;
 
   .bid-ticket {
     @include flex-center(row);
-    gap: 2rem;
+    gap: 3rem;
     margin: 2rem 0;
     border-radius: $border-radius;
     padding: 0.5rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     .bid-ticket-section {
+      height: 6rem;
       @include flex-center(column);
+      justify-content: space-around;
       .seat-details {
         @include flex-center(row);
-        gap: 0.5rem;
+        gap: 1rem;
         margin-top: 0.2rem;
         .seat-section {
           @include flex-center(column);
@@ -51,13 +51,13 @@ $steps-height: 13.5rem;
       .bid-price {
         font-weight: bold;
         font-size: 0.7rem;
+        margin-right: 1rem;
     }
     .price {
           font-weight: bold;
         padding: 0.2rem 0.5rem;
         border-radius: $border-radius;
         border: 1px $disabled-color solid;
-        // margin-left: 0.5rem;
         font-size: 0.8rem;
       }
     }
@@ -77,6 +77,7 @@ $steps-height: 13.5rem;
     height: $steps-height;
     justify-content: space-between;
     font-size: 0.9rem;
+    margin: 1rem 0;
     .single-step {
       display: flex;
       align-items: center;

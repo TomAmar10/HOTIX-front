@@ -40,8 +40,10 @@ function BidStatus(props: props): JSX.Element {
           <span>{event.location}</span>
         </div>
         <div className="bid-ticket-section">
-          <span className="bid-price">Bid price:</span>
-          <span className="price">{props.bid.amount} $</span>
+          <div>
+            <span className="bid-price">Bid price:</span>
+            <span className="price">{props.bid.amount} $</span>
+          </div>
           <div className="seat-details">
             <section className="seat-section">
               <span className="detail-header">Seat</span>

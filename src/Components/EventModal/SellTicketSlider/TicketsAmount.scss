@@ -8,14 +8,14 @@
     justify-content: space-between;
     gap: 1rem;
     min-width: 20rem;
-    height: 5rem;
-    margin: 2rem 0 5rem;
+    height: 6rem;
+    margin: 3rem 0 3rem;
     border: 1px #ccc solid;
     border-radius: $border-radius;
     .event-details {
       @include flex-center(column);
       justify-content: space-between;
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       height: 100%;
       padding: 0.5rem;
       .event-name {
@@ -23,7 +23,7 @@
       }
     }
     .current-event-image {
-      width: 7rem;
+      width: 10rem;
       height: 100%;
       border-radius: 0 5px 5px 0;
     }

@@ -4,9 +4,9 @@ import eventService from "../../../services/eventService";
 import { Category } from "../../../models/Category";
 import { Event } from "../../../models/Event";
 import { useForm } from "react-hook-form";
-import "./NewEventForm.scss";
 import EventAdded from "./EventAdded";
 import { User } from "../../../models/User";
+import "./NewEventForm.scss";
 
 interface props {
   user: User | null;

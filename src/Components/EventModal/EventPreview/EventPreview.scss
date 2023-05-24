@@ -3,7 +3,10 @@
 
 .EventPreview {
   @include flex-center(column);
+  justify-content: flex-start;
+  gap: 1rem;
   padding: 1rem;
+  min-height: 30rem;
   img {
     height: 12rem;
     width: 100%;
