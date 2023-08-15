@@ -2,13 +2,13 @@
   width: 40%;
   display: inline-block;
   position: relative;
-  direction: ltr;
   .search-input {
     width: 100% !important;
     cursor: pointer;
   }
 }
 .calendarElement {
+  direction: ltr;
   position: absolute;
   top: 3rem;
   left: 0;

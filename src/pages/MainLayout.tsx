@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import useEventService from "../services/eventService";
 import useBidService from "../services/bidService";
 import useTicketService from "../services/ticketService";
+import useTagService from "../services/tagService";
 
 function MainLayout(): JSX.Element {
   const user = useSelector((state: IStore) => state.user.user);
@@ -15,11 +16,15 @@ function MainLayout(): JSX.Element {
   const bidService = useBidService();
   const ticketService = useTicketService();
   const eventService = useEventService();
+  const tagService = useTagService();
   const currentEvent = useSelector(
     (state: IStore) => state.events.currentEvent
   );
   const isCreatingEvent = useSelector(
     (state: IStore) => state.events.isCreatingEvent
+  );
+  const isUpdatingEvent = useSelector(
+    (state: IStore) => state.events.isUpdatingEvent
   );
 
   useEffect(() => {
@@ -28,6 +33,7 @@ function MainLayout(): JSX.Element {
       bidService.getUserBids(user?._id as string);
       ticketService.getUserTickets(user._id as string);
     }
+    tagService.getAllTags();
   }, [user?._id]);
 
   return (
@@ -38,9 +44,10 @@ function MainLayout(): JSX.Element {
       {user && <SideNav language={language} data={langData} />}
       <main className="container-main">
         <Outlet />
-        {(currentEvent || isCreatingEvent) && (
+        {(currentEvent || isCreatingEvent || isUpdatingEvent) && (
           <EventModal
-            isNewEvent={isCreatingEvent}
+            isCreating={isCreatingEvent}
+            isUpdating={isUpdatingEvent}
             data={langData}
             language={language}
           />

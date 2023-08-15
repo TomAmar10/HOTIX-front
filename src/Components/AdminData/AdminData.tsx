@@ -9,7 +9,9 @@ import Rating from "@mui/material/Rating";
 import { useDispatch } from "react-redux";
 import { eventActions } from "../../store/eventSlice";
 import LangModel from "../../languageControl/Language";
+import { format } from "date-fns";
 import "./AdminData.scss";
+import TagsForm from "./TagsForm";
 
 interface props {
   user: User | null;
@@ -24,7 +26,10 @@ function AdminData(props: props): JSX.Element {
   const dispatch = useDispatch();
 
   const hidePopup = () => setUserToWatch(null);
-  const chooseEvent = (e: Event) => dispatch(eventActions.setSingleEvent(e));
+  const chooseEvent = (e: Event) => {
+    dispatch(eventActions.setSingleEvent(e));
+    if (!e.isApproved) dispatch(eventActions.startUpdating());
+  };
 
   return (
     <>
@@ -33,7 +38,7 @@ function AdminData(props: props): JSX.Element {
           {data.header} {props.user?.first_name} {props.user?.last_name}!
         </h1>
         <div className="table-container">
-          <h4 className="table-header">{data.userList}</h4>
+          <h4 className="table-name">{data.userList}</h4>
           <table>
             <thead>
               <tr>
@@ -56,8 +61,8 @@ function AdminData(props: props): JSX.Element {
                   <td>{u.phone}</td>
                   <td>{u.email}</td>
                   <td>
-                    {" "}
                     <Rating
+                      className="ratings"
                       value={+u.total_rating}
                       readOnly
                       size="medium"
@@ -70,7 +75,7 @@ function AdminData(props: props): JSX.Element {
           </table>
         </div>
         <div className="table-container">
-          <h4 className="table-header">{data.eventList}</h4>
+          <h4 className="table-name">{data.eventList}</h4>
           <table>
             <thead>
               <tr>
@@ -89,7 +94,7 @@ function AdminData(props: props): JSX.Element {
                   onClick={() => chooseEvent(e)}
                 >
                   <td>{e.event_name}</td>
-                  <td>{e.date as string}</td>
+                  <td>{format(new Date(e.date as string), "Pp")}</td>
                   <td>{(e.id_category as Category).name}</td>
                   <td>{e.location}</td>
                   <td>
@@ -110,6 +115,7 @@ function AdminData(props: props): JSX.Element {
             </tbody>
           </table>
         </div>
+        <TagsForm />
       </div>
       {userToWatch && <UserPopup user={userToWatch} onHidePopup={hidePopup} />}
     </>

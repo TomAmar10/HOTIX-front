@@ -8,10 +8,12 @@ import useAuthService from "../../../services/authService";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../../store/authSlice";
 import Spinner from "../../UI/Spinner";
+import { LanguageProfilePage } from "../../../languageControl/Language";
 import "./UserSettings.scss";
 
 interface props {
   user: User;
+  data: LanguageProfilePage;
 }
 
 interface formUser extends User {
@@ -22,6 +24,7 @@ interface formUser extends User {
 function UserSettings(props: props): JSX.Element {
   const dispatch = useDispatch();
   const user = props.user;
+  const data = props.data.UserSettings;
   const authService = useAuthService();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [currentImg, setCurrentImg] = useState(user.image || randomProfile);
@@ -66,7 +69,7 @@ function UserSettings(props: props): JSX.Element {
   const submitForm = async (details: formUser) => {
     if (details.confirm_password || details.new_password) {
       if (details.confirm_password !== details.new_password) {
-        setError("New Password must be equal to Confirm password");
+        setError(data.confirmPassErr);
         return;
       }
     }
@@ -87,10 +90,9 @@ function UserSettings(props: props): JSX.Element {
       setIsSucceeded(true);
       reset();
     } else {
-      if (result.msg.includes("email")) setError("Email is already exists");
-      if (result.msg.includes("phone"))
-        setError("Phone number is already exists");
-      if (result.status === 401) setError("Wrong password, please try again");
+      if (result.msg.includes("email")) setError(data.emailErr);
+      if (result.msg.includes("phone")) setError(data.phoneErr);
+      if (result.status === 401) setError(data.passwordErr);
     }
     setIsPending(false);
   };
@@ -106,7 +108,7 @@ function UserSettings(props: props): JSX.Element {
 
   return (
     <div className="UserSettings user-page-section">
-      <h4 className="section-header">Account Settings</h4>
+      <h4 className="section-header">{data.header}</h4>
       <hr />
       <div className="form-container">
         <form
@@ -116,7 +118,7 @@ function UserSettings(props: props): JSX.Element {
         >
           <div className="inputs-wrapper">
             <label htmlFor="first_name">
-              First Name
+              {data.firstName}
               <input
                 type="text"
                 id="first_name"
@@ -126,7 +128,7 @@ function UserSettings(props: props): JSX.Element {
               />
             </label>
             <label htmlFor="last_name">
-              Last Name
+              {data.lastName}
               <input
                 type="text"
                 id="last_name"
@@ -136,7 +138,7 @@ function UserSettings(props: props): JSX.Element {
               />
             </label>
             <label htmlFor="email">
-              Email
+              {data.email}
               <input
                 type="email"
                 id="email"
@@ -146,7 +148,7 @@ function UserSettings(props: props): JSX.Element {
               />
             </label>
             <label htmlFor="phone">
-              Phone Number
+              {data.phone}
               <input
                 type="number"
                 id="phone"
@@ -156,7 +158,7 @@ function UserSettings(props: props): JSX.Element {
               />
             </label>
             <label htmlFor="new_password">
-              New Password
+              {data.newPass}
               <input
                 type="password"
                 id="new_password"
@@ -165,7 +167,7 @@ function UserSettings(props: props): JSX.Element {
               />
             </label>
             <label htmlFor="confirm_password">
-              Confirm New Password
+              {data.confirmNewPass}
               <input
                 type="password"
                 id="confirm_password"
@@ -174,7 +176,7 @@ function UserSettings(props: props): JSX.Element {
               />
             </label>
             <label htmlFor="password">
-              * Enter your password to save changes
+              {data.enterPassword}
               <input
                 required
                 type="password"
@@ -188,16 +190,12 @@ function UserSettings(props: props): JSX.Element {
           <span className="form-error">{error}</span>
           <div className="button-spinner-wrapper">
             <button className="submit-form-btn" disabled={isPending}>
-              Save Changes
+              {data.save}
             </button>
             {isPending && (
               <Spinner spinnerStyle={{ width: "2rem", height: "2rem" }} />
             )}
-            {isSucceeded && (
-              <span className="success-msg">
-                Details were updated successfully!
-              </span>
-            )}
+            {isSucceeded && <span className="success-msg">{data.success}</span>}
           </div>
         </form>
         <div className="image-control">
@@ -211,22 +209,22 @@ function UserSettings(props: props): JSX.Element {
             <img src={currentImg} className="current-image" alt="" />
             <div className="upload-icon-wrapper">
               <UploadFileIcon className="upload-icon" />
-              <span className="upload-span">Upload Image</span>
+              <span className="upload-span">{data.uploadImg}</span>
             </div>
           </div>
           {currentImg === randomProfile && (
-            <span className="no-img-span">No Image</span>
+            <span className="no-img-span">{data.noImg}</span>
           )}
           <button className="change-span" onClick={clickOnInput}>
-            Upload profile image
+            {data.uploadProfileImg}
           </button>
           {isDeleted ? (
             <button className="previous-image-btn" onClick={previousImage}>
-              Use previous
+              {data.usePrev}
             </button>
           ) : (
             <button className="delete-image-btn" onClick={deleteImage}>
-              Delete Image
+              {data.deleteImg}
             </button>
           )}
         </div>

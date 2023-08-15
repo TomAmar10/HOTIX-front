@@ -39,6 +39,12 @@
   .user-error {
     font-size: 0.9rem;
   }
+  .edit-btn{
+    background: none;
+    border: none;
+    text-decoration: underline;
+    margin-top: -1rem;
+  }
   .event-preview-buttons {
     display: flex;
     gap: 1rem;

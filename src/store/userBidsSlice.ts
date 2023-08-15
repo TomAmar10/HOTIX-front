@@ -65,8 +65,6 @@ const userBidsSlice = createSlice({
             : received.push(b);
         }
       });
-      console.log(confirmedReceived);
-      console.log(confirmedSent);
       state.offersReceived = received;
       state.offersSent = sent;
       state.confirmedOffersReceived = confirmedReceived;

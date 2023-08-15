@@ -1,7 +1,6 @@
 import { Ticket } from "../../../models/Ticket";
 import { Event } from "../../../models/Event";
 import { User } from "../../../models/User";
-import dateConvertor from "../../../utils/dateConvertor";
 import { SellerTicket } from "../../EventModal/BuyerModal/SellersSlider";
 import { randomProfile } from "../../../utils/file-import";
 import { Rating } from "@mui/material";
@@ -10,6 +9,7 @@ import { getSign } from "../../../utils/currencyHandler";
 import EditIcon from "@mui/icons-material/Edit";
 import { useState } from "react";
 import "./SingleUserOffer.scss";
+import { format } from "date-fns";
 
 interface props {
   bid: Bid;
@@ -65,7 +65,7 @@ function SingleUserOffer(props: props): JSX.Element {
       <div className="event-details">
         <h5 className="event-name">{event.event_name}</h5>
         <span className="event-date">
-          {dateConvertor(event.date as string)}
+          {format(new Date(event.date as string), "Pp")}
         </span>
       </div>
       <div className="ticket-details">

@@ -20,10 +20,16 @@
       @include flex-center(row);
       gap: 1rem;
       .single-category {
-        @include basic-button(darken($color1, 20%));
+        @include basic-button(transparent);
+        border: 1px darken($color1, 20%) solid;
+        color: darken($color1, 20%);
         @include flex-center(row);
         gap: 1rem;
         width: 10rem;
+        &.active {
+          @include basic-button(darken($color1, 20%));
+          border: 1px darken($color1, 20%) solid;
+        }
       }
     }
   }

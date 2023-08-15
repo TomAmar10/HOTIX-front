@@ -7,8 +7,8 @@ import ShareIcon from "@mui/icons-material/Share";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { UserModes } from "../../store/authSlice";
-import { shortDate } from "../../utils/dateConvertor";
 import { User } from "../../models/User";
+import shortDate from "../../utils/shortDate";
 import "./SingleEventCard.scss";
 
 interface props {
@@ -24,6 +24,7 @@ interface props {
 function SingleEventCard(props: props): JSX.Element {
   const dispatch = useDispatch();
   const eventDate = shortDate(props.event.date as string);
+
 
   const chooseEvent = () => {
     dispatch(eventActions.setSingleEvent(props.event));
@@ -87,9 +88,11 @@ function SingleEventCard(props: props): JSX.Element {
         </div>
       </div>
       <div className="hashtags">
-        <button className="single-hashtag">Musical</button>
-        <button className="single-hashtag">Israel</button>
-        <button className="single-hashtag">Noa Kirel</button>
+        {props.event.tags.map((t) => (
+          <button key={`${t._id}-tag`} className="single-hashtag">
+            {t.name}
+          </button>
+        ))}
       </div>
     </div>
   );

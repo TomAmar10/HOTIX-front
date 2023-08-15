@@ -55,7 +55,10 @@ const userTicketsSlice = createSlice({
   initialState: initialUserTicketsState,
   reducers: {
     setTickets(state, action) {
-      const tickets = action.payload || [];
+      const newTickets = action.payload || [];
+      const tickets = newTickets.filter(
+        (t: Ticket) => new Date((t.id_event as Event).date) > new Date()
+      );
       state.allTickets = tickets;
       state.allTicketsByEvents = ticketsToEvents(tickets);
       const forSale = tickets.filter((t: Ticket) => t.open_for_sale);
@@ -88,6 +91,18 @@ const userTicketsSlice = createSlice({
         state.ticketsForSaleByEvents = null;
         return;
       }
+      state.ticketsForSaleByEvents = ticketsToEvents(forSale);
+    },
+    removeTickets(state, action) {
+      const ticketsToRemove: Ticket[] = action.payload;
+      const allTickets = state.allTickets;
+      const tickets = (allTickets || []).filter(
+        (ticket: Ticket) => !ticketsToRemove.some((t) => t._id === ticket._id)
+      );
+      state.allTickets = tickets;
+      state.allTicketsByEvents = ticketsToEvents(tickets);
+      const forSale = tickets.filter((t: Ticket) => t.open_for_sale);
+      state.ticketsForSale = forSale;
       state.ticketsForSaleByEvents = ticketsToEvents(forSale);
     },
   },

@@ -10,7 +10,9 @@ import PaymentDetails from "../../PaymentDetails/PaymentDetails";
 import CongratsMsg from "../../UI/CongratsMsg/CongratsMsg";
 import BidStatusModal from "../../BidStatusModal/BidStatusModal";
 import { userBidsActions } from "../../../store/userBidsSlice";
+import Spinner from "../../UI/Spinner";
 import "./OffersModal.scss";
+import { userTicketsActions } from "../../../store/userTicketsSlice";
 
 interface props {
   onClearModal: Function;
@@ -18,44 +20,63 @@ interface props {
   bidToTransfer: Bid | null;
 }
 
+enum steps {
+  MESSAGE = "Deposit message",
+  PAYMENT = "Payment",
+  PENDING = "Pending",
+  SUCCESS = "Success",
+  FAILED = "Failed",
+}
+
 function OffersModal(props: props): JSX.Element {
   const dispatch = useDispatch();
   const bidService = useBidService();
   const dealService = useDealService();
   const [isValid, setIsValid] = useState(false);
-  const [currStep, setCurrStep] = useState<number>(1);
+  const [currentStep, setStep] = useState<steps>(steps.PAYMENT);
   const langData = useSelector((state: IStore) => state.language.langData);
   const language = useSelector((state: IStore) => state.language.language);
   const user = useSelector((state: IStore) => state.user.user);
 
-  const submitSecureDeposit = () => setCurrStep(2);
+  const submitSecureDeposit = () => setStep(steps.PAYMENT);
 
   const validatePayment = (details: card_details, isValid: boolean) => {
     setIsValid(isValid);
     // setCreditCard(details);
-    console.log(details);
   };
 
-  const completeDeposit = () => {
+  const completeDeposit = async () => {
     if (!props.bidToTransfer) return;
-    setCurrStep(3);
     const bid = {
       ...props.bidToTransfer,
       status: StatusBid.CONFIRMED,
       tickets: (props.bidToTransfer.tickets[0] as any).ticketsArray,
     };
-    dealService.transferTicket(bid).then((res) => {
-      bidService.updateBid(bid);
-    });
-
+    setStep(steps.PENDING);
+    const resultDeal = await dealService.transferTicket(bid);
+    if (resultDeal.status !== 201) {
+      setStep(steps.FAILED);
+      return;
+    }
+    const resultBid = await bidService.updateBid(bid);
+    if (resultBid.status !== 201) {
+      setStep(steps.FAILED);
+      return;
+    }
+    setStep(steps.SUCCESS);
     dispatch(userBidsActions.confirmBid(bid));
+    dispatch(
+      userTicketsActions.removeTickets(
+        (props.bidToTransfer.tickets[0] as any).ticketsArray
+      )
+    );
   };
 
   return (
     <div className="OffersModal">
       {props.bidToTransfer && (
         <div className="deposit-stage">
-          {currStep === 1 && (
+          {currentStep === steps.MESSAGE && (
             <SecureDepositMsg
               isHebrew={language === "HEBREW"}
               data={langData}
@@ -64,7 +85,7 @@ function OffersModal(props: props): JSX.Element {
               onSubmit={submitSecureDeposit}
             />
           )}
-          {currStep === 2 && (
+          {currentStep === steps.PAYMENT && (
             <>
               <PaymentDetails
                 price={0}
@@ -79,7 +100,13 @@ function OffersModal(props: props): JSX.Element {
               </div>
             </>
           )}
-          {currStep === 3 && (
+          {currentStep === steps.PENDING && (
+            <Spinner style={{ padding: "7rem 13rem" }} />
+          )}
+          {currentStep === steps.SUCCESS && (
+            <CongratsMsg user={user} bid={props.bidToTransfer} />
+          )}
+          {currentStep === steps.FAILED && (
             <CongratsMsg user={user} bid={props.bidToTransfer} />
           )}
         </div>

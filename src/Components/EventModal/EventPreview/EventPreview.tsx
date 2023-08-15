@@ -2,13 +2,15 @@ import { NavLink } from "react-router-dom";
 import { Event } from "../../../models/Event";
 import { UserModes } from "../../../store/authSlice";
 import { useEffect, useState } from "react";
-import { User } from "../../../models/User";
+import { Role, User } from "../../../models/User";
 import { Ticket } from "../../../models/Ticket";
 import { Bid } from "../../../models/Bid";
 import randomShowImg from "../../../assets/random-show-bg.jpg";
 import { LanguageEventModal } from "../../../languageControl/Language";
 import "./EventPreview.scss";
-import dateConvertor from "../../../utils/dateConvertor";
+import { format } from "date-fns";
+import { useDispatch } from "react-redux";
+import { eventActions } from "../../../store/eventSlice";
 
 interface props {
   onMoveToSecondStep: Function;
@@ -22,6 +24,7 @@ interface props {
 }
 
 function EventPreview(props: props): JSX.Element {
+  const dispatch = useDispatch();
   const data = props.data.EventPreview;
   const [isPermitted, setIsPermitted] = useState(false);
   const category = props.event?.id_category;
@@ -37,6 +40,10 @@ function EventPreview(props: props): JSX.Element {
       setError(data.maxError);
     } else setIsPermitted(true);
   }, [data.maxError, props]);
+
+  const editEventClick = () => {
+    dispatch(eventActions.startUpdating());
+  };
 
   return (
     <div className="EventPreview">
@@ -57,11 +64,17 @@ function EventPreview(props: props): JSX.Element {
           <h6>{data.location}:</h6> {props.event?.location}
         </div>
         <div className="data-row">
-          <h6>{data.date}:</h6> {dateConvertor(props.event?.date as string)}
+          <h6>{data.date}:</h6>{" "}
+          {format(new Date(props.event?.date as string), "dd MMM, p")}
         </div>
         <hr />
       </div>
       {error && <span className="user-error">{error}</span>}
+      {props.user?.role === Role.ADMIN && (
+        <button className="edit-btn" onClick={editEventClick}>
+          Edit Event
+        </button>
+      )}
       <div className="event-preview-buttons">
         <NavLink to={`/event/${props.event?._id}`}>
           <button className="event-details-btn">{data.detailsBtn}</button>

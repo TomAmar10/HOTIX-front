@@ -166,6 +166,17 @@ export interface LanguageEventForm {
   eventDate: string;
   createBtn: string;
   approveBtn: string;
+  continue: string;
+  back: string;
+  tags: string;
+  tagsPlaceholder: string;
+  thanks:string;
+  approvedMsg:string;
+  createdMsg:string;
+  theEvent:string;
+  isAvailable:string;
+  waitForApproveMsg:string;
+  closeBtn:string;
 }
 
 export interface LanguageStepsDots {
@@ -257,23 +268,46 @@ export interface LanguagePaymentDetails {
   ccv: string;
 }
 
-export interface LanguageUserProfile {
-  communities: string;
-  comingSoon: string;
+export interface LanguageUserPageHead {
+  reviews: string;
+  profile: string;
   tickets: string;
-  myTickets: string;
-  viewMore: string;
-  viewLess: string;
-  feedbacks: string;
-  rated: string;
-  history: string;
-  favorites: string;
-  searchBtn: string;
-  noTickets: string;
-  noFeedback: string;
-  noHistory: string;
-  noFavorites: string;
-  findEvent: string;
+  offers: string;
+  wallet: string;
+}
+
+export interface LanguageUserSettings {
+  header: string;
+  confirmPassErr: string;
+  emailErr: string;
+  phoneErr: string;
+  passwordErr: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  newPass: string;
+  confirmNewPass: string;
+  enterPassword: string;
+  save: string;
+  success: string;
+  uploadImg: string;
+  uploadProfileImg: string;
+  noImg: string;
+  usePrev: string;
+  deleteImg: string;
+}
+export interface LanguageUserFeedbacks {
+  header: string;
+}
+export interface LanguageFavoriteEvents {
+  header: string;
+}
+
+export interface LanguageProfilePage {
+  UserSettings: LanguageUserSettings;
+  UserFeedbacks: LanguageUserFeedbacks;
+  FavoriteEvents: LanguageFavoriteEvents;
 }
 
 export interface LanguageUserWallet {
@@ -287,32 +321,39 @@ export interface LanguageUserWallet {
   giftCards: string;
 }
 
-export interface LanguageUserTickets {
+export interface LanguageEventTicketsCard {
+  eventDate: string;
+  location: string;
   ticketsForSale: string;
-  purchased: string;
-  history: string;
-  favorites: string;
-  viewMore: string;
-  viewLess: string;
-  findEvent: string;
-  comingSoon: string;
-  nothingForSale: string;
-  nothingPurchased: string;
-  noHistory: string;
-  noFavorites: string;
+  viewTickets: string;
+  close: string;
+  tickets: string;
+  area: string;
+  seat: string;
+  row: string;
+  price: string;
 }
 
-export interface LanguageUserOffers {
-  history: string;
-  offersSent: string;
-  offersDeclined: string;
-  offersReceived: string;
-  comingSoon: string;
-  noHistory: string;
-  noBids: string;
-  viewMore: string;
-  viewLess: string;
-  findEvent: string;
+export interface LanguageSalesHistory {
+  header: string;
+}
+
+export interface LanguageUserTickets {
+  header: string;
+  EventTicketsCard: LanguageEventTicketsCard;
+}
+export interface LanguageTicketsPage {
+  UserTickets: LanguageUserTickets;
+  SalesHistory: LanguageSalesHistory;
+}
+
+export interface LanguageOffersPage {
+  SentOffers: {
+    header: string;
+  };
+  ReceivedOffers: {
+    header: string;
+  };
   SingleHistoryBid: {
     sentOn: string;
     confirmedBy: string;
@@ -387,10 +428,11 @@ export default interface LangModel {
   UpcomingEvents: LanguageUpcomingEvents;
   SideNav: LanguageSideNav;
   EventModal: LanguageEventModal;
-  UserProfile: LanguageUserProfile;
+  UserPageHead: LanguageUserPageHead;
+  ProfilePage: LanguageProfilePage;
   UserWallet: LanguageUserWallet;
-  UserTickets: LanguageUserTickets;
-  UserOffers: LanguageUserOffers;
+  TicketsPage: LanguageTicketsPage;
+  OffersPage: LanguageOffersPage;
   confirmDeposit: string;
   BidStatusModal: LanguageBidStatusModal;
   SecureDepositMsg: LanguageSecureDepositMsg;

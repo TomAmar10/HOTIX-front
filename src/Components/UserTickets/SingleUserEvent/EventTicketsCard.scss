@@ -1,0 +1,96 @@
+@import "../../../styles/variables.scss";
+@import "../../../styles/mixin.scss";
+
+.user-event-container {
+  background-color: white;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  border-radius: $border-radius;
+  overflow: hidden;
+  .EventTicketsCard {
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px lighten(#ccc, 10%) solid;
+    .event-image {
+      border-radius: 10px;
+      width: 10rem;
+      height: 10rem;
+    }
+    .event-details {
+      width: 100%;
+      padding: 0 2rem;
+      border-right: 1px lighten(#ccc, 10%) solid;
+      border-left: 1px lighten(#ccc, 10%) solid;
+      .event-name {
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+      .event-date,
+      .event-location {
+        font-size: 0.9rem;
+        margin: 0.2rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        p {
+          margin: 0;
+          span {
+            text-decoration: underline;
+          }
+        }
+        .details-icon {
+          font-size: 1.2rem;
+          color: lighten($color3, 25%);
+        }
+      }
+      .event-description {
+        margin-top: 1rem;
+        font-size: 0.8rem;
+        color: lighten($color3, 50%);
+      }
+    }
+    .tickets-section {
+      position: relative;
+      @include flex-center(column);
+      gap: 0.5rem;
+      .view-tickets-btn {
+        min-width: 10rem;
+        @include basic-button($color2);
+        color: $color1;
+        border: 1px $color1 solid;
+      }
+      .for-sale-sign {
+        position: absolute;
+        top: -0.5rem;
+        right: -5.7rem;
+        transform: rotate(30deg);
+        padding: 0.2rem 0;
+        width: 150%;
+        text-align: center;
+        color: white;
+        font-weight: bold;
+        font-size: 0.8rem;
+        background-color: $color1;
+        &.hebrew{
+          right: 0;
+          left: -5.7rem;
+          transform: rotate(-30deg);
+        }
+      }
+    }
+  }
+
+  .event-tickets {
+    hr {
+      margin: 0;
+    }
+    .single-ticket {
+      @include flex-center(row);
+      justify-content: space-around;
+      padding: 0.5rem 0;
+    }
+  }
+}

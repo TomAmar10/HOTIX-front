@@ -13,7 +13,7 @@ function OffersPage(): JSX.Element {
   const bidService = useBidService();
   const [bidToShow, setBidToShow] = useState<Bid | null>(null);
   const [bidToTransfer, setBidToTransfer] = useState<Bid | null>(null);
-  const langData = useSelector((state: IStore) => state.language.langData);
+  const langData = useSelector((state: IStore) => state.language.langData).OffersPage;
   const language = useSelector((state: IStore) => state.language.language);
   const user = useSelector((state: IStore) => state.user.user);
   const offersReceived = useSelector(

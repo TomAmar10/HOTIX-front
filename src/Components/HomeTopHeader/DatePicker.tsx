@@ -46,7 +46,7 @@ function DatePicker(props: props): JSX.Element {
         value={`${format(
           props.datesRange[0].startDate,
           "MM/dd/yyyy"
-        )} -- ${format(props.datesRange[0].endDate, "MM/dd/yyyy")}`}
+        )}   -->   ${format(props.datesRange[0].endDate, "MM/dd/yyyy")}`}
         readOnly
         onClick={() => setIsOpen((prev) => !prev)}
       />

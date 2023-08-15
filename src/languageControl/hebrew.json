@@ -143,7 +143,7 @@
       "detailsBtn": "פרטים נוספים",
       "buyBtn": "קנה כרטיס",
       "sellBtn": "מכור כרטיס",
-      "loginBtn":"התחבר"
+      "loginBtn": "התחבר"
     },
     "EventForm": {
       "header": "צור אירוע חדש",
@@ -158,7 +158,18 @@
       "imagePlaceholder": "שנה את תמונת האירוע",
       "eventDate": "תאריך האירוע",
       "createBtn": "צור עכשיו",
-      "approveBtn": "אשר אירוע"
+      "approveBtn": "אשר אירוע",
+      "continue": "המשך",
+      "back": "חזרה",
+      "tags": "תגיות",
+      "tagsPlaceholder": "הוסף תגיות הקשורות לאירוע",
+      "thanks": "תודה",
+      "approvedMsg": "אישרת את האירוע בהצלחה",
+      "createdMsg": "האירוע שלך נוצר בהצלחה",
+      "theEvent": "האירוע",
+      "isAvailable": "זמין כעת למשתמשים לקניה ומכירה של כרטיסים.",
+      "waitForApproveMsg": "אנחנו נבדוק את האירוע, וב 24 שעות הקרובות - נודיע לך אם האירוע אושר, בהודעה למייל",
+      "closeBtn":"סגור"
     },
     "StepsDots": {
       "step": "צעד"
@@ -241,23 +252,41 @@
       }
     }
   },
-  "UserProfile": {
-    "communities": "קהילות",
-    "comingSoon": "בקרוב...",
-    "tickets": " הכרטיסים של ",
-    "myTickets": "הכרטיסים שלי",
-    "viewMore": "ראה עוד",
-    "viewLess": "ראה פחות",
-    "feedbacks": "פידבקים",
-    "rated": "דירוג",
-    "history": "הסטוריית מכירות",
-    "favorites": "מועדפים",
-    "searchBtn": "חפש אירוע",
-    "noTickets": "לא קיימים כרטיסים למכירה",
-    "noFeedback": "אין פידבקים",
-    "noHistory": "אין הסטוריה להראות",
-    "noFavorites": "לא הוספת אף הופעה למועדפים",
-    "findEvent": "מצא אירוע"
+  "UserPageHead": {
+    "reviews": "דירוגים",
+    "profile": "פרופיל",
+    "tickets": "כרטיסים",
+    "offers": "הצעות",
+    "wallet": "ארנק"
+  },
+  "ProfilePage": {
+    "UserSettings": {
+      "header": "הגדרות משתמש",
+      "firstName": "שם פרטי",
+      "lastName": "שם משפחה",
+      "email": "אימייל",
+      "phone": "מספר פלאפון",
+      "newPass": "סיסמא חדשה",
+      "confirmNewPass": "אשר סיסמא חדשה",
+      "enterPassword": "* הכנס את הסיסמא העדכנית לשמירת השינויים",
+      "save": "שמור שינויים",
+      "success": "הפרטים נשמרו בהצלחה!",
+      "uploadImg": "העלאת תמונה",
+      "uploadProfileImg": "העלאת תמונת פרופיל",
+      "noImg": "אין תמונה",
+      "usePrev": "השתמש בקודמת",
+      "deleteImg": "מחק תמונה",
+      "confirmPassErr": "הסיסמא החדשה חייבת להיות זהה לאישור הסיסמא",
+      "emailErr": "כתובת המייל כבר קיימת במערכת",
+      "phoneErr": "מספר הפלאפון שהוזן כבר קיים במערכת",
+      "passwordErr": "סיסמא שגויה, אנא נסה שוב"
+    },
+    "UserFeedbacks": {
+      "header": "פידבקים"
+    },
+    "FavoriteEvents": {
+      "header": "אירועים מועדפים"
+    }
   },
   "UserWallet": {
     "balance": "סכום בחשבון",
@@ -269,31 +298,33 @@
     "coupons": "קופונים",
     "giftCards": "גיפט קארדים"
   },
-  "UserTickets": {
-    "ticketsForSale": "כרטיסים למכירה",
-    "purchased": "כרטיסים שקניתי",
-    "history": "הסטוריית כרטיסים",
-    "favorites": "מועדפים",
-    "viewMore": "ראה עוד",
-    "viewLess": "ראה פחות",
-    "findEvent": "מצא אירוע",
-    "comingSoon": "בקרוב...",
-    "nothingForSale": "אין כרטיסים למכירה",
-    "nothingPurchased": "לא נקנו כרטיסים",
-    "noHistory": "אין הסטוריה להראות",
-    "noFavorites": "לא הוספת למועדפים"
+  "TicketsPage": {
+    "UserTickets": {
+      "header": "כרטיסים",
+      "EventTicketsCard": {
+        "eventDate": "תאריך האירוע",
+        "location": "מיקום האירוע",
+        "ticketsForSale": "כרטיסים למכירה",
+        "viewTickets": "הצג בכרטיסים",
+        "close": "סגור",
+        "tickets": "כרטיסים",
+        "area": "איזור",
+        "seat": "כסא",
+        "row": "שורה",
+        "price": "מחיר"
+      }
+    },
+    "SalesHistory": {
+      "header": "הסטורית מכירות"
+    }
   },
-  "UserOffers": {
-    "history": "הסטוריית הצעות",
-    "viewMore": "ראה עוד",
-    "comingSoon": "בקרוב...",
-    "noHistory": "אין הסטוריה להראות",
-    "offersSent": "הצעות ששלחתי",
-    "offersDeclined": "הצעות שסורבו",
-    "offersReceived": "הצעות שקיבלתי",
-    "noBids": "אין הצעות להציג",
-    "viewLess": "ראה פחות",
-    "findEvent": "מצא אירוע",
+  "OffersPage": {
+    "SentOffers": {
+      "header": "הצעות שנשלחו"
+    },
+    "ReceivedOffers": {
+      "header": "הצעות שהתקבלו"
+    },
     "SingleHistoryBid": {
       "sentOn": "ההצעה נשלחה ב ",
       "confirmedBy": "ההצעה אושרה על ידי",

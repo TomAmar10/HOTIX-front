@@ -7,7 +7,9 @@ import { useEffect, useState } from "react";
 import { Event } from "../models/Event";
 
 function ProfilePage(): JSX.Element {
-  const langData = useSelector((state: IStore) => state.language.langData);
+  const langData = useSelector(
+    (state: IStore) => state.language.langData
+  ).ProfilePage;
   const user = useSelector((state: IStore) => state.user.user);
   const events = useSelector((state: IStore) => state.events.events);
   const [favorites, setFavorites] = useState<Event[]>([]);
@@ -25,9 +27,9 @@ function ProfilePage(): JSX.Element {
     <>
       {user && (
         <>
-          <UserSettings user={user} />
-          <UserFeedbacks user={user} />
-          <FavoriteEvents user={user} favorites={favorites || []} />
+          <UserSettings user={user} data={langData} />
+          <UserFeedbacks user={user} data={langData}/>
+          <FavoriteEvents user={user} favorites={favorites || []} data={langData}/>
         </>
       )}
     </>

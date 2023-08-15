@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { eventActions } from "../../store/eventSlice";
 import TopNavbar from "../TopNavbar/TopNavbar";
 import LangModel from "../../languageControl/Language";
-import { addDays } from "date-fns";
+import {  addMonths } from "date-fns";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import "./HomeTopHeader.scss";
@@ -28,7 +28,7 @@ function HomeTopHeader(props: props): JSX.Element {
   const [datesRange, setDatesRange] = useState<any>([
     {
       startDate: new Date(),
-      endDate: addDays(new Date(), 7),
+      endDate: addMonths(new Date(), 2),
       key: "selection",
     },
   ]);
@@ -37,14 +37,20 @@ function HomeTopHeader(props: props): JSX.Element {
     async function search() {
       const newEventsList = props.events?.filter(
         (e) =>
-          e.event_name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-          e.location.toLowerCase().includes(searchValue.toLowerCase())
+          e.event_name
+            .toLowerCase()
+            .includes(
+              debouncedSearch.toLowerCase() ||
+                e.location.toLowerCase().includes(debouncedSearch.toLowerCase())
+            ) &&
+          new Date(e.date).getTime() >= datesRange[0].startDate.getTime() &&
+          new Date(e.date).getTime() <= datesRange[0].endDate.getTime()
       );
       setCurrentEvents(newEventsList || null);
     }
     if (debouncedSearch) search();
     else setCurrentEvents(null);
-  }, [debouncedSearch, props.events, searchValue]);
+  }, [debouncedSearch, props.events, datesRange]);
 
   const clickEvent = (event: Event) => {
     setTimeout(() => {

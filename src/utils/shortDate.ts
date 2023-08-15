@@ -1,8 +1,4 @@
-const dateConvertor = (date: string) => {
-  return date.replace("T", ", ").split(".")[0].slice(0, 17);
-};
-
-export const shortDate = (date: string) => {
+const shortDate = (date: string) => {
   const months = [
     "JAN",
     "FEB",
@@ -25,4 +21,4 @@ export const shortDate = (date: string) => {
   return formattedDate;
 };
 
-export default dateConvertor;
+export default shortDate;

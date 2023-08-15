@@ -50,7 +50,7 @@ const userSlice = createSlice({
       localStorage.setItem("token", authorization);
       localStorage.setItem("refreshToken", refreshtoken);
       localStorage.setItem("userFavorites", JSON.stringify(user.favorites));
-      localStorage.setItem("userImage", image);
+      if (image) localStorage.setItem("userImage", image);
     },
     logout(state) {
       localStorage.removeItem("token");

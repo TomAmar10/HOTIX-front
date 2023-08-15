@@ -1,4 +1,5 @@
 import { Category } from "./Category";
+import { Tag } from "./Tag";
 
 export interface Event {
   _id: string | undefined;
@@ -10,5 +11,5 @@ export interface Event {
   time_create: Date | undefined;
   image?: string;
   isApproved: boolean;
-  tags: string[];
+  tags: Tag[];
 }

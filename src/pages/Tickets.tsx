@@ -4,7 +4,10 @@ import UserTickets from "../Components/UserTickets/UserTickets";
 import SalesHistory from "../Components/UserTickets/SalesHistory/SalesHistory";
 
 function TicketsPage(): JSX.Element {
-  const langData = useSelector((state: IStore) => state.language.langData);
+  const langData = useSelector(
+    (state: IStore) => state.language.langData
+  ).TicketsPage;
+  const language = useSelector((state: IStore) => state.language.language);
   const ticketsByEvents = useSelector(
     (state: IStore) => state.userTickets.allTicketsByEvents
   );
@@ -20,10 +23,15 @@ function TicketsPage(): JSX.Element {
     <>
       {user && (
         <>
-          <UserTickets userEventTickets={ticketsByEvents || []} />
+          <UserTickets
+            userEventTickets={ticketsByEvents || []}
+            data={langData}
+            isHebrew={language === "HEBREW"}
+          />
           <SalesHistory
             user={user}
             confirmedBids={[...(soldTickets || []), ...(boughtTickets || [])]}
+            data={langData}
           />
         </>
       )}

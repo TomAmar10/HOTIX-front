@@ -1,5 +1,5 @@
 import { User } from "../../../models/User";
-import LangModel from "../../../languageControl/Language";
+import { LanguageOffersPage } from "../../../languageControl/Language";
 import { Bid, StatusBid } from "../../../models/Bid";
 import SingleUserTicket from "../SingleUserTicket/SingleUserOffer";
 import { userBidsActions } from "../../../store/userBidsSlice";
@@ -10,12 +10,13 @@ import "./ReceivedOffers.scss";
 interface props {
   user: User | null;
   isHebrew: boolean;
-  data: LangModel;
+  data: LanguageOffersPage;
   receivedBids: Bid[];
   onAcceptOfferClick: Function;
 }
 
 function ReceivedOffers(props: props): JSX.Element {
+  const data = props.data.ReceivedOffers;
   const dispatch = useDispatch();
   const bidService = useBidService();
 
@@ -30,7 +31,7 @@ function ReceivedOffers(props: props): JSX.Element {
 
   return (
     <div className="ReceivedOffers user-page-section">
-      <h4 className="section-header">Received Offers</h4>
+      <h4 className="section-header">{data.header}</h4>
       <hr />
       <div className="events-tickets-container">
         {props.receivedBids.map((b) => (

@@ -161,7 +161,18 @@
       "imagePlaceholder": "Change event's image",
       "eventDate": "Event Date",
       "createBtn": "Create Now",
-      "approveBtn": "Approve Event"
+      "approveBtn": "Approve Event",
+      "continue": "Continue",
+      "back": "Back",
+      "tags": "Tags",
+      "tagsPlaceholder": "Add tags that relevant to this event",
+      "thanks": "Thank you",
+      "approvedMsg": "You have approved the event successfully",
+      "createdMsg": "Your event Was created successfully",
+      "theEvent": "The event",
+      "isAvailable": "is now available for users to sell & buy.",
+      "waitForApproveMsg": "We will have a look at it, and in the next 24 hours - We'll let you know if the event is approved, with a message to this mail",
+      "closeBtn": "Close"
     },
     "StepsDots": {
       "step": "Step"
@@ -244,23 +255,41 @@
       }
     }
   },
-  "UserProfile": {
-    "communities": "Communities",
-    "comingSoon": "Coming soon...",
-    "tickets": "'s Tickets",
-    "myTickets": "My Tickets",
-    "viewMore": "View More",
-    "viewLess": "View Less",
-    "feedbacks": "Feedbacks",
-    "rated": "Rate",
-    "history": "Sales History",
-    "favorites": "Favorites",
-    "searchBtn": "Find an event",
-    "noTickets": "No tickets for sale",
-    "noFeedback": "You didn't receive any feedback yet",
-    "noHistory": "No history to show",
-    "noFavorites": "You don't have any favorite yet",
-    "findEvent": "Find Event"
+  "UserPageHead": {
+    "reviews": "Reviews",
+    "profile": "Profile",
+    "tickets": "Tickets",
+    "offers": "Offers",
+    "wallet": "Wallet"
+  },
+  "ProfilePage": {
+    "UserSettings": {
+      "header": "Account Settings",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone Number",
+      "newPass": "New Password",
+      "confirmNewPass": "Confirm New Password",
+      "enterPassword": "* Enter your password to save changes",
+      "save": "Save Changes",
+      "success": "Details were updated successfully!",
+      "uploadImg": "Upload Image",
+      "uploadProfileImg": "Upload profile image",
+      "noImg": "No Image",
+      "usePrev": "Use Previous",
+      "deleteImg": "Delete Image",
+      "confirmPassErr": "New Password must be equal to Confirm password",
+      "emailErr": "Email is already exists",
+      "phoneErr": "Phone number is already exists",
+      "passwordErr": "Wrong password, please try again"
+    },
+    "UserFeedbacks": {
+      "header": "Feedbacks"
+    },
+    "FavoriteEvents": {
+      "header": "Favorite Events"
+    }
   },
   "UserWallet": {
     "balance": "Account Balance",
@@ -272,31 +301,33 @@
     "coupons": "Coupons",
     "giftCards": "Gift Cards"
   },
-  "UserTickets": {
-    "ticketsForSale": "Tickets For Sale",
-    "purchased": "Purchased Tickets",
-    "history": "Tickets History",
-    "favorites": "Favorites",
-    "viewMore": "View More",
-    "viewLess": "View Less",
-    "findEvent": "Find Event",
-    "comingSoon": "Coming soon...",
-    "nothingForSale": "No tickets for sale",
-    "nothingPurchased": "You didn't buy any ticket yet",
-    "noHistory": "No history to show",
-    "noFavorites": "You don't have any favorite yet"
+  "TicketsPage": {
+    "UserTickets": {
+      "header": "Tickets",
+      "EventTicketsCard": {
+        "eventDate": "Event Date",
+        "location": "Event Location",
+        "ticketsForSale": "Tickets for sale",
+        "viewTickets": "View Tickets",
+        "close": "Close",
+        "tickets": "Tickets",
+        "area": "Area",
+        "seat": "Seat",
+        "row": "Row",
+        "price": "Price"
+      }
+    },
+    "SalesHistory": {
+      "header": "Sales History"
+    }
   },
-  "UserOffers": {
-    "history": "Bids History",
-    "offersSent": "Offers I sent",
-    "offersDeclined": "Rejected offers",
-    "offersReceived": "Offers I received",
-    "comingSoon": "Coming soon...",
-    "noHistory": "No history to show",
-    "noBids": "No bids to show",
-    "viewMore": "View More",
-    "viewLess": "View Less",
-    "findEvent": "Find Event",
+  "OffersPage": {
+    "SentOffers": {
+      "header": "Sent Offers"
+    },
+    "ReceivedOffers": {
+      "header": "Received Offers"
+    },
     "SingleHistoryBid": {
       "sentOn": "Offer was sent on",
       "confirmedBy": "Offer confirmed by",

@@ -13,7 +13,8 @@ import LangModel from "../../languageControl/Language";
 import "./EventModal.scss";
 
 interface props {
-  isNewEvent: boolean;
+  isCreating: boolean;
+  isUpdating: boolean;
   data: LangModel;
   language: string;
 }
@@ -43,17 +44,19 @@ function EventModal(props: props): JSX.Element {
   const hideModal = () => {
     dispatch(eventActions.clearSingleEvent());
     dispatch(eventActions.endCreating());
+    dispatch(eventActions.endUpdating());
   };
 
   return (
     <>
       <div className="EventModal">
-        {props.isNewEvent || !currentEvent?.isApproved ? (
+        {props.isCreating || props.isUpdating ? (
           <EventForm
             user={user}
-            event={currentEvent}
             data={data}
             isHebrew={isHebrew}
+            event={currentEvent}
+            isUpdating={props.isUpdating}
           />
         ) : (
           <>

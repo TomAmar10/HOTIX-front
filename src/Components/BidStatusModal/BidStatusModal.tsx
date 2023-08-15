@@ -1,9 +1,9 @@
+import { format } from "date-fns";
 import LangModel from "../../languageControl/Language";
 import { Bid, StatusBid } from "../../models/Bid";
 import { Event } from "../../models/Event";
 import { Ticket } from "../../models/Ticket";
 import { User } from "../../models/User";
-import dateConvertor from "../../utils/dateConvertor";
 import { SellerTicket } from "../EventModal/BuyerModal/SellersSlider";
 import "./BidStatusModal.scss";
 
@@ -17,7 +17,7 @@ interface props {
 function BidStatusModal(props: props): JSX.Element {
   const data = props.data.BidStatusModal;
   const event = (props.bid.tickets[0] as Ticket).id_event as Event;
-  const eventDate = dateConvertor(event.date as string);
+  const eventDate = format(new Date(event.date as string), "Pp");
   const isConfirmed = props.bid.status === StatusBid.CONFIRMED;
   const currentStep = isConfirmed ? 2 : 1;
   const price =

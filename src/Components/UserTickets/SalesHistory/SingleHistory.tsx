@@ -2,12 +2,12 @@ import { randomProfile } from "../../../utils/file-import";
 import { User } from "../../../models/User";
 import { Rating } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import dateConvertor from "../../../utils/dateConvertor";
 import { Bid } from "../../../models/Bid";
 import { Link } from "react-router-dom";
 import { Ticket } from "../../../models/Ticket";
 import { Event } from "../../../models/Event";
 import "./SingleHistory.scss";
+import { format } from "date-fns";
 
 interface props {
   bid: Bid;
@@ -39,7 +39,7 @@ function SingleHistory(props: props): JSX.Element {
       </Link>
       <div className="bid-details">
         <span className="bid-date">
-          Transferred on {dateConvertor(props.bid.bid_date as string)}
+          Transferred on {format(new Date(props.bid.bid_date as string), "Pp")}
         </span>
         <div className="arrow-container">
           <CheckCircleIcon className="status-icon confirmed" />

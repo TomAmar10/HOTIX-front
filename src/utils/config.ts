@@ -41,7 +41,7 @@ const config = {
     getSingle: "/users/single",
     addRating: "/users/single/add-rating",
     addFavorite: "/users/single/add-favorite-event",
-    removeFavorite: "/users/single/remove-favorite-event"
+    removeFavorite: "/users/single/remove-favorite-event",
   },
   authURL: {
     login: "/auth/single/login",
@@ -104,6 +104,10 @@ const config = {
   paymentUrl: {
     deposit: "/payments/create-checkout-session", //need to be changed
     pay: "/payments/create-checkout-session",
+  },
+  tagUrl: {
+    getAll: "/tags/all",
+    create: "/tags/single/add",
   },
   options: {
     headers: { "content-type": "application/json" },

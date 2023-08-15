@@ -25,7 +25,7 @@ function HomePage(): JSX.Element {
         <HomeTopHeader events={events || []} data={langData} />
         {!isLoading && (
           <>
-            {events && (
+            {events && categories && (
               <>
                 <PopularEvents
                   favorites={favoriteEvents}

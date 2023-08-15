@@ -4,7 +4,6 @@ import AdminData from "../Components/AdminData/AdminData";
 import { useEffect, useState } from "react";
 import { User } from "../models/User";
 import { Event } from "../models/Event";
-import dateConvertor from "../utils/dateConvertor";
 import useUserService from "../services/userService";
 import useEventService from "../services/eventService";
 
@@ -19,10 +18,9 @@ function AdminPage(): JSX.Element {
   useEffect(() => {
     userService.getAllUsers().then((res) => setAllUsers(res));
     eventService.getInitialEvents().then((res) => {
-      res.data.map((e: Event) => (e.date = dateConvertor(e.date as string)));
       setAllEvents(res.data);
     });
-  }, [eventService, userService]);
+  }, []);
 
   return (
     <main className="container-main">

@@ -5,7 +5,7 @@ import { IStore } from "../../../store/store";
 import { UserModes } from "../../../store/authSlice";
 import { LanguageEventModal } from "../../../languageControl/Language";
 import "./TicketsAmount.scss";
-import dateConvertor from "../../../utils/dateConvertor";
+import { format } from "date-fns";
 
 interface props {
   onSubmit: Function;
@@ -34,7 +34,7 @@ function TicketsAmount(props: props): JSX.Element {
       <div className="current-event-details">
         <div className="event-details">
           <h6 className="event-name">{props.event?.event_name}</h6>
-          <span>{dateConvertor(props.event?.date as string)}</span>
+          <span>{format(new Date(props.event?.date as string), "Pp")}</span>
           <span>{props.event?.location}</span>
         </div>
         <img

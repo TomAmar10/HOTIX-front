@@ -83,7 +83,6 @@ const useUserService = (): Service => {
     }
   };
 
-
   return {
     getAllUsers,
     getUser,
