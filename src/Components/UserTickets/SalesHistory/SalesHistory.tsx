@@ -1,13 +1,14 @@
 import { Bid } from "../../../models/Bid";
 import { User } from "../../../models/User";
 import SingleHistory from "./SingleHistory";
-import "./SalesHistory.scss";
 import { LanguageTicketsPage } from "../../../languageControl/Language";
+import "./SalesHistory.scss";
 
 interface props {
   confirmedBids: Bid[];
   user: User;
   data: LanguageTicketsPage;
+  isHebrew: boolean;
 }
 
 function SalesHistory(props: props): JSX.Element {
@@ -18,7 +19,12 @@ function SalesHistory(props: props): JSX.Element {
       <hr />
       <div className="sales-history-container">
         {props.confirmedBids.map((b) => (
-          <SingleHistory bid={b} key={`${b._id}-history`} />
+          <SingleHistory
+            bid={b}
+            key={`${b._id}-history`}
+            isHebrew={props.isHebrew}
+            data={data}
+          />
         ))}
       </div>
     </div>

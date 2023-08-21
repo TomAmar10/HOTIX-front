@@ -15,6 +15,7 @@ main.container-main {
   @include flex-center(column);
   width: 100%;
   overflow: hidden;
+  padding-bottom: 2rem;
   div.home-page-container {
     @include flex-center(column);
     width: 100%;
@@ -67,8 +68,15 @@ main.container-main {
   }
 }
 
-.home-sideNav-container {
+.home-navbar-container {
   display: flex;
+  &.hebrew {
+    direction: rtl;
+  }
+  .side-nav-bg {
+    height: 100%;
+    width: 3.7rem;
+  }
 }
 
 hr {
@@ -122,6 +130,9 @@ input[type="number"] {
         margin: 0;
         font-weight: bold;
         font-size: 1.1rem;
+      }
+      .user-ratings {
+        direction: ltr;
       }
       .ratings-amount {
         font-size: 0.7rem;
@@ -214,5 +225,28 @@ input[type="number"] {
     outline: none;
     background-color: lighten($color1, 45%);
     border-radius: $border-radius;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .user-layout {
+    .page-container {
+      .user-page-section {
+        width: 100%;
+        background-color: $color2;
+        padding: 1rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .home-navbar-container {
+    .side-nav-bg {
+      display: none;
+    }
+  }
+  .user-layout {
+    padding: 1rem;
   }
 }

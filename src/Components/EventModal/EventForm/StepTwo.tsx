@@ -25,32 +25,30 @@ function StepTwo(props: props): JSX.Element {
   const data = props.data.EventForm;
   const currDate = new Date().toISOString().slice(0, 16);
   const { register, handleSubmit, reset } = useForm<Event>();
-  const [currentImg, setCurrentImg] = useState<string | null>(null);
-  const [imgName, setImgName] = useState<string>("");
+  const [currentImg, setCurrentImg] = useState<string | null>(
+    props.event?.image || null
+  );
+  const [imgName, setImgName] = useState<string>(
+    props.event?.image ? props.event.event_name : ""
+  );
+  const [imgError, setImgError] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [eventTags, setEventTags] = useState<Tag[]>([]);
+  const [eventTags, setEventTags] = useState<Tag[]>(props.event?.tags || []);
 
   if (props.event) {
     const date = new Date(props.event?.date as string)
       .toISOString()
       .slice(0, 16);
     const event = {
-      ...props.event,
+      location: props.event.location,
       date,
       tags: props.event.tags,
     };
-    // props.onImgChange(props.event.image);
     reset(event);
   }
 
-  const completeStep = (event: Event) => {
-    event.tags = eventTags.map((t) => t._id) as any;
-    if (props.user?.role === Role.ADMIN) {
-      props.onComplete({ ...event, image: currentImg, isApproved: true });
-    } else props.onComplete(event);
-  };
-
   const changeImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setImgError("");
     const files = e.target.files;
     if (!files || !files[0]) {
       props.onImgChange(RandomBg);
@@ -64,6 +62,18 @@ function StepTwo(props: props): JSX.Element {
     setImgName(file.name);
     const image = await convertToBase64(files[0]);
     setCurrentImg(image);
+  };
+
+  const completeStep = (event: Event) => {
+    event.tags = eventTags.map((t) => t._id) as any;
+    if (props.user?.role === Role.ADMIN) {
+      if (!currentImg) {
+        if (!props.event?.image) {
+          setImgError("Image is required for admin.");
+        } else event.image = props.event.image;
+      } else event.image = currentImg;
+      props.onComplete({ ...event, isApproved: true });
+    } else props.onComplete(event);
   };
 
   const openFileInput = () => {
@@ -114,6 +124,7 @@ function StepTwo(props: props): JSX.Element {
           </label>
         </>
       )}
+      {imgError && <span className="img-error">{imgError}</span>}
       <label htmlFor="date" className="event-form-label">
         {data.eventDate}
         <input
@@ -131,8 +142,8 @@ function StepTwo(props: props): JSX.Element {
           multiple
           limitTags={1}
           id="tags"
-          defaultValue={props.event?.tags}
           options={props.allTags}
+          value={eventTags}
           getOptionLabel={(option) => option.name}
           onChange={(event, newValue) => setEventTags(newValue)}
           className="event-form-tags"

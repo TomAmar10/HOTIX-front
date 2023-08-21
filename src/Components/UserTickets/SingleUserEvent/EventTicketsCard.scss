@@ -33,7 +33,7 @@
         font-size: 0.9rem;
         margin: 0.2rem 0;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         gap: 0.5rem;
         p {
           margin: 0;
@@ -74,7 +74,7 @@
         font-weight: bold;
         font-size: 0.8rem;
         background-color: $color1;
-        &.hebrew{
+        &.hebrew {
           right: 0;
           left: -5.7rem;
           transform: rotate(-30deg);
@@ -91,6 +91,66 @@
       @include flex-center(row);
       justify-content: space-around;
       padding: 0.5rem 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .user-event-container {
+    .EventTicketsCard {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding: 1rem;
+      .event-image {
+        width: calc(30% - 1rem);
+        height: auto;
+        max-height: 9rem;
+      }
+      .event-details {
+        width: calc(70% - 1rem);
+        border: none;
+        padding: 0 1rem;
+      }
+      .tickets-section {
+        width: 100%;
+        border-top: 1px #ccc solid;
+        padding-top: 0.5rem;
+        flex-direction: row;
+        gap: 2rem;
+        .for-sale-sign {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .user-event-container {
+    .EventTicketsCard {
+        flex-direction: column;
+        align-items: center;
+        padding: 0.5rem;
+      .event-image {
+        display: none;
+      }
+      .event-details {
+        width: 100%;
+        padding: 0;
+      }
+      .tickets-section {
+        width: 100%;
+        border: none;
+        padding-top: 0.5rem;
+        span{
+          display: none;
+        }
+        // flex-direction: row;
+        gap: 2rem;
+        .for-sale-sign {
+          display: none;
+        }
+      }
     }
   }
 }

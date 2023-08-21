@@ -58,7 +58,7 @@ function SingleUserOffer(props: props): JSX.Element {
         />
         <div className="name-and-rating">
           <h5 className="user-name">{`${userToShow.first_name} ${userToShow.last_name}`}</h5>
-          <Rating value={+userToShow.total_rating} readOnly precision={0.5} />
+          <Rating value={+userToShow.total_rating} readOnly precision={0.5} className="user-ratings"/>
         </div>
       </div>
       <hr />

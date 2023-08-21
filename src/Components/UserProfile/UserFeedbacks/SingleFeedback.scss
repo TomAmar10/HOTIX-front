@@ -40,3 +40,12 @@
     }
   }
 }
+
+@media only screen and (max-width: 550px) {
+  .SingleFeedback {
+    flex-direction: column;
+    .left-side{
+      width: 100%;
+    }
+  }
+}

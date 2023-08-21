@@ -67,6 +67,11 @@
           }
         }
       }
+      .delete-btn{
+        @include basic-button(rgb(223, 1, 1));
+        font-weight: bold;
+        font-size: 0.8rem;
+      }
     }
   }
 }

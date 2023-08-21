@@ -315,7 +315,8 @@
       }
     },
     "SalesHistory": {
-      "header": "הסטורית מכירות"
+      "header": "הסטורית מכירות",
+      "transferred":"העברה התבצעה ב "
     }
   },
   "OffersPage": {

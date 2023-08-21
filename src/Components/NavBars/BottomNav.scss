@@ -1,0 +1,40 @@
+@import "../../styles/mixin.scss";
+@import "../../styles/variables.scss";
+
+.BottomNav {
+    @include flex-center(row);
+  display: none;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
+  .bottom-navigation {
+    box-shadow: rgba(255, 255, 255, 0.12) 0px 2px 4px 0px,
+      rgba(255, 255, 255, 0.32) 0px 2px 16px 0px;
+    width: 100%;
+    @include flex-center(row);
+    justify-content: space-around;
+    border-radius: 50px 50px 0 0;
+    gap: 1rem;
+    background-color: $color1;
+    padding: 1rem;
+    .single-icon {
+      color: $color2;
+      > * {
+        font-size: 1.5rem;
+      }
+      .profile-image-icon {
+        width: 2rem;
+        height: 2rem;
+        border: 3px white solid;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .BottomNav {
+    display: block;
+  }
+}

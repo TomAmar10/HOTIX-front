@@ -1,0 +1,34 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixin.scss";
+
+.LanguageMenu {
+  .lang-menu {
+    font-family: "Varela Round", sans-serif;
+    position: absolute;
+    margin-top: 0.2rem;
+    background-color: $color2;
+    color: $color1;
+    border-radius: $border-radius;
+    font-weight: 500;
+    overflow: hidden;
+    .single-language {
+      @include flex-center(row);
+      justify-content: flex-start;
+      padding: 0.5rem 1rem;
+      gap: 1rem;
+      min-width: 10rem;
+      .lang-img {
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+      }
+      &:hover {
+        background-color: darken($color2, 10%);
+        cursor: pointer;
+      }
+    }
+    hr {
+      margin: 0;
+    }
+  }
+}

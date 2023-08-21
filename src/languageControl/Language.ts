@@ -336,6 +336,7 @@ export interface LanguageEventTicketsCard {
 
 export interface LanguageSalesHistory {
   header: string;
+  transferred: string;
 }
 
 export interface LanguageUserTickets {

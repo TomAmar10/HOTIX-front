@@ -2,13 +2,13 @@
 @import "../../../styles/mixin.scss";
 
 .UserSettings {
-    // Styled in globals.scss
+  // Styled in globals.scss
   .form-container {
     display: flex;
     gap: 1rem;
     justify-content: space-between;
     .profile-form {
-      width: 70%;
+      width: 100%;
       .inputs-wrapper {
         display: flex;
         flex-wrap: wrap;
@@ -121,6 +121,55 @@
         @include basic-button(darken($color1, 20%));
         font-size: 0.8rem;
         font-weight: 600;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .UserSettings {
+    .form-container {
+      .image-control {
+        padding: 2rem 0;
+        min-width: 9rem;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 700px) {
+  .UserSettings {
+    .form-container {
+      flex-direction: column-reverse;
+      .image-control {
+        padding: 0;
+        min-width: 9rem;
+        border: none;
+        .curr-image-container {
+          height: 5rem;
+          width: 4rem;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 550px) {
+  .UserSettings {
+    .form-container {
+      .profile-form {
+        .inputs-wrapper {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          label {
+            width: 100%;
+            font-size: 0.9rem;
+            &:last-child{
+              .form-control{
+                width: 100%;
+              }
+            }
+          }
+        }
       }
     }
   }

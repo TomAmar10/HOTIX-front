@@ -89,7 +89,7 @@ function SingleEventCard(props: props): JSX.Element {
       </div>
       <div className="hashtags">
         {props.event.tags.map((t) => (
-          <button key={`${t._id}-tag`} className="single-hashtag">
+          <button key={`${t._id}-tag`} className="single-hashtag" style={{color: t.color, borderColor: t.color}}>
             {t.name}
           </button>
         ))}

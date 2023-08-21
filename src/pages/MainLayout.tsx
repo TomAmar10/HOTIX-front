@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import SideNav from "../Components/SideNav/SideNav";
+import SideNav from "../Components/NavBars/SideNav";
 import { useSelector } from "react-redux";
 import { IStore } from "../store/store";
 import EventModal from "../Components/EventModal/EventModal";
@@ -8,6 +8,7 @@ import useEventService from "../services/eventService";
 import useBidService from "../services/bidService";
 import useTicketService from "../services/ticketService";
 import useTagService from "../services/tagService";
+import BottomNav from "../Components/NavBars/BottomNav";
 
 function MainLayout(): JSX.Element {
   const user = useSelector((state: IStore) => state.user.user);
@@ -38,10 +39,15 @@ function MainLayout(): JSX.Element {
 
   return (
     <div
-      className="home-sideNav-container"
-      style={{ direction: language === "HEBREW" ? "rtl" : "ltr" }}
+      className={`home-navbar-container ${language === "HEBREW" && "hebrew"}`}
     >
-      {user && <SideNav language={language} data={langData} />}
+      {user && !currentEvent && (
+        <>
+          <div className="side-nav-bg"></div>
+          <SideNav language={language} data={langData} user={user} />
+          <BottomNav user={user} />
+        </>
+      )}
       <main className="container-main">
         <Outlet />
         {(currentEvent || isCreatingEvent || isUpdatingEvent) && (

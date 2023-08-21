@@ -134,21 +134,12 @@
     justify-content: space-between;
     width: 100%;
     .single-hashtag {
+      border: 1px solid;
       border-radius: 60px;
-      border: 1px solid #f5167e;
-      color: #f5167e;
       background-color: transparent;
       font-size: 0.9rem;
       padding: 0.3rem 1rem;
       min-width: 6rem;
-      &:last-child {
-        border: 1px solid #2dcc68;
-        color: #2dcc68;
-      }
-      &:first-child {
-        border: 1px solid #fb8a2e;
-        color: #fb8a2e;
-      }
     }
   }
 }

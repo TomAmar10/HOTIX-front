@@ -240,21 +240,22 @@
     .top-main-area {
       @include flex-center(column);
       width: 100%;
-      gap: 1rem;
       .application-header {
         height: 100%;
         @include flex-center(column);
         align-items: flex-end;
         width: 80%;
-        margin-right: 0;
-        margin-top: 2rem;
+        margin-top: 3rem;
       }
       .top-image-container {
         min-width: auto;
-        width: 50%;
+        width: 100%;
         bottom: 0;
         display: flex;
-        justify-content: flex-end;
+        align-items: flex-end;
+        .top-image {
+          width: 55%;
+        }
       }
     }
     .inputs-container {
@@ -302,22 +303,35 @@
   }
 }
 
-// HEIGHT
-// @media only screen and (max-height: 800px) {
-//   .HomeTopHeader {
-//     .top-main-area {
-//       .top-image-container {
-//         height: 90%;
-//       }
-//     }
-//   }
-// }
-// @media only screen and (max-height: 700px) {
-//   .HomeTopHeader {
-//     .top-main-area {
-//       .top-image-container {
-//         height: 100%;
-//       }
-//     }
-//   }
-// }
+@media only screen and (max-width: 500px) {
+  .HomeTopHeader {
+    .top-main-area {
+      .application-header {
+        justify-content: flex-start;
+        align-items: flex-end;
+        width: 90%;
+        margin-top: 3rem;
+      }
+      .top-image-container {
+        display: none;
+      }
+    }
+  }
+  .inputs-container {
+    .search-section {
+      margin-bottom: -3rem;
+    }
+  }
+}
+@media only screen and (max-width: 400px) {
+  .HomeTopHeader {
+    .top-main-area {
+      .application-header {
+        width: 95%;
+        h1 {
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
+}

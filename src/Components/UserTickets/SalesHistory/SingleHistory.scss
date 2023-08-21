@@ -1,7 +1,7 @@
 @import "../../../styles/variables.scss";
 @import "../../../styles/mixin.scss";
 
-.SingleHistory{
+.SingleHistory {
   @include flex-center(row);
   justify-content: space-between;
   background-color: white;
@@ -58,11 +58,8 @@
     color: darken($color1, 30%);
     text-decoration: none;
     min-width: fit-content;
-    &:hover{
+    &:hover {
       text-decoration: underline;
-    }
-    .user-name{
-      text-align: center;
     }
     .user-profile-image {
       width: 2.5rem;
@@ -72,9 +69,45 @@
     .name-and-rating {
       @include flex-center(column);
       .user-name {
+        text-align: center;
         margin: 0;
         font-weight: bold;
         font-size: 1rem;
+      }
+      .rating-stars {
+        direction: ltr;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .SingleHistory {
+    padding: 0.5rem;
+    .bid-details {
+      padding: 0 0.5rem;
+      .bid-date {
+        span {
+          display: none;
+        }
+      }
+    }
+    .bidder,
+    .owner {
+      .name-and-rating {
+        .user-name {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 700px) {
+  .SingleHistory {
+    .bidder,
+    .owner {
+      .name-and-rating {
+        display: none;
       }
     }
   }

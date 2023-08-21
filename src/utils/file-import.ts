@@ -7,6 +7,8 @@ import Google from "../assets/google-image.png";
 import Visa from "../assets/visa-logo.png";
 import AmericanExpress from "../assets/american-express-logo.png";
 import randomProfile from "../assets/random-profile.png";
+import hebrewImg from "../assets/hebrew.png";
+import englishImg from "../assets/english.png";
 
 const logoImages: any = {
   masterCard: MasterCard,
@@ -15,4 +17,11 @@ const logoImages: any = {
   americanExpress: AmericanExpress,
 };
 
-export { topHeaderImage, googleImage, logoImages, randomProfile };
+export {
+  topHeaderImage,
+  googleImage,
+  logoImages,
+  randomProfile,
+  hebrewImg,
+  englishImg,
+};

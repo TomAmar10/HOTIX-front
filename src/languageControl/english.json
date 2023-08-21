@@ -318,7 +318,8 @@
       }
     },
     "SalesHistory": {
-      "header": "Sales History"
+      "header": "Sales History",
+      "transferred":"Transferred on "
     }
   },
   "OffersPage": {

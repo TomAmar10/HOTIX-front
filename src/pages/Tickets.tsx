@@ -32,6 +32,7 @@ function TicketsPage(): JSX.Element {
             user={user}
             confirmedBids={[...(soldTickets || []), ...(boughtTickets || [])]}
             data={langData}
+            isHebrew={language === "HEBREW"}
           />
         </>
       )}

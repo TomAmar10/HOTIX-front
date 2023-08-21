@@ -42,7 +42,7 @@ function TagsForm(props: props): JSX.Element {
         {...register("hebrew")}
       />
       <label htmlFor="color" className="event-form-label">
-        Color RGB
+        Color RGB - rgb(255,255,255)
       </label>
       <input
         id="color"
