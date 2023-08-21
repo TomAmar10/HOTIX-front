@@ -3,12 +3,12 @@
 
 .StepsDots {
   width: 100%;
-  margin: 1rem 0 0;
+  margin: 0;
   @include flex-center(column);
   .dots-splitter {
     position: relative;
     width: calc(100% - 2rem);
-    border: 3px lighten(#ccc , 10%) solid;
+    border: 3px lighten(#ccc, 10%) solid;
     margin-top: -0.8rem;
   }
   .dots-area {
@@ -18,7 +18,7 @@
     .single-step-holder {
       @include flex-center(column);
       z-index: 10;
-      .step-span {
+      .step-span-container {
         font-size: 0.8rem;
         color: darken($color1, 20%);
       }
@@ -40,6 +40,21 @@
           border: 2px darken($color1, 20%) solid;
           color: $color2;
           font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .StepsDots {
+    .dots-area {
+      .single-step-holder {
+        .step-span-container {
+          font-size: 0.6rem;
+          span {
+            display: none;
+          }
         }
       }
     }

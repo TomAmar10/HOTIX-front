@@ -5,6 +5,7 @@
   @include flex-center(column);
   justify-content: space-between;
   height: 27rem;
+  margin-top: 2rem;
   .congrats-container {
     @include flex-center(column);
     .fa-circle-check {

@@ -196,7 +196,7 @@
     },
     "SellerModal": {
       "TicketsDetails": {
-        "header": "Please fill your ticket information",
+        "header": "Ticket information",
         "types": ["Regular", "VIP", "Student"],
         "currencies": ["USD", "ILS", "EUR"],
         "type": "Type",

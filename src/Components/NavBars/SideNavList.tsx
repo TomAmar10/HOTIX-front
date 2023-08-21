@@ -101,6 +101,7 @@ export default function SideNavList(props: props) {
       <List>
         {listItems.map((i) => (
           <SideNavItem
+            key={i.name + ""}
             isHebrew={props.isHebrew}
             item={i}
             isOpen={props.isOpen}
@@ -111,6 +112,7 @@ export default function SideNavList(props: props) {
       <List>
         {bottomItems.map((i) => (
           <SideNavItem
+            key={i.name + ""}
             isHebrew={props.isHebrew}
             item={i}
             isOpen={props.isOpen}

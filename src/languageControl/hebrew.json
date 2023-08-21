@@ -193,7 +193,7 @@
     },
     "SellerModal": {
       "TicketsDetails": {
-        "header": "אנא מלא את פרטי הכרטיס",
+        "header": "פרטי הכרטיס",
         "types": ["רגיל", "VIP", "סטודנט"],
         "currencies": ["USD", "ILS", "EUR"],
         "type": "סוג",

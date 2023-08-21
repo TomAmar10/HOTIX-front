@@ -4,9 +4,10 @@
 .TicketUpload {
   @include flex-center(column);
   color: darken($color1, 30%);
+  margin-bottom: 2rem;
   .sell-ticket-section-header {
     font-weight: bold;
-    margin: 1rem 0 2rem;
+    margin: 2rem 0;
   }
   .input-label-container {
     @include flex-center(column);
@@ -19,7 +20,7 @@
       @include flex-center(column);
       justify-content: start;
       cursor: pointer;
-      width: 22rem;
+      width: 100%;
       border-radius: $border-radius;
       text-align: center;
       font-size: 0.9rem;
@@ -107,3 +108,14 @@
     }
   }
 }
+
+@media only screen and (max-width: 500px) {
+  .TicketUpload{
+    .input-label-container{
+      .user-files-area{
+        flex-wrap: wrap;
+        max-width: 12rem;
+      }
+    }
+  }
+  }

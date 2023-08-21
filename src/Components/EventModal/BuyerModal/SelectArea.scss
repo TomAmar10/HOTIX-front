@@ -3,6 +3,7 @@
 
 .SelectArea {
   @include flex-center(column);
+  margin: 1rem 0;
   .venue-image {
     width: 15rem;
     height: 10rem;
@@ -14,14 +15,14 @@
     flex-wrap: wrap;
     gap: 1rem;
     row-gap: 0.5rem;
-    max-height: 9rem;
+    width: 100%;
     overflow-y: scroll;
     .area-button {
       text-align: center;
       border: 1px #ccc solid;
       color: darken($color1, 30%);
       font-weight: bold;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem;
       width: 10rem;
       border-radius: $border-radius;
       font-size: 0.9rem;
@@ -32,6 +33,25 @@
       &.selected {
         background-color: darken($color1, 30%);
         color: white;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .SelectArea{
+    .available-area-container{
+      .area-button{
+        width: 8rem;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 550px) {
+  .SelectArea{
+    .available-area-container{
+      .area-button{
+        width: calc(50% - 1rem);
       }
     }
   }

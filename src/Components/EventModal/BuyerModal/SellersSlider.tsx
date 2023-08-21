@@ -3,8 +3,8 @@ import Slider from "react-slick";
 import { Ticket } from "../../../models/Ticket";
 import SingleSellerCard from "./SingleSellerCard";
 import { filterSortTickets } from "../../../utils/ticketsFilter";
-import "./SellersSlider.scss";
 import { LanguageBuyerModal } from "../../../languageControl/Language";
+import "./SellersSlider.scss";
 
 interface props {
   onSubmit: Function;

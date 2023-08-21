@@ -4,8 +4,8 @@ import { Event } from "../../../models/Event";
 import { SellerTicket } from "./SellersSlider";
 import { Ticket } from "../../../models/Ticket";
 import { getSign } from "../../../utils/currencyHandler";
-import "./PlaceBid.scss";
 import { LanguageBuyerModal } from "../../../languageControl/Language";
+import "./PlaceBid.scss";
 
 interface props {
   onSubmit: Function;

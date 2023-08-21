@@ -22,7 +22,6 @@ function TicketsAmount(props: props): JSX.Element {
   const [currentAmount, setCurrentAmount] = useState(props.amount);
   const userMode = useSelector((state: IStore) => state.user.mode);
   const isBuyer = userMode === UserModes.BUYER;
-  const buyOrSell = userMode === UserModes.BUYER ? "buy" : "sell";
 
   const amountClick = (value: number) => {
     setCurrentAmount(value);

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "./SelectArea.scss";
 import { LanguageBuyerModal } from "../../../languageControl/Language";
 import Spinner from "../../UI/Spinner";
+import "./SelectArea.scss";
 
 interface props {
   onSubmit: Function;
@@ -36,15 +36,17 @@ function SelectArea(props: props): JSX.Element {
       ) : (
         <div className="available-area-container">
           {props.areas.map((a) => (
+            <>
             <button
               key={a}
               className={`area-button ${
                 selectedAreas.includes(a) ? "selected" : ""
               }`}
               onClick={() => toggleArea(a)}
-            >
+              >
               {a}
             </button>
+              </>
           ))}
         </div>
       )}

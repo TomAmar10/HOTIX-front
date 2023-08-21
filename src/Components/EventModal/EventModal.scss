@@ -8,7 +8,8 @@
   min-height: 20rem;
   max-height: 80vh;
   min-width: 500px;
-  max-width: 45rem;
+  max-width: 40rem;
+  width: 95%;
   overflow-y: auto;
   position: fixed;
   top: 50%;
@@ -33,7 +34,7 @@
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 500px) {
   .EventModal {
     width: 95%;
   }

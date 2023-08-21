@@ -5,7 +5,8 @@
   @include flex-center(column);
   gap: 1rem;
   padding: 0.5rem;
-  &.hebrew{
+  margin: 1rem 0;
+  &.hebrew {
     direction: rtl;
   }
   .credit-card-image-container {
@@ -18,58 +19,76 @@
       height: 100%;
       width: 100%;
     }
-    
   }
   .credit-card-form {
     width: 80%;
-    select,input{
+    select,
+    input {
       border-radius: $border-radius;
       border: none;
       padding: 0.5rem;
-      background-color: #EDEDED;
+      background-color: #ededed;
       font-size: 0.9rem;
     }
-    input{
+    input {
       width: 100%;
-      &:focus{
-        outline:1px #ccc solid;
+      &:focus {
+        outline: 1px #ccc solid;
       }
     }
-    label{
+    label {
       font-size: 0.9rem;
       color: #888686;
     }
-    .use-saved-card-area{
+    .use-saved-card-area {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      .use-saved-label{
+      .use-saved-label {
         font-size: 1.1rem;
       }
-      select{
+      select {
         width: 15rem;
         cursor: pointer;
       }
     }
-    .card-form-section{
+    .card-form-section {
       margin: 0.5rem 0;
     }
-    .expiry-3-digits-area{
+    .expiry-3-digits-area {
       display: flex;
       justify-content: space-between;
       gap: 3rem;
-      .expiry-section,.ccv-section{
+      .expiry-section,
+      .ccv-section {
         width: 100%;
       }
     }
   }
-  .credit-logos{
+  .credit-logos {
     display: flex;
     align-items: baseline;
     gap: 0.5rem;
-    img{
+    img {
       width: 2.3rem;
       height: 1.5rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .PaymentDetails {
+    .credit-card-form {
+      width: 100%;
+    }
+  }
+}
+@media only screen and (max-width: 550px) {
+  .PaymentDetails {
+    .credit-card-form {
+      .use-saved-card-area {
+        flex-direction: column;
+      }
     }
   }
 }

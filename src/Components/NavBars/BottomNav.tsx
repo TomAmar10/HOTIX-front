@@ -9,7 +9,6 @@ import { User } from "../../models/User";
 import { randomProfile } from "../../utils/file-import";
 import "./BottomNav.scss";
 
-
 interface props {
   user: User;
 }
@@ -46,8 +45,8 @@ export default function BottomNav(props: props) {
   return (
     <div className="BottomNav">
       <div className="bottom-navigation">
-        {iconsList.map((i) => (
-          <div className="single-icon" onClick={i.click}>
+        {iconsList.map((i, index) => (
+          <div className="single-icon" onClick={i.click} key={index + "-icon"}>
             {i.icon}
           </div>
         ))}

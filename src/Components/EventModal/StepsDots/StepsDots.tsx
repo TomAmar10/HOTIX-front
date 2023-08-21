@@ -13,9 +13,9 @@ function StepsDots(props: props): JSX.Element {
   for (let i = 0; i < props.slides; i++) {
     steps.push(
       <div className="single-step-holder" key={i}>
-        <span className="step-span">
-          {data.step} {i + 1}
-        </span>
+        <div className="step-span-container">
+          <span>{data.step}</span> {i + 1}
+        </div>
         <div
           className={`single-step ${
             props.currentSlide === i ? "active-slide" : ""

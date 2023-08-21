@@ -3,4 +3,67 @@
 
 .FavoriteEvents {
   // Styled in globals.scss
+  .favorite-events-container {
+    @include flex-center(row);
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+    .single-favorite-event {
+      min-height: 10rem;
+      max-width: 8rem;
+      cursor: pointer;
+      overflow: hidden;
+      &:hover {
+        .favorite-event-img-wrap {
+          .favorite-event-img {
+            transform: scale(1.1);
+          }
+          .event-details {
+            bottom: 0;
+          }
+        }
+      }
+      .favorite-event-img-wrap {
+        border: 1px #ccc solid;
+        width: 100%;
+        height: 8rem;
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+        .favorite-event-img {
+          border-radius: 10px;
+          transition: all 0.3s ease-out;
+          width: 100%;
+          height: 100%;
+        }
+        .event-details {
+          position: absolute;
+          width: 100%;
+          bottom: -100%;
+          background-color: white;
+          left: 0;
+          font-size: 0.55rem;
+          border-radius: 5px 5px 0 0;
+          padding: 0.2rem 0.5rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          transition: all 0.3s ease-out;
+          .event-single-detail {
+            display: flex;
+            gap: 0.5rem;
+            .detail-icon {
+              font-size: 0.8rem;
+            }
+          }
+        }
+      }
+      .favorite-event-name {
+        font-size: 0.8rem;
+        font-weight: bold;
+        text-align: center;
+      }
+    }
+  }
 }
