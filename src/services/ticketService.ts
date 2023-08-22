@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { Ticket } from "../models/Ticket";
 import config from "../utils/config";
 import { axiosInstance as axios } from "../utils/config";
-import { User } from "../models/User";
 import { userTicketsActions } from "../store/userTicketsSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { IStore } from "../store/store";
 
 interface Service {
   getAllTickets: () => Promise<any>;
@@ -15,14 +15,15 @@ interface Service {
     eventId: string
   ) => Promise<Ticket[]>;
   getUserTickets: (userId: string) => Promise<Ticket[]>;
-  addTickets: (tickets: Ticket[] | any, user: User) => Promise<any>;
+  addTickets: (tickets: Ticket[]) => Promise<any>;
   deleteTicket: (details: Ticket, token: string) => Promise<any>;
   updateTicket: (ticket: Ticket) => Promise<any>;
 }
 
 const useTicketService = (): Service => {
   const dispatch = useDispatch();
-  
+  const user = useSelector((state: IStore) => state.user.user);
+
   const getAllTickets = async (): Promise<any> => {
     try {
       const response = await axios.get(config.ticketURL.getAll);
@@ -80,13 +81,11 @@ const useTicketService = (): Service => {
     }
   };
 
-  const addTickets = async (
-    tickets: Ticket[] | any,
-    user: User
-  ): Promise<any> => {
+  const addTickets = async (tickets: Ticket[]): Promise<any> => {
     try {
+      if (!user) return;
       const response = await axios.post(config.ticketURL.createFew, tickets, {
-        headers: { Authorization: `Bearer ${user.token}` },
+        headers: { authorization: `Bearer ${user.token}` },
       });
       return response;
     } catch (err: any) {

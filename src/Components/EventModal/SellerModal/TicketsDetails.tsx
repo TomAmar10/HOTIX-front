@@ -22,9 +22,6 @@ function TicketsDetails(props: props): JSX.Element {
     index?: number
   ) => {
     const value = event.target.value;
-    console.log(field);
-    console.log(value);
-    console.log(index);
     const ticketsCopy = [...updatedTickets];
     if (index) (ticketsCopy[index - 1] as any)[field] = value;
     else ticketsCopy.map((t: any) => (t[field] = value));
@@ -56,15 +53,14 @@ function TicketsDetails(props: props): JSX.Element {
               ))}
             </select>
           </label>
-          <label htmlFor="price">
-            Price
+          <label htmlFor="area">
+            Area
             <input
-              id="price"
-              type="number"
-              placeholder="0"
-              min={1}
+              id="area"
+              type="text"
+              placeholder="C"
               required
-              onChange={(e) => onTicketChange("price", e)}
+              onChange={(e) => onTicketChange("area", e)}
             />
           </label>
           <label htmlFor="currency">
@@ -77,14 +73,15 @@ function TicketsDetails(props: props): JSX.Element {
               ))}
             </select>
           </label>
-          <label htmlFor="area">
-            Area
+          <label htmlFor="price">
+            Price
             <input
-              id="area"
-              type="text"
-              placeholder="C"
+              id="price"
+              type="number"
+              placeholder="0"
+              min={1}
               required
-              onChange={(e) => onTicketChange("area", e)}
+              onChange={(e) => onTicketChange("price", e)}
             />
           </label>
         </div>

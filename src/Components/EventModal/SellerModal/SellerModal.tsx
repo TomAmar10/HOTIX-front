@@ -96,19 +96,21 @@ function SellerModal(props: props): JSX.Element {
     setCurrentSlide((prev) => ++prev);
     if (currentSlide === 0) setNextReady(isDetailsValid);
     if (currentSlide === 1) setNextReady(isImagesValid);
-    if (currentSlide === 2) {
-      setUploadStatus("Pending");
-      ticketService
-        .addTickets(tickets, props.user)
-        .then((res) => {
-          if (res.status === 201) {
-            dispatch(userTicketsActions.addTickets(res.data));
-            setUploadStatus("Success");
-          } else setUploadStatus("Failed");
-        })
-        .catch((err) => setUploadStatus("Failed"));
-    }
+    if (currentSlide === 2) postTickets();
   };
+
+  const postTickets = async () => {
+    if (!props.user) return;
+    setUploadStatus("Pending");
+    const result = await ticketService
+      .addTickets(tickets)
+      .catch((err) => setUploadStatus("Failed"));
+    if (result.status === 201) {
+      dispatch(userTicketsActions.addTickets(result.data));
+      setUploadStatus("Success");
+    } else setUploadStatus("Failed");
+  };
+
   const moveBackwards = () => {
     sliderRef.current.slickPrev();
     setCurrentSlide((prev) => --prev);

@@ -27,7 +27,7 @@ function UserPageHead(props: props): JSX.Element {
         <h3 className="profile-name">{`${user?.first_name} ${user?.last_name}`}</h3>
         <Rating value={+(user?.total_rating || 0)} readOnly precision={0.5} className="rating-stars"/>
         <span className="feedbacks-amount">
-          {user?.ratings.length} {langData.reviews}
+          {/* {user?.ratings.length} {langData.reviews} */}
         </span>
       </div>
       <div className="nav-buttons">

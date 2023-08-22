@@ -12,6 +12,8 @@ export interface UserState {
   user: User | null;
   mode: UserModes;
   favorites: string[];
+  token: string | null;
+  refreshToken: string | null;
 }
 
 const storedFavorites = localStorage.getItem("userFavorites");
@@ -22,15 +24,26 @@ const initialMode = storedMode || UserModes.BUYER;
 
 const storedToken = localStorage.getItem("token");
 const decodedToken: any = storedToken ? jwt_decode(storedToken) : null;
+console.log(decodedToken);
+const storedRefresh = localStorage.getItem("refreshToken");
+const decodedRefresh: any = storedRefresh ? jwt_decode(storedRefresh) : null;
 const initialImage: string = localStorage.getItem("userImage") || "";
-const initialUser: User | null = decodedToken
-  ? { ...decodedToken.user, image: initialImage }
-  : null;
+const initialUser: User | null =
+  decodedToken && decodedRefresh
+    ? {
+        ...decodedToken.user,
+        image: initialImage,
+        token: storedToken,
+        refreshToken: storedRefresh,
+      }
+    : null;
 
 const initialUserState: UserState = {
   user: initialUser,
   mode: initialMode,
   favorites: initialFavorites,
+  token: storedToken,
+  refreshToken: storedRefresh,
 };
 
 const userSlice = createSlice({
@@ -40,6 +53,8 @@ const userSlice = createSlice({
     login(state, action) {
       const { authorization, refreshtoken, image } = action.payload;
       const decodedToken: any = jwt_decode(authorization);
+      state.token = authorization;
+      state.refreshToken = refreshtoken;
       const user: User = decodedToken.user;
       user.token = authorization;
       user.refreshToken = refreshtoken;
@@ -67,7 +82,9 @@ const userSlice = createSlice({
     setNewToken(state, action) {
       const token: string = action.payload;
       localStorage.setItem("token", token);
-      state.user = { ...(state.user as User), token };
+      state.token = token;
+      const newUser = { ...(state.user as User), token };
+      state.user = newUser;
     },
     toggleFavorite(state, action) {
       const favoriteId = action.payload;

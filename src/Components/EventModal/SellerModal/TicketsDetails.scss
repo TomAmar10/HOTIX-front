@@ -43,6 +43,8 @@
         select {
           @extend input;
           cursor: pointer;
+          padding: 0.5rem;
+          color: black;
         }
       }
     }
