@@ -8,7 +8,8 @@ $steps-height: 13.5rem;
   background-color: $color2;
   padding: 1rem 3rem;
   border-radius: $border-radius;
-  max-width: 40rem;
+  width: 95%;
+  max-width: 35rem;
   overflow-y: auto;
   position: fixed;
   top: 50%;
@@ -31,9 +32,13 @@ $steps-height: 13.5rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     font-size: 0.9rem;
     .bid-ticket-section {
-      height: 6rem;
       @include flex-center(column);
       justify-content: space-around;
+      height: 6rem;
+      .event-name {
+        font-weight: 600;
+        text-align: center
+      }
       .seat-details {
         @include flex-center(row);
         gap: 1rem;
@@ -51,10 +56,10 @@ $steps-height: 13.5rem;
       .bid-price {
         font-weight: bold;
         font-size: 0.7rem;
-        margin-right: 1rem;
-    }
-    .price {
-          font-weight: bold;
+        margin: 0 0.5rem;
+      }
+      .price {
+        font-weight: bold;
         padding: 0.2rem 0.5rem;
         border-radius: $border-radius;
         border: 1px $disabled-color solid;
@@ -101,6 +106,37 @@ $steps-height: 13.5rem;
       font-weight: 400;
       padding: 0.3rem 2rem;
       margin-top: 2rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .BidStatusModal {
+    padding: 1rem;
+    .bid-ticket {
+      gap: 0rem;
+      justify-content: space-between;
+    }
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .BidStatusModal {
+    .bid-ticket {
+      flex-direction: column;
+      .bid-ticket-section {
+        height: 5rem;
+        &:last-child {
+          width: 100%;
+          flex-direction: row;
+          justify-content: space-between;
+          gap: 1rem;
+          padding: 0 1rem;
+          .price-container {
+            @include flex-center(column);
+          }
+        }
+      }
     }
   }
 }

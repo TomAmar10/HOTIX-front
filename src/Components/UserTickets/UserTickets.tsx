@@ -16,10 +16,10 @@ function UserTickets(props: props): JSX.Element {
       <h4 className="section-header">{data.header}</h4>
       <hr />
       <div className="events-tickets-container">
-        {props.userEventTickets.map((e) => (
+        {props.userEventTickets.map((e, index) => (
           <EventTicketsCard
             eventTicket={e}
-            key={`${e._id}-tickets-card`}
+            key={`${e._id}-tickets-card-${index}`}
             data={data}
             isHebrew={props.isHebrew}
           />

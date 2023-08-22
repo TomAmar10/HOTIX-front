@@ -319,7 +319,7 @@
     },
     "SalesHistory": {
       "header": "Sales History",
-      "transferred":"Transferred on "
+      "transferred": "Transferred on "
     }
   },
   "OffersPage": {
@@ -344,7 +344,11 @@
     "seat": "Seat",
     "row": "Row",
     "area": "Area",
-    "closeBtn": "Close"
+    "closeBtn": "Close",
+    "step1": "An offer was sent by you to",
+    "step2": "has confirmed your offer",
+    "step3": "Tickets are available in 'Tickets' section",
+    "step4": "- SHOW TIME"
   },
   "SecureDepositMsg": {
     "hey": "Hey ",

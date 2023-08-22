@@ -25,17 +25,15 @@ function BidStatusModal(props: props): JSX.Element {
     ((props.bid.tickets as SellerTicket[])[0].ticketsArray as Ticket[]).length;
 
   const sellerSteps = {
-    step1: `An offer was sent by you to ${
+    step1: `${data.step1} ${
       (props.bid.id_owner as User).first_name
     } ${(props.bid.id_owner as User).last_name}`,
     step2: `${(props.bid.id_owner as User).first_name} ${
       (props.bid.id_owner as User).last_name
-    } has confirmed your offer`,
-    step3: `Tickets are in your 'tickets - upcoming events' section`,
-    step4: `${eventDate} - SHOW TIME`,
+    } ${data.step2}`,
+    step3: data.step3,
+    step4: `${eventDate} ${data.step4}`,
   };
-
-  console.log(props.bid);
 
   return (
     <div className="BidStatusModal">
@@ -47,7 +45,7 @@ function BidStatusModal(props: props): JSX.Element {
           <span>{event.location}</span>
         </div>
         <div className="bid-ticket-section">
-          <div>
+          <div className="price-container">
             <span className="bid-price">{data.bidPrice}:</span>
             <span className="price">{price} $</span>
           </div>

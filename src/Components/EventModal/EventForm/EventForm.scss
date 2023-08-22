@@ -5,7 +5,6 @@
 .EventForm {
   @include flex-center(column);
   padding: 1rem 1rem 0;
-  min-width: 30rem;
   .random-bg-image {
     width: 40%;
     height: 8rem;

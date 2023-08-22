@@ -25,6 +25,7 @@ function FavoriteEvents(props: props): JSX.Element {
       <div className="favorite-events-container">
         {props.favorites.map((e) => (
           <div
+            key={e._id + "-favorite-key"}
             className="single-favorite-event"
             onClick={() => dispatch(eventActions.setSingleEvent(e))}
           >
