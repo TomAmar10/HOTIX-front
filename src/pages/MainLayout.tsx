@@ -9,6 +9,7 @@ import useBidService from "../services/bidService";
 import useTicketService from "../services/ticketService";
 import useTagService from "../services/tagService";
 import BottomNav from "../Components/NavBars/BottomNav";
+import useCommunityService from "../services/communityService";
 
 function MainLayout(): JSX.Element {
   const user = useSelector((state: IStore) => state.user.user);
@@ -16,6 +17,7 @@ function MainLayout(): JSX.Element {
   const langData = useSelector((state: IStore) => state.language.langData);
   const bidService = useBidService();
   const ticketService = useTicketService();
+  const communityService = useCommunityService();
   const eventService = useEventService();
   const tagService = useTagService();
   const currentEvent = useSelector(
@@ -33,6 +35,7 @@ function MainLayout(): JSX.Element {
     if (user?._id) {
       bidService.getUserBids(user?._id as string);
       ticketService.getUserTickets(user._id as string);
+      communityService.getAllCommunities();
     }
     tagService.getAllTags();
   }, [user?._id]);

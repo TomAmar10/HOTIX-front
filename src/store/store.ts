@@ -4,6 +4,7 @@ import eventsReducer, { EventState } from "./eventSlice";
 import userTicketsReducer, { UserTicketsState } from "./userTicketsSlice";
 import userBidsReducer, { UserBidsState } from "./userBidsSlice";
 import categoriesReducer, { CategoryState } from "./categorySlice";
+import communitiesReducer, { CommunityState } from "./communitySlice";
 import languageReducer, { LanguageState } from "./languageSlice";
 
 export interface IStore {
@@ -12,6 +13,7 @@ export interface IStore {
   userTickets: UserTicketsState;
   userBids: UserBidsState;
   categories: CategoryState;
+  communities: CommunityState;
   language: LanguageState;
 }
 
@@ -22,6 +24,7 @@ const store = configureStore({
     userTickets: userTicketsReducer,
     userBids: userBidsReducer,
     categories: categoriesReducer,
+    communities: communitiesReducer,
     language: languageReducer,
   },
 });

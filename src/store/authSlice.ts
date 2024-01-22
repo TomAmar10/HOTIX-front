@@ -24,7 +24,6 @@ const initialMode = storedMode || UserModes.BUYER;
 
 const storedToken = localStorage.getItem("token");
 const decodedToken: any = storedToken ? jwt_decode(storedToken) : null;
-console.log(decodedToken);
 const storedRefresh = localStorage.getItem("refreshToken");
 const decodedRefresh: any = storedRefresh ? jwt_decode(storedRefresh) : null;
 const initialImage: string = localStorage.getItem("userImage") || "";

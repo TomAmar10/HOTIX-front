@@ -23,6 +23,7 @@ import RegisterPage from "./pages/Register";
 import { appRoutes } from "./utils/config";
 import ForgotPasswordPage from "./pages/ForgotPassword";
 import ResetPasswordPage from "./pages/ResetPassword";
+import CommunityPage from "./pages/Community";
 const SingleEventPage = lazy(() => import("./pages/SingleEvent"));
 const AdminPage = lazy(() => import("./pages/Admin"));
 
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
               { path: "offers", element: <OffersPage /> },
               { path: "wallet", element: <span>Wallet</span> },
             ],
+          },
+          {
+            path: "community/:communityId",
+            element: <CommunityPage />,
           },
         ],
       },

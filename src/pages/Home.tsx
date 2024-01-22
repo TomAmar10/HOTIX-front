@@ -5,6 +5,7 @@ import UpcomingEvents from "../Components/UpcomingEvents/UpcomingEvents";
 import { IStore } from "../store/store";
 import Spinner from "../Components/UI/Spinner";
 import PopularEvents from "../Components/PopularEvents/PopularEvents";
+import PopularCommunities from "../Components/PopularCommunities/PopularCommunities";
 
 function HomePage(): JSX.Element {
   const langData = useSelector((state: IStore) => state.language.langData);
@@ -13,6 +14,8 @@ function HomePage(): JSX.Element {
   const language = useSelector((state: IStore) => state.language.language);
   const categories =
     useSelector((state: IStore) => state.categories.categories) || [];
+  const communities =
+    useSelector((state: IStore) => state.communities.communities) || [];
   const events = useSelector((state: IStore) => state.events.events)?.filter(
     (e) => new Date(e.date).getTime() > new Date().getTime()
   );
@@ -44,6 +47,7 @@ function HomePage(): JSX.Element {
                   data={langData}
                   user={user}
                 />
+                <PopularCommunities communities={communities} />
               </>
             )}
           </>

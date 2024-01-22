@@ -1,0 +1,153 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixin.scss";
+
+.CommunityProfile {
+  .community-top {
+    height: 60vh;
+    position: relative;
+    overflow: hidden;
+    .bg-image {
+      width: 100%;
+    }
+    .community-header {
+      padding: 1rem 2rem;
+      position: absolute;
+      top: 0;
+      left: 0;
+      @include flex-center(column);
+      background-color: rgba($color1, 0.75);
+      height: 100%;
+      width: 100%;
+
+      .community-profile {
+        @include flex-center(column);
+        margin-bottom: 1rem;
+        gap: 0.5rem;
+        img {
+          border-radius: 50%;
+          border: 2px white solid;
+          width: 13rem;
+          height: 13rem;
+        }
+        .community-name {
+          color: white;
+          font-weight: 600;
+        }
+      }
+      .community-nav {
+        position: absolute;
+        bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 1200px;
+        .navigator {
+          @include flex-center(row);
+          gap: 2rem;
+        }
+        button {
+          @include basic-button($color2);
+          width: 10rem;
+        }
+      }
+    }
+  }
+  .basic-details {
+    @include flex-center(row);
+    gap: 1rem;
+    margin-top: 1rem;
+    .detail {
+      @include flex-center(column);
+      gap: 0.5rem;
+      height: 7rem;
+      width: 9rem;
+      border-radius: 5px;
+      border: 1px #ccc solid;
+      border-radius: 10px;
+      h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0;
+      }
+      span {
+        font-size: 0.9rem;
+      }
+    }
+  }
+  .page-container {
+    @include flex-center(row);
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 2rem 8rem;
+    .main-content {
+      width: 100%;
+      .community-upcoming-event {
+        .event-header {
+          font-weight: 600;
+          text-decoration: underline 2px solid;
+          margin-bottom: 1rem;
+          color: $color1;
+        }
+        .detail {
+          @include flex-center(row);
+          justify-content: flex-start;
+          gap: 1rem;
+          font-size: 0.9rem;
+        }
+      }
+    }
+    .updates-container {
+      width: 100%;
+      max-width: 400px;
+      background-color: #ebf0f0;
+      border-radius: 5px;
+      border: #ddd 1px solid;
+      padding: 1rem;
+      .updates-header {
+        font-weight: 600;
+        font-size: 1.3rem;
+        text-decoration: underline;
+      }
+      .updates {
+        width: 100%;
+        display: grid;
+        .single-update {
+          padding: 0.5rem 0;
+          .updated-user-details {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            img {
+              width: 2.5rem;
+              height: 2.5rem;
+              border-radius: 50%;
+            }
+            .user-name-role {
+              h5 {
+                margin: 0 0 -5px 0;
+                font-size: 1rem;
+                font-weight: 600;
+              }
+              span {
+                font-size: 12px;
+              }
+            }
+          }
+          .update-details {
+            p {
+              font-size: 14px;
+              margin: 0;
+            }
+            span {
+              font-size: 10px;
+            }
+          }
+        }
+      }
+      hr {
+        margin: 0;
+      }
+    }
+  }
+}

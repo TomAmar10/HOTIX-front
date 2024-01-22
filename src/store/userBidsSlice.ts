@@ -47,6 +47,7 @@ const userBidsSlice = createSlice({
       const confirmedSent: Bid[] = [];
       const declinedReceived: Bid[] = [];
       const declinedSent: Bid[] = [];
+      // return;
       action.payload.bids.forEach((b: Bid) => {
         b.tickets = filterTickets(b.tickets as Ticket[]);
         if (b.status === StatusBid.CONFIRMED) {

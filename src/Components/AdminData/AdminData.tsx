@@ -10,8 +10,9 @@ import { useDispatch } from "react-redux";
 import { eventActions } from "../../store/eventSlice";
 import LangModel from "../../languageControl/Language";
 import { format } from "date-fns";
-import "./AdminData.scss";
 import TagsForm from "./TagsForm";
+import CommunityForm from "./CommunityForm";
+import "./AdminData.scss";
 
 interface props {
   user: User | null;
@@ -116,6 +117,8 @@ function AdminData(props: props): JSX.Element {
           </table>
         </div>
         <TagsForm />
+        <hr />
+        <CommunityForm events={props.events} />
       </div>
       {userToWatch && <UserPopup user={userToWatch} onHidePopup={hidePopup} />}
     </>

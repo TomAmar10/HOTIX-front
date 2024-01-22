@@ -1,4 +1,4 @@
-// import topHeaderImage from "../assets/crowd-at-show.webp";
+import crowdImage from "../assets/community-bg.png";
 // import topHeaderImage from "../assets/COMMUNITY.png";
 import topHeaderImage from "../assets/COMMUNITY2.png";
 import googleImage from "../assets/google-image.png";
@@ -24,4 +24,5 @@ export {
   randomProfile,
   hebrewImg,
   englishImg,
+  crowdImage
 };

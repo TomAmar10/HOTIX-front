@@ -1,0 +1,50 @@
+@import "../../styles/mixin.scss";
+@import "../../styles/variables.scss";
+@import "../../styles/globals.scss";
+
+.CommunityForm {
+  @include flex-center(column);
+  width: 100%;
+  max-width: 450px;
+  margin-bottom: 3rem;
+  border-radius: 5px;
+  border: 1px #ccc solid;
+  padding: 1rem;
+  .community-header {
+    text-decoration: underline;
+  }
+  .event-form-input {
+    @extend .custom-input;
+    text-align: left;
+    margin: 0 0 0.5rem;
+    &::placeholder {
+      color: rgb(172, 170, 170);
+      font-size: 0.9rem;
+    }
+  }
+  .community-form-events{
+    width: 100%;
+  }
+  &.hebrew {
+    .event-form-input {
+      text-align: right;
+    }
+  }
+  .event-form-label {
+    width: 100%;
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+  .community-form-btn {
+    @include basic-button($color1);
+    font-size: 0.9rem;
+    border: 1px $color3 solid;
+    font-weight: 400;
+    width: 9rem;
+    margin-top: 1rem;
+  }
+  .success-msg {
+    color: green;
+    font-size: 0.8rem;
+  }
+}

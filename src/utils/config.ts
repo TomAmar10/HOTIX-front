@@ -88,6 +88,14 @@ const config = {
     update: "/categories/single/update",
     delete: "/categories/single/delete",
   },
+  communityURL: {
+    getAll: "/communities/all",
+    getSingle: "/communities/single",
+    create: "/communities/single/add",
+    update: "/communities/single/update",
+    joinRequest: "/communities/join-request",
+    delete: "/communities/single/delete",
+  },
   bidURL: {
     getAll: "/bids/all",
     getUserBids: "/bids/all/by_user",
