@@ -14,6 +14,7 @@ import "./UserSettings.scss";
 interface props {
   user: User;
   data: LanguageProfilePage;
+  isHighlight:boolean;
 }
 
 interface formUser extends User {
@@ -34,6 +35,7 @@ function UserSettings(props: props): JSX.Element {
   const [isSucceeded, setIsSucceeded] = useState(false);
   const { register, handleSubmit, reset } = useForm<formUser>();
   const [error, setError] = useState("");
+  const highlight = props.isHighlight ? "highlight-section" : "";
 
   const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
@@ -107,7 +109,7 @@ function UserSettings(props: props): JSX.Element {
   };
 
   return (
-    <div className="UserSettings user-page-section">
+    <div className={`UserSettings user-page-section ${highlight}`}>
       <h4 className="section-header">{data.header}</h4>
       <hr />
       <div className="form-container">

@@ -5,6 +5,7 @@ import UserFeedbacks from "../Components/UserProfile/UserFeedbacks/UserFeedbacks
 import FavoriteEvents from "../Components/UserProfile/FavoriteEvents/FavoriteEvents";
 import { useEffect, useState } from "react";
 import { Event } from "../models/Event";
+import { useLocation } from "react-router-dom";
 
 function ProfilePage(): JSX.Element {
   const langData = useSelector(
@@ -13,6 +14,8 @@ function ProfilePage(): JSX.Element {
   const user = useSelector((state: IStore) => state.user.user);
   const events = useSelector((state: IStore) => state.events.events);
   const [favorites, setFavorites] = useState<Event[]>([]);
+  const location = useLocation();
+  const paramSection = new URLSearchParams(location.search).get("section");
 
   useEffect(() => {
     if (events) {
@@ -21,15 +24,26 @@ function ProfilePage(): JSX.Element {
       );
       setFavorites(newFavorites);
     }
-  }, [events, user?.favorites]);
+    if (paramSection === "favorites")
+      window.scrollTo(0, document.body.scrollHeight);
+  }, [events, paramSection, user?.favorites]);
 
   return (
     <>
       {user && (
         <>
-          <UserSettings user={user} data={langData} />
-          <UserFeedbacks user={user} data={langData}/>
-          <FavoriteEvents user={user} favorites={favorites || []} data={langData}/>
+          <UserSettings
+            user={user}
+            data={langData}
+            isHighlight={paramSection === "settings"}
+          />
+          <UserFeedbacks user={user} data={langData} />
+          <FavoriteEvents
+            user={user}
+            favorites={favorites || []}
+            data={langData}
+            isHighlight={paramSection === "favorites"}
+          />
         </>
       )}
     </>

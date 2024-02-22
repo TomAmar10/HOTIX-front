@@ -13,7 +13,6 @@ import { lazy, Suspense } from "react";
 import ProfilePage from "./pages/Profile";
 import TicketsPage from "./pages/Tickets";
 import OffersPage from "./pages/Offers";
-import WalletPage from "./pages/Wallet";
 import MainLayout from "./pages/MainLayout";
 import HomePage from "./pages/Home";
 import Spinner from "./Components/UI/Spinner";
@@ -24,6 +23,7 @@ import { appRoutes } from "./utils/config";
 import ForgotPasswordPage from "./pages/ForgotPassword";
 import ResetPasswordPage from "./pages/ResetPassword";
 import CommunityPage from "./pages/Community";
+import ContactPage from "./pages/Contact";
 const SingleEventPage = lazy(() => import("./pages/SingleEvent"));
 const AdminPage = lazy(() => import("./pages/Admin"));
 
@@ -38,6 +38,7 @@ const router = createBrowserRouter([
         element: <MainLayout />,
         children: [
           { index: true, element: <HomePage /> },
+          { path: "/contact", element: <ContactPage /> },
           { path: appRoutes.chooseMode, element: <ChooseUserModePage /> },
           {
             path: "event/:eventId",

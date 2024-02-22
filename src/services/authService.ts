@@ -115,7 +115,6 @@ const useAuthService = (): AuthService => {
     }
   };
 
-  //   useEffect(() => {}, []);
 
   return {
     checkPassportUser,

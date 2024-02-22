@@ -12,14 +12,20 @@ interface props {
   user: User;
   favorites: Event[];
   data: LanguageProfilePage;
+  isHighlight: boolean;
 }
 
 function FavoriteEvents(props: props): JSX.Element {
   const data = props.data.FavoriteEvents;
   const dispatch = useDispatch();
+  const highlight = props.isHighlight ? "highlight-section" : "";
+
+  
 
   return (
-    <div className="FavoriteEvents user-page-section">
+    <div
+      className={`FavoriteEvents user-page-section ${highlight}`}
+    >
       <h4 className="section-header">{data.header}</h4>
       <hr />
       <div className="favorite-events-container">

@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { UserModes } from "../../store/authSlice";
 import { IStore } from "../../store/store";
@@ -13,6 +13,11 @@ function TopNavbar(): JSX.Element {
   const data = langData.TopNavbar;
   const user = useSelector((state: IStore) => state.user.user);
   const userMode = useSelector((state: IStore) => state.user.mode);
+  const navigate = useNavigate();
+
+  const navToFavorites = () => {
+    navigate(`/profile/${user?._id}/profile?section=favorites`);
+  }
 
   return (
     <div className="TopNavbar">
@@ -24,7 +29,7 @@ function TopNavbar(): JSX.Element {
               data={data.modeSwitch}
             />
             <NotificationsActiveIcon className="icon" />
-            <FavoriteIcon className="icon" />
+            <FavoriteIcon className="icon" onClick={navToFavorites}/>
           </>
         )}
         <LanguageMenu data={data} />

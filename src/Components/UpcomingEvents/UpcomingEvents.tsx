@@ -47,18 +47,27 @@ function UpcomingEvents(props: props): JSX.Element {
   };
 
   const toggleActive = (name: string) => {
-    const updatedCategories = activeCategories.includes(name)
+    if (activeCategories.length > 3) {
+      setActiveCategories([name]);
+      toggleEvents([name]);
+      return;
+    }
+    const updatedNames = activeCategories.includes(name)
       ? activeCategories.filter((category) => category !== name)
       : [...activeCategories, name];
 
-    if (updatedCategories.length < 1) {
+    if (updatedNames.length < 1) {
       setActiveCategories(props.categories.map((c) => c.name));
       setActiveEvents(props.events);
       return;
     }
-    setActiveCategories(updatedCategories);
+    setActiveCategories(updatedNames);
+    toggleEvents(updatedNames);
+  };
+
+  const toggleEvents = (categories: string[]) => {
     const updatedEvents = props.events.filter((e) =>
-      updatedCategories.includes(e.id_category.name)
+      categories.includes(e.id_category.name)
     );
     setActiveEvents(updatedEvents);
   };

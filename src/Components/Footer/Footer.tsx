@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
-import "./Footer.scss";
 import useSubscribeService from "../../services/subscribeService";
+import "./Footer.scss";
 
 function Footer(): JSX.Element {
   const subscribeRef = useRef<HTMLInputElement>(null);

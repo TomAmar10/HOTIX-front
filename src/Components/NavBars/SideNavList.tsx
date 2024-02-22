@@ -77,11 +77,15 @@ export default function SideNavList(props: props) {
       item: <EventNoteIcon />,
       click: () => dispatch(eventActions.startCreating()),
     },
-    { name: data.contact, item: <ContactSupportIcon /> },
+    { name: data.contact, item: <ContactSupportIcon />, click: () => navigate("/contact") },
   ];
 
   const bottomItems = [
-    { name: data.settings, item: <SettingsIcon /> },
+    {
+      name: data.settings,
+      item: <SettingsIcon />,
+      click: () => navigate(`profile/${user?._id}/profile?section=settings`),
+    },
     {
       name: data.logout,
       item: <LogoutIcon />,

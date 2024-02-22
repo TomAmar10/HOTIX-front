@@ -2,8 +2,13 @@ import axios from "axios";
 import store from "../store/store";
 import { userActions } from "../store/authSlice";
 
+const serverUrl =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3200/hotix/api"
+    : process.env.REACT_APP_API_URL;
+
 export const axiosInstance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: serverUrl,
 });
 
 axiosInstance.interceptors.response.use(

@@ -68,6 +68,24 @@ main.container-main {
   }
 }
 
+.highlight-section{
+  animation: shadowAnimation 5s forwards;
+}
+@keyframes shadowAnimation {
+  0% {
+    box-shadow: none; /* No shadow at the start */
+  }
+  50% {
+    box-shadow: rgba($color1, 0.15) 0px 54px 55px,
+      rgba($color1, 0.15) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+      rgba($color1, 0.15) 0px 12px 53px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
+  100% {
+    box-shadow: none; /* No shadow at the start */
+  }
+}
+
+
 .home-navbar-container {
   display: flex;
   &.hebrew {

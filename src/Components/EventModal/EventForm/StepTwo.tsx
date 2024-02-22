@@ -103,16 +103,8 @@ function StepTwo(props: props): JSX.Element {
           <label
             htmlFor="image"
             className="event-form-label"
-            onClick={openFileInput}
           >
             {data.image}
-            <input
-              disabled
-              placeholder={data.imagePlaceholder}
-              value={imgName}
-              type="text"
-              className="event-form-input image-input"
-            />
             <input
               onChange={(e) => changeImage(e)}
               id="image"
@@ -120,6 +112,13 @@ function StepTwo(props: props): JSX.Element {
               className="event-form-input"
               hidden
               ref={fileInputRef}
+            />
+            <input 
+            onClick={openFileInput}
+              placeholder={data.imagePlaceholder}
+              value={imgName}
+              type="text"
+              className="event-form-input image-input"
             />
           </label>
         </>
